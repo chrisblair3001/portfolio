@@ -5,6 +5,12 @@ import greenlightNavBefore from '../assets/greenlight-nav-before.png'
 import greenlightWireframes from '../assets/greenlight-wireframes.png'
 import greenlightImpactParent from '../assets/greenlight-impact-parent.png'
 import greenlightImpactChild from '../assets/greenlight-impact-child.png'
+import omniHero from '../assets/omni-hero.png'
+import omniAgentFlow from '../assets/omni-agent-flow.png'
+import omniMobile from '../assets/omni-mobile.png'
+import smartscanHero from '../assets/smartscan-hero.png'
+import smartscanProcess from '../assets/smartscan-process.png'
+import smartscanGallery from '../assets/smartscan-gallery.png'
 
 export type CaseStudySection = {
   heading: string
@@ -25,6 +31,124 @@ export type CaseStudy = {
 }
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: 'omni-enterprise-chat-experience',
+    title: 'Omni: A Chat Experience for the Enterprise',
+    summary:
+      "Designed airia's enterprise AI assistant, unifying company knowledge, search, and support into one trustworthy place to ask a question.",
+    image: omniHero,
+    bgColor: '#f1eefc',
+    tags: ['Enterprise AI', 'Conversational Design', 'Design Leadership'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: [
+          "airia is an enterprise AI platform — Omni is the assistant at its center, threaded through search, support, and a growing library of custom agents. As adoption grew, so did the number of ways employees could ask it something.",
+        ],
+      },
+      {
+        heading: 'The problem',
+        body: [
+          'Before Omni, getting an answer inside a large company meant knowing exactly where to look: one tool for policy documents, another for IT tickets, a wiki that was always a version behind, and a search bar that rarely returned what you actually needed. There was no single, trustworthy place to just ask.',
+        ],
+      },
+      {
+        heading: 'My role',
+        body: [
+          "I led design for Omni's core experience, directing a team of three designers while staying hands-on with the interaction model myself — the part of the product every other surface, including Agent Studio and the admin console, would end up inheriting.",
+        ],
+      },
+      {
+        heading: 'The solution',
+        body: [
+          'We built one assistant with three ways in that all resolve to the same trustworthy answer: ask a direct question and get a sourced response, search across every connected company file, or route straight into IT support when the answer needs a human process, not just information. Whichever door someone came in through, the interaction — and the confidence in the answer — stayed the same.',
+        ],
+        image: omniHero,
+        imageAlt: 'Three Omni entry points: direct Q&A with sources, file search, and IT support',
+      },
+      {
+        heading: 'Going further',
+        body: [
+          "Some questions aren't one-off — they're something someone will ask again next week. When Omni recognized that pattern, it offered to turn the exchange into a reusable agent on the spot: describe what you want in plain language, and Omni scaffolds the agent's instructions, knowledge sources, and schedule for you to review, rather than build from scratch.",
+        ],
+        image: omniAgentFlow,
+        imageAlt: 'Conversation flow showing Omni scaffolding a new email-summary agent from a plain-language request',
+      },
+      {
+        heading: 'Extending the pattern',
+        body: [
+          'The same interaction model — one input, multiple resolution paths, consistent sourcing — had to hold up outside the desktop too. We adapted it into a lighter, responsive shell for mobile, and matched every screen across light and dark themes to meet enterprise IT requirements.',
+        ],
+        image: omniMobile,
+        imageAlt: "Omni's navigation adapted for a responsive mobile shell",
+      },
+      {
+        heading: 'Impact',
+        body: [
+          "Omni became the default first stop for company knowledge — the place people reached for before opening a wiki, filing a ticket, or pinging a coworker who \"probably knows.\" It also became the foundation the rest of airia's platform built on: Agent Studio, the admin console, and Security & Governance all extended patterns Omni introduced first.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'smart-scan-file-organization',
+    title: 'Smart Scan: File Organization in Plain Language',
+    summary:
+      'Designed a plain-language rule builder that tags, extracts, and summarizes across an entire file library in one pass — no folders required.',
+    image: smartscanHero,
+    bgColor: '#fdf3e3',
+    tags: ['Enterprise AI', 'File Management', 'Product Design'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: [
+          "Smart Scan lives inside airia's Files hub — the same knowledge base that powers Omni's search and citations. As teams connected more of their company files, the hub filled up faster than anyone could keep it organized by hand.",
+        ],
+      },
+      {
+        heading: 'The problem',
+        body: [
+          'Folders and filters assume you already know how you want things organized. In practice, people describe what they\'re looking for the way they\'d say it out loud — "photos from the beach trip," "anything that mentions the Q3 roadmap" — and traditional file organization tools don\'t speak that language. Doing it by hand across hundreds of files didn\'t scale, and nobody wanted to write a filter query to tag their own vacation photos.',
+        ],
+      },
+      {
+        heading: 'My role',
+        body: [
+          'I designed Smart Scan end to end, from the first single-rule version through the flexible, multi-criteria builder that shipped.',
+        ],
+      },
+      {
+        heading: 'The solution',
+        body: [
+          'Smart Scan runs three kinds of actions across a selected set of files: Tag labels files by whatever criteria you describe, Extract pulls out text and references that match a prompt, and Summarize condenses files down to what matters. You write the rule the way you\'d explain it to a person — "all photos taken on the beach," tag with "Vacation" — and Smart Scan applies it across every selected file in one pass.',
+        ],
+        image: smartscanHero,
+        imageAlt: 'Smart Scan panel showing Tag, Extract, and Summarize actions configured in plain language',
+      },
+      {
+        heading: 'Iterating toward flexibility',
+        body: [
+          "The first version let you set exactly one rule per action, which worked for simple cases but broke down fast — real organizing usually means several criteria at once. I redesigned each action into its own card that could hold multiple rules: tag by trip and by document type in a single Smart Scan, each with its own \"+ Add\" rather than forcing separate runs.",
+        ],
+        image: smartscanProcess,
+        imageAlt: 'Comparison of the single-rule Smart Scan panel and the redesigned multi-criteria version',
+      },
+      {
+        heading: 'Reusable, not disposable',
+        body: [
+          "A Smart Scan isn't a one-time action — it's saved, named, and re-runnable. \"Organize all of my vacation files\" or \"Categorize my travel pictures as 'wanderlust'\" show up in All Scans with when they last ran and how many files they touched, and can be renamed, duplicated, exported, or deleted like any other saved object.",
+        ],
+        image: smartscanGallery,
+        imageAlt: 'All Scans list showing saved, named Smart Scans with run history and file counts',
+      },
+      {
+        heading: 'Impact',
+        body: [
+          'Smart Scan turned file organization from a recurring chore into something people set up once and let run. Instead of manually sorting new uploads into folders, people described what they wanted and let a saved Scan keep the library organized going forward.',
+        ],
+      },
+    ],
+  },
   {
     slug: 'reinventing-enterprise-onboarding',
     title: 'Reinventing Enterprise Onboarding',
