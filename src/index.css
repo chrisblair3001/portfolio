@@ -13,10 +13,20 @@
   --color-label: #938787;
   --color-border: #828282;
   --color-hairline: #e5e2e0;
+  --color-base-secondary: #7b7274;
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-body);
   font-family: var(--font-archivo);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

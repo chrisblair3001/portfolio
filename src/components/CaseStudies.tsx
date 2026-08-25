@@ -1,71 +1,83 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, type Variants } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { caseStudies, type CaseStudy } from '../data/caseStudies'
+import { caseStudies as allCaseStudies, type CaseStudy } from '../data/caseStudies'
+import Divider from './Divider'
 
-type CaseStudiesProps = {
-  onHoverChange?: (study: CaseStudy | null) => void
+// Matches the curve wearecollins.com uses for its Programs list hover state
+const EASE_OUT_CUBIC = [0.215, 0.61, 0.355, 1] as const
+
+const bgVariants: Variants = {
+  rest: { opacity: 0, scale: 1.02 },
+  hover: { opacity: 1, scale: 1, transition: { duration: 0.45, ease: EASE_OUT_CUBIC } },
 }
 
-export default function CaseStudies({ onHoverChange }: CaseStudiesProps) {
-  const [hovered, setHovered] = useState<CaseStudy | null>(null)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const containerRef = useRef<HTMLElement>(null)
+const titleVariants: Variants = {
+  rest: { x: 0, color: 'var(--color-ink)' },
+  hover: { x: 8, color: '#ffffff', transition: { duration: 0.25, ease: EASE_OUT_CUBIC } },
+}
 
-  const updatePosition = (e: React.MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (!rect) return
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-  }
+const taglineVariants: Variants = {
+  rest: { color: 'var(--color-base-secondary)' },
+  hover: { color: '#f2f2f2', transition: { duration: 0.25, ease: EASE_OUT_CUBIC } },
+}
 
-  const handleEnter = (study: CaseStudy, e: React.MouseEvent<HTMLElement>) => {
-    updatePosition(e)
-    setHovered(study)
-    onHoverChange?.(study)
-  }
+const arrowVariants: Variants = {
+  rest: { opacity: 0, x: 8, color: 'var(--color-ink)' },
+  hover: { opacity: 1, x: -4, color: '#ffffff', transition: { duration: 0.4, ease: EASE_OUT_CUBIC } },
+}
 
-  const handleLeave = () => {
-    setHovered(null)
-    onHoverChange?.(null)
-  }
-
+function ArrowIcon() {
   return (
-    <section
-      ref={containerRef}
-      className="relative flex w-full items-start gap-20"
-      onMouseMove={updatePosition}
-    >
-      <h2 className="w-[320px] shrink-0 text-2xl font-semibold text-label">Case Studies</h2>
-      <div className="flex flex-1 flex-col gap-16">
-        {caseStudies.map((study) => (
-          <Link
-            key={study.slug}
-            to={`/case-studies/${study.slug}`}
-            className="flex w-full flex-col gap-2 rounded-2xl p-4 transition-transform duration-200 hover:translate-x-1"
-            onMouseEnter={(e) => handleEnter(study, e)}
-            onMouseLeave={handleLeave}
-          >
-            <h3 className="w-full text-2xl font-bold text-heading">{study.title}</h3>
-            <p className="w-full text-base leading-[1.5] text-muted">{study.summary}</p>
-          </Link>
+    <motion.svg viewBox="0 0 12 12" fill="none" variants={arrowVariants} className="size-5 shrink-0">
+      <path
+        d="M1.5 6H10.5M6.25 10.25L10.5 6L6.25 1.75"
+        stroke="currentColor"
+        strokeWidth="0.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </motion.svg>
+  )
+}
+
+type CaseStudiesProps = {
+  studies?: CaseStudy[]
+  heading?: string
+}
+
+export default function CaseStudies({ studies = allCaseStudies, heading = 'Case studies' }: CaseStudiesProps) {
+  return (
+    <section className="flex w-full flex-col gap-12">
+      <h2 className="w-full text-xl text-ink uppercase">{heading}</h2>
+      <div className="group/list flex w-full flex-col">
+        {studies.map((study, i) => (
+          <div key={study.slug}>
+            <motion.div initial="rest" whileHover="hover" animate="rest" className="relative">
+              <motion.div
+                variants={bgVariants}
+                className="pointer-events-none absolute -inset-x-[18px] inset-y-0 rounded-2xl bg-ink"
+              />
+              <Link
+                to={`/case-studies/${study.slug}`}
+                className="relative z-10 flex w-full items-center justify-between gap-8 py-8 opacity-100 transition-opacity duration-300 group-has-[a:hover]/list:opacity-45 hover:!opacity-100"
+              >
+                <motion.p
+                  variants={titleVariants}
+                  className="w-[300px] shrink-0 text-4xl font-bold tracking-[-0.72px] uppercase"
+                  style={{ fontStretch: '125%' }}
+                >
+                  {study.shortTitle ?? study.title}
+                </motion.p>
+                <motion.p variants={taglineVariants} className="flex-1 text-base">
+                  {study.tagline ?? study.summary}
+                </motion.p>
+                <ArrowIcon />
+              </Link>
+            </motion.div>
+            {i < studies.length - 1 && <Divider />}
+          </div>
         ))}
       </div>
-
-      <AnimatePresence>
-        {hovered && (
-          <motion.img
-            key={hovered.slug}
-            src={hovered.image}
-            alt=""
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.85 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            style={{ left: position.x, top: position.y }}
-            className="pointer-events-none absolute z-10 w-64 -translate-x-1/2 -translate-y-1/2 rounded-xl shadow-xl transition-[left,top] duration-300 ease-out"
-          />
-        )}
-      </AnimatePresence>
     </section>
   )
 }
