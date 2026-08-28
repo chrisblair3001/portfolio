@@ -48,7 +48,7 @@ type CaseStudiesProps = {
 export default function CaseStudies({ studies = allCaseStudies, heading = 'Case studies' }: CaseStudiesProps) {
   return (
     <section className="flex w-full flex-col gap-12">
-      <h2 className="w-full text-xl text-ink uppercase">{heading}</h2>
+      <h2 className="w-full text-base font-semibold text-ink uppercase">// {heading}</h2>
       <div className="group/list flex w-full flex-col">
         {studies.map((study, i) => (
           <div key={study.slug}>
@@ -63,7 +63,7 @@ export default function CaseStudies({ studies = allCaseStudies, heading = 'Case 
               >
                 <motion.p
                   variants={titleVariants}
-                  className="w-[300px] shrink-0 text-4xl font-bold tracking-[-0.72px] uppercase"
+                  className="w-[300px] shrink-0 text-4xl font-semibold tracking-[-0.72px] uppercase"
                   style={{ fontStretch: '125%' }}
                 >
                   {study.shortTitle ?? study.title}

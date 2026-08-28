@@ -6,7 +6,7 @@ const BIO_TEXT =
 export default function Bio() {
   return (
     <section className="flex w-full flex-col gap-12">
-      <h2 className="w-full text-xl text-ink uppercase">Bio</h2>
+      <h2 className="w-full text-base font-semibold text-ink uppercase">// Bio</h2>
       <div className="flex w-full items-center gap-12">
         <img
           src={avatar}

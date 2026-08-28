@@ -13,8 +13,8 @@ export default function StickyHeader() {
 
   return (
     <div
-      className={`fixed inset-x-0 top-0 z-50 border-b bg-bg/90 backdrop-blur-sm transition-colors duration-300 ${
-        scrolled ? 'border-hairline' : 'border-transparent'
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled ? 'border-hairline bg-bg/90 backdrop-blur-sm' : 'border-transparent bg-transparent'
       }`}
     >
       <div className="mx-auto max-w-[1280px] px-20 py-6">
