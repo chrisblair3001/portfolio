@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
 import CaseStudies from '../components/CaseStudies'
 import Divider from '../components/Divider'
-import ExpandableImage from '../components/ExpandableImage'
 import Footer from '../components/Footer'
+import ImageGallery from '../components/ImageGallery'
 import StickyHeader from '../components/StickyHeader'
 import { caseStudies } from '../data/caseStudies'
 
@@ -85,67 +85,58 @@ export default function CaseStudyDetail() {
         {study.chapters && (
           <div className="flex flex-col gap-24">
             {study.chapters.map((chapter) => (
-              <div key={chapter.index} className="flex w-full gap-10">
-                <div className="w-[300px] shrink-0">
-                  <p className="text-base font-semibold text-label uppercase">// {chapter.index}</p>
-                  <p className="mt-3 text-[28px] leading-[1.2] font-bold text-heading">{chapter.title}</p>
-                </div>
-                <div className="flex flex-1 flex-col gap-10">
-                  <div className="flex flex-col gap-4 text-[17px] leading-[1.6] text-body">
-                    {chapter.body.map((paragraph, i) => (
-                      <p key={i}>{paragraph}</p>
-                    ))}
+              <div key={chapter.index} className="flex w-full flex-col gap-10">
+                <div className="flex w-full gap-10">
+                  <div className="w-[300px] shrink-0">
+                    <p className="text-base font-semibold text-label uppercase">// {chapter.index}</p>
+                    <p className="mt-3 text-[28px] leading-[1.2] font-bold text-heading">{chapter.title}</p>
                   </div>
-
-                  {chapter.stats && (
-                    <div className="flex flex-wrap gap-10">
-                      {chapter.stats.map((stat) => (
-                        <div key={stat.group} className="flex flex-col gap-4">
-                          <p className="text-lg font-semibold text-heading">{stat.group}</p>
-                          <div className="flex flex-wrap gap-4">
-                            {stat.chips.map((chip) => (
-                              <span
-                                key={chip}
-                                className="rounded-full bg-white px-4 py-1.5 text-sm font-medium whitespace-nowrap text-body shadow-[0px_2px_4px_2px_rgba(0,0,0,0.06)]"
-                              >
-                                {chip}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
+                  <div className="flex flex-1 flex-col gap-10">
+                    <div className="flex flex-col gap-4 text-[17px] leading-[1.6] text-body">
+                      {chapter.body.map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
                       ))}
                     </div>
-                  )}
 
-                  {chapter.validations && (
-                    <div className="flex flex-col gap-6">
-                      <p className="text-lg font-semibold text-heading">Key Validations</p>
-                      <div className="grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
-                        {chapter.validations.map((v) => (
-                          <div key={v.title} className="flex flex-col gap-1">
-                            <p className="text-base font-semibold text-heading before:mr-2 before:content-['•']">
-                              {v.title}
-                            </p>
-                            <p className="pl-4 text-base leading-[1.6] text-body">{v.body}</p>
+                    {chapter.stats && (
+                      <div className="flex flex-wrap gap-10">
+                        {chapter.stats.map((stat) => (
+                          <div key={stat.group} className="flex flex-col gap-4">
+                            <p className="text-lg font-semibold text-heading">{stat.group}</p>
+                            <div className="flex flex-wrap gap-4">
+                              {stat.chips.map((chip) => (
+                                <span
+                                  key={chip}
+                                  className="rounded-full bg-white px-4 py-1.5 text-sm font-medium whitespace-nowrap text-body shadow-[0px_2px_4px_2px_rgba(0,0,0,0.06)]"
+                                >
+                                  {chip}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         ))}
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {chapter.gallery && (
-                    <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2">
-                      {chapter.gallery.map((img, i) => (
-                        <ExpandableImage
-                          key={i}
-                          src={img.src}
-                          alt={img.alt}
-                          className="h-[300px] w-auto shrink-0 snap-start rounded-lg border border-hairline object-cover shadow-[0px_2px_4px_2px_rgba(0,0,0,0.06)]"
-                        />
-                      ))}
-                    </div>
-                  )}
+                    {chapter.validations && (
+                      <div className="flex flex-col gap-6">
+                        <p className="text-lg font-semibold text-heading">Key Validations</p>
+                        <div className="grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
+                          {chapter.validations.map((v) => (
+                            <div key={v.title} className="flex flex-col gap-1">
+                              <p className="text-base font-semibold text-heading before:mr-2 before:content-['•']">
+                                {v.title}
+                              </p>
+                              <p className="pl-4 text-base leading-[1.6] text-body">{v.body}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
+
+                {chapter.gallery && <ImageGallery images={chapter.gallery} />}
               </div>
             ))}
           </div>
