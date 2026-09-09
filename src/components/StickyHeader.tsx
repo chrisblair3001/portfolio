@@ -17,7 +17,7 @@ export default function StickyHeader() {
         scrolled ? 'border-hairline bg-bg/90 backdrop-blur-sm' : 'border-transparent bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-[1280px] px-20 py-6">
+      <div className="mx-auto max-w-[1280px] px-6 py-4 sm:px-10 sm:py-6 lg:px-20">
         <Header />
       </div>
     </div>

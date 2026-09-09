@@ -59,16 +59,16 @@ export default function CaseStudies({ studies = allCaseStudies, heading = 'Case 
               />
               <Link
                 to={`/case-studies/${study.slug}`}
-                className="relative z-10 flex w-full items-center justify-between gap-8 py-8 opacity-100 transition-opacity duration-300 group-has-[a:hover]/list:opacity-45 hover:!opacity-100"
+                className="relative z-10 flex w-full flex-col items-start gap-2 py-6 opacity-100 transition-opacity duration-300 group-has-[a:hover]/list:opacity-45 hover:!opacity-100 sm:flex-row sm:items-center sm:gap-8 sm:py-8"
               >
                 <motion.p
                   variants={titleVariants}
-                  className="w-[300px] shrink-0 text-4xl font-semibold tracking-[-0.72px] uppercase"
+                  className="text-2xl font-semibold tracking-[-0.72px] whitespace-nowrap uppercase sm:w-[280px] sm:shrink-0 sm:text-3xl lg:w-[420px] lg:text-4xl"
                   style={{ fontStretch: '125%' }}
                 >
                   {study.shortTitle ?? study.title}
                 </motion.p>
-                <motion.p variants={taglineVariants} className="flex-1 text-base">
+                <motion.p variants={taglineVariants} className="flex-1 text-sm sm:text-base">
                   {study.tagline ?? study.summary}
                 </motion.p>
                 <ArrowIcon />

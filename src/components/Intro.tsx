@@ -3,64 +3,116 @@ import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from
 
 const ROTATIONS = ['The age of ai', 'shipping products', 'human beings', 'hard problems', 'Taste & craft']
 
-const BASE_FONT_SIZE = 108
-
 const GRADIENT_IMAGE = 'linear-gradient(93deg, #FF1494 0.24%, #FF9900 58.87%)'
 
 // How far the gradient drifts left/right of its resting position, and how
 // long a full back-and-forth cycle takes, to give the sweep a lively,
-// dynamic feel rather than a static gradient.
+// dynamic feel rather than a static gradient. Tuned against the desktop
+// (108px) heading size — scaled down proportionally at smaller font sizes
+// so the drift stays subtle on mobile instead of overshooting a much
+// shorter line of text.
 const SWEEP_AMPLITUDE = 80
+const SWEEP_REFERENCE_FONT_SIZE = 108
 const SWEEP_PERIOD_MS = 1800
 
 const ROTATION_INTERVAL_MS = 3200
 
-// Approximates the per-word decay curve measured from tinywins.com's header
-// reveal: an exponential ease-out (max velocity at the start, no bounce)
-// rather than a fixed-duration cubic-bezier.
-const expoOut = (t: number) => 1 - Math.exp(-6.9 * t)
+// The per-letter flip/blur reveal is modeled on vercel.com/domains' animated
+// headline: each character tips in on its own, one after another, from a
+// slight backward 3D rotation with a soft blur, rather than the whole word
+// moving as one unit. "Swift" is Vercel's own name for this easing curve
+// (read straight off their site's CSS custom property) — it overshoots past
+// 1 just slightly, giving the settle a tiny bit of bounce instead of a dead
+// stop.
+const SWIFT_EASE = [0.175, 0.885, 0.32, 1.1] as const
+const FLIP_DURATION = 0.75
+const FLIP_OFFSET = 12
+const FLIP_ROTATE = 80
+const FLIP_BLUR = 2
 
-const STAGGER = 0.04
+// Delay between each character's flip, not each word's — this is what makes
+// the reveal read as a single cascade rippling across the whole phrase
+// rather than each word popping in all at once.
+const LETTER_STAGGER = 0.025
 
 function StaggeredWords({
   text,
   className,
-  getWordStyle,
+  getLetterStyle,
 }: {
   text: string
   className?: string
-  getWordStyle?: (index: number) => CSSProperties | undefined
+  getLetterStyle?: (flatIndex: number) => CSSProperties | undefined
 }) {
   const reduceMotion = useReducedMotion()
   const words = text.split(' ')
 
   const container: Variants = {
     hidden: {},
-    visible: { transition: { staggerChildren: reduceMotion ? 0 : STAGGER } },
+    visible: { transition: { staggerChildren: reduceMotion ? 0 : LETTER_STAGGER } },
     exit: {
-      transition: { staggerChildren: reduceMotion ? 0 : STAGGER / 2, staggerDirection: -1 },
+      transition: { staggerChildren: reduceMotion ? 0 : LETTER_STAGGER / 2, staggerDirection: -1 },
     },
   }
 
-  const word: Variants = {
-    hidden: { y: reduceMotion ? 0 : '145%' },
-    visible: { y: '0%', transition: { duration: reduceMotion ? 0 : 0.9, ease: expoOut } },
-    exit: { y: reduceMotion ? 0 : '-145%', transition: { duration: reduceMotion ? 0 : 0.35, ease: 'easeIn' } },
+  const letter: Variants = {
+    hidden: {
+      opacity: 0,
+      y: reduceMotion ? 0 : -FLIP_OFFSET,
+      rotateX: reduceMotion ? 0 : FLIP_ROTATE,
+      filter: reduceMotion ? 'blur(0px)' : `blur(${FLIP_BLUR}px)`,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      filter: 'blur(0px)',
+      transition: { duration: reduceMotion ? 0 : FLIP_DURATION, ease: SWIFT_EASE },
+    },
+    exit: {
+      opacity: 0,
+      y: reduceMotion ? 0 : FLIP_OFFSET,
+      rotateX: reduceMotion ? 0 : -FLIP_ROTATE,
+      filter: reduceMotion ? 'blur(0px)' : `blur(${FLIP_BLUR}px)`,
+      transition: { duration: reduceMotion ? 0 : FLIP_DURATION, ease: SWIFT_EASE },
+    },
   }
 
+  // A flat index across every letter in the whole phrase (not reset per
+  // word) — words.map/letters.map below run synchronously in render order,
+  // so incrementing this here always lines up with the matching hidden
+  // measurement clone, whose letters are walked in that same left-to-right
+  // order.
+  let flatIndex = 0
+
   return (
+    // display: contents means this element generates no box of its own — its
+    // word spans become direct layout children of the shared heading below,
+    // so every word (static or rotating) wraps together as one continuous
+    // run of text instead of this phrase being an atomic unit that wraps or
+    // doesn't as a whole.
     <motion.span
       variants={container}
       initial="hidden"
       animate="visible"
       exit="exit"
-      className={`inline-flex flex-wrap gap-x-[0.28em] ${className ?? ''}`}
+      className={`contents ${className ?? ''}`}
     >
-      {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden">
-          <motion.span variants={word} className="inline-block" style={getWordStyle?.(i)}>
-            {w}
-          </motion.span>
+      {words.map((w, wi) => (
+        <span key={wi} className="mr-[0.28em] inline-block" style={{ perspective: 1000 }}>
+          {[...w].map((ch, li) => {
+            const i = flatIndex++
+            return (
+              <motion.span
+                key={li}
+                variants={letter}
+                className="inline-block [backface-visibility:hidden]"
+                style={getLetterStyle?.(i)}
+              >
+                {ch}
+              </motion.span>
+            )
+          })}
         </span>
       ))}
     </motion.span>
@@ -69,16 +121,20 @@ function StaggeredWords({
 
 export default function Intro() {
   const [index, setIndex] = useState(0)
-  // The gradient must read as one continuous sweep across the whole line
-  // (pink on the left, orange on the right), not repeat per word. Since each
-  // word is its own DOM node (needed for the per-word stagger animation), we
-  // size each word's background to the full line width and shift it left by
-  // that word's own offset, so together they reveal one shared gradient.
-  const [fit, setFit] = useState({ fontSize: BASE_FONT_SIZE, offsets: [] as number[], lineWidth: 0 })
+  // The gradient must read as one continuous sweep across the rotating
+  // phrase (pink on the left, orange on the right), not repeat per letter.
+  // Since each letter is its own DOM node (needed for the per-letter
+  // stagger animation), we size each letter's background to the phrase's
+  // full width and shift it left by that letter's own offset, so together
+  // they reveal one shared gradient.
+  const [fit, setFit] = useState({ offsets: [] as number[], lineWidth: 0 })
   // A slow sine drift layered on top of that alignment, so the gradient
-  // itself keeps gently sliding left/right instead of sitting static.
-  const [sweep, setSweep] = useState(0)
-  const wrapperRef = useRef<HTMLDivElement>(null)
+  // itself keeps gently sliding left/right instead of sitting static. Kept
+  // as a -1..1 phase rather than a pixel value so it can be rescaled by the
+  // current font size at use-time (see scaledAmplitude below).
+  const [sweepPhase, setSweepPhase] = useState(0)
+  const [fontPx, setFontPx] = useState(SWEEP_REFERENCE_FONT_SIZE)
+  const rootRef = useRef<HTMLDivElement>(null)
   const measureRef = useRef<HTMLDivElement>(null)
   const reduceMotion = useReducedMotion()
 
@@ -94,7 +150,7 @@ export default function Intro() {
     if (reduceMotion) return
     let frame: number
     const animate = (time: number) => {
-      setSweep(Math.sin((time / SWEEP_PERIOD_MS) * Math.PI * 2) * SWEEP_AMPLITUDE)
+      setSweepPhase(Math.sin((time / SWEEP_PERIOD_MS) * Math.PI * 2))
       frame = requestAnimationFrame(animate)
     }
     frame = requestAnimationFrame(animate)
@@ -104,66 +160,72 @@ export default function Intro() {
   const current = ROTATIONS[index]
   const currentWords = current.split(' ')
 
-  // Most rotation phrases fit the 108px design spec exactly; a couple of the
-  // longer ones (e.g. "shipping products") would overflow the content column
-  // at that size, so measure each phrase against a hidden, non-wrapping
-  // clone and shrink just that phrase down to fit instead of capping every
-  // phrase to the worst case. The same clone's word positions (scaled down
-  // to match) drive the gradient math above.
+  // The rotating phrase flows inline right after "for" now, wrapping
+  // naturally with the rest of the heading instead of being forced onto its
+  // own line. A hidden, non-wrapping clone mirrors the same word/letter
+  // structure as the visible version, purely to read off each letter's
+  // natural offset for the gradient math above. The heading's own font size
+  // is responsive (smaller on mobile), so the clone borrows whatever size is
+  // actually rendering right now via getComputedStyle rather than a fixed
+  // constant — otherwise the gradient math would stay tuned to the desktop
+  // size and drift out of alignment on small screens.
   useLayoutEffect(() => {
-    const measureEl = measureRef.current
-    const maxWidth = wrapperRef.current?.clientWidth
-    if (!measureEl || !maxWidth) return
-    const naturalWidth = measureEl.offsetWidth
-    const scale = naturalWidth > maxWidth ? maxWidth / naturalWidth : 1
-    const wordEls = Array.from(measureEl.children) as HTMLElement[]
-    setFit({
-      fontSize: scale * BASE_FONT_SIZE,
-      offsets: wordEls.map((w) => w.offsetLeft * scale),
-      lineWidth: naturalWidth * scale,
-    })
+    const measure = () => {
+      const rootEl = rootRef.current
+      const measureEl = measureRef.current
+      if (!rootEl || !measureEl) return
+      const renderedFontSize = getComputedStyle(rootEl).fontSize
+      measureEl.style.fontSize = renderedFontSize
+      setFontPx(parseFloat(renderedFontSize) || SWEEP_REFERENCE_FONT_SIZE)
+      const letterEls = Array.from(measureEl.querySelectorAll('span > span')) as HTMLElement[]
+      setFit({
+        offsets: letterEls.map((l) => l.offsetLeft),
+        lineWidth: measureEl.offsetWidth,
+      })
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
   }, [current])
 
   // The gradient canvas is padded by the sweep amplitude on each side so the
   // drift always slides within it, never sliding the flat pink/orange ends
   // of the gradient into view.
-  const getWordStyle = (i: number): CSSProperties => ({
+  const scaledAmplitude = SWEEP_AMPLITUDE * (fontPx / SWEEP_REFERENCE_FONT_SIZE)
+  const sweep = sweepPhase * scaledAmplitude
+
+  const getLetterStyle = (i: number): CSSProperties => ({
     backgroundImage: GRADIENT_IMAGE,
-    backgroundSize: `${fit.lineWidth + SWEEP_AMPLITUDE * 2}px 100%`,
-    backgroundPosition: `${-(fit.offsets[i] ?? 0) - SWEEP_AMPLITUDE + sweep}px 0`,
+    backgroundSize: `${fit.lineWidth + scaledAmplitude * 2}px 100%`,
+    backgroundPosition: `${-(fit.offsets[i] ?? 0) - scaledAmplitude + sweep}px 0`,
     WebkitBackgroundClip: 'text',
     backgroundClip: 'text',
     color: 'transparent',
-    fontSize: fit.fontSize,
   })
 
   return (
     <div
-      ref={wrapperRef}
-      className="flex w-full flex-col text-[108px] leading-[0.95] font-bold tracking-[-2.16px] uppercase"
-      style={{ fontStretch: '115%' }}
+      ref={rootRef}
+      className="relative w-full text-[40px] leading-[0.95] font-bold tracking-[-0.8px] uppercase sm:text-[56px] sm:tracking-[-1.1px] md:text-[76px] md:tracking-[-1.5px] lg:text-[108px] lg:tracking-[-2.16px]"
+      style={{ fontStretch: '125%' }}
     >
       <StaggeredWords text="Design leadership for" className="text-ink" />
-      <div className="relative flex h-[124px] w-full items-center overflow-hidden">
-        <div
-          ref={measureRef}
-          aria-hidden
-          className="pointer-events-none absolute top-0 left-0 -z-10 flex w-max gap-x-[0.28em] whitespace-nowrap opacity-0"
-          style={{ fontSize: BASE_FONT_SIZE }}
-        >
-          {currentWords.map((w, i) => (
-            <span key={i}>{w}</span>
-          ))}
-        </div>
-        <AnimatePresence mode="wait">
-          <StaggeredWords
-            key={current}
-            text={current}
-            className="absolute inset-0 items-center leading-none"
-            getWordStyle={getWordStyle}
-          />
-        </AnimatePresence>
+      <div
+        ref={measureRef}
+        aria-hidden
+        className="pointer-events-none absolute -z-10 flex w-max gap-x-[0.28em] whitespace-nowrap opacity-0"
+      >
+        {currentWords.map((w, wi) => (
+          <span key={wi}>
+            {[...w].map((ch, li) => (
+              <span key={li}>{ch}</span>
+            ))}
+          </span>
+        ))}
       </div>
+      <AnimatePresence mode="wait">
+        <StaggeredWords key={current} text={current} getLetterStyle={getLetterStyle} />
+      </AnimatePresence>
     </div>
   )
 }

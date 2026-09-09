@@ -67,8 +67,8 @@ export default function Hero() {
             'radial-gradient(circle, rgba(255,54,111,0.6) 0%, rgba(255,104,147,0.45) 25%, rgba(255,155,183,0.3) 50%, rgba(255,255,255,0) 100%)',
         }}
       />
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1280px] flex-col px-20">
-        <div className="h-36 shrink-0" />
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1280px] flex-col px-6 sm:px-10 lg:px-20">
+        <div className="h-24 shrink-0 sm:h-28 lg:h-36" />
         <div className="flex flex-1 flex-col justify-center">
           <Intro />
         </div>

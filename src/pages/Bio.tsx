@@ -3,7 +3,7 @@ import PageShell from '../components/PageShell'
 export default function Bio() {
   return (
     <PageShell eyebrow="About" title="Bio">
-      <div className="flex max-w-[720px] flex-col gap-6 text-base leading-[1.6] text-body">
+      <div className="flex max-w-[720px] flex-col gap-6 text-base leading-[1.6] text-body sm:text-lg">
         <p>
           [Placeholder] Add your full bio here — where you grew up, how you got into design, and
           the throughline connecting your work.

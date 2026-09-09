@@ -40,7 +40,9 @@ export default function ImageGallery({ images }: { images: CaseStudyImage[] }) {
             src={img.src}
             alt={img.alt}
             onClick={() => setOpenIndex(i)}
-            className="h-[300px] w-auto shrink-0 rounded-lg border border-hairline object-cover shadow-[0px_2px_4px_2px_rgba(0,0,0,0.06)]"
+            className={`h-[220px] w-auto shrink-0 rounded-lg object-cover shadow-[0px_2px_4px_2px_rgba(0,0,0,0.06)] sm:h-[300px] ${
+              img.bare ? '' : 'border border-hairline'
+            }`}
           />
         ))}
       </div>
