@@ -12,15 +12,15 @@ export default function Resume() {
         </button>
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-bold text-heading">Experience</h2>
-          <p className="text-base text-muted">[Placeholder] Add your role history here.</p>
+          <p className="text-base leading-[1.6] text-body">[Placeholder] Add your role history here.</p>
         </div>
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-bold text-heading">Skills</h2>
-          <p className="text-base text-muted">[Placeholder] List core skills and tools.</p>
+          <p className="text-base leading-[1.6] text-body">[Placeholder] List core skills and tools.</p>
         </div>
         <div className="flex flex-col gap-2">
           <h2 className="text-xl font-bold text-heading">Education</h2>
-          <p className="text-base text-muted">[Placeholder] Add education background.</p>
+          <p className="text-base leading-[1.6] text-body">[Placeholder] Add education background.</p>
         </div>
       </div>
     </PageShell>

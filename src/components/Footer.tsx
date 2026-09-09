@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="flex w-full flex-col gap-8">
       <Divider />
-      <div className="flex w-full items-center justify-between text-sm whitespace-nowrap">
+      <div className="flex w-full flex-col items-start gap-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-0">
         <p className="font-manrope text-muted">
           © 2025 Chris Blair. Designed &amp; built as a living monograph.
         </p>

@@ -4,7 +4,7 @@ export default function Contact() {
   return (
     <PageShell eyebrow="About" title="Contact">
       <div className="flex max-w-[720px] flex-col gap-6">
-        <p className="text-base leading-[1.6] text-body">
+        <p className="text-base leading-[1.6] text-body sm:text-lg">
           [Placeholder] A line inviting people to reach out — what kind of conversations you're
           open to.
         </p>

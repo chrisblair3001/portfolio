@@ -12,7 +12,7 @@ export default function CaseStudyDetail() {
 
   if (!study) {
     return (
-      <div className="mx-auto flex min-h-screen max-w-[1280px] flex-col items-start justify-center gap-6 px-20">
+      <div className="mx-auto flex min-h-screen max-w-[1280px] flex-col items-start justify-center gap-6 px-6 sm:px-10 lg:px-20">
         <p className="text-2xl font-bold text-heading">Case study not found</p>
         <Link to="/" className="text-base font-bold text-accent">
           ← Back home
@@ -28,19 +28,24 @@ export default function CaseStudyDetail() {
     <div className="min-h-screen w-full">
       <StickyHeader />
 
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-16 px-20 pt-36 pb-[120px]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-6 pt-28 pb-20 sm:gap-16 sm:px-10 sm:pt-32 sm:pb-[120px] lg:px-20 lg:pt-36">
         <div className="flex flex-col gap-8">
-          <div className="flex w-full items-start justify-between gap-16">
-            <div className="flex max-w-[640px] flex-col gap-6">
-              <p className="text-2xl font-semibold text-label uppercase">Case Study</p>
-              <h1 className="text-[48px] leading-tight font-bold text-heading">{study.title}</h1>
-              <p className="text-lg leading-[1.6] text-muted">{study.summary}</p>
+          <div className="flex w-full flex-col items-start gap-8 lg:flex-row lg:justify-between lg:gap-16">
+            <div className="flex max-w-full flex-col gap-6 lg:max-w-[640px]">
+              <p className="text-base font-semibold text-label uppercase">Case Study</p>
+              <h1
+                className="text-[32px] leading-tight font-bold text-heading uppercase sm:text-[40px] lg:text-[48px]"
+                style={{ fontStretch: '125%' }}
+              >
+                {study.title}
+              </h1>
+              <p className="text-base leading-[1.6] text-body sm:text-lg">{study.summary}</p>
               {study.tags && (
                 <div className="flex flex-wrap gap-2">
                   {study.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-border px-4 py-1.5 text-sm font-medium text-body"
+                      className="rounded-full bg-white px-4 py-1.5 text-sm font-medium whitespace-nowrap text-body shadow-[0px_2px_4px_2px_rgba(0,0,0,0.06)]"
                     >
                       {tag}
                     </span>
@@ -50,10 +55,10 @@ export default function CaseStudyDetail() {
             </div>
 
             {hasRoleOrTeam && (
-              <div className="flex shrink-0 flex-col gap-6">
+              <div className="flex w-full shrink-0 flex-col gap-6 sm:flex-row sm:gap-10 lg:w-auto lg:flex-col lg:gap-6">
                 {study.role && (
-                  <div className="flex w-[362px] flex-col gap-4">
-                    <p className="text-lg font-semibold text-heading">Role</p>
+                  <div className="flex w-full flex-col gap-4 sm:w-[362px]">
+                    <p className="text-base font-semibold text-label uppercase">Role</p>
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-4">
                         <span className="size-6 shrink-0 rounded-full bg-hairline" />
@@ -61,11 +66,21 @@ export default function CaseStudyDetail() {
                       </div>
                       <p className="pl-10 text-sm leading-[1.6] text-muted">{study.role.scope}</p>
                     </div>
+                    {study.role.reports && study.role.reports.length > 0 && (
+                      <div className="flex flex-col gap-3">
+                        {study.role.reports.map((report) => (
+                          <div key={report} className="flex items-center gap-4">
+                            <span className="size-6 shrink-0 rounded-full bg-hairline" />
+                            <p className="text-sm font-medium text-heading">{report}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
                 {study.team && study.team.length > 0 && (
-                  <div className="flex w-[324px] flex-col gap-4">
-                    <p className="text-lg font-semibold text-heading">Team</p>
+                  <div className="flex w-full flex-col gap-4 sm:w-[324px]">
+                    <p className="text-base font-semibold text-label uppercase">Team</p>
                     <div className="flex flex-col gap-3">
                       {study.team.map((member) => (
                         <div key={member} className="flex items-center gap-4">
@@ -83,16 +98,18 @@ export default function CaseStudyDetail() {
         </div>
 
         {study.chapters && (
-          <div className="flex flex-col gap-24">
+          <div className="flex flex-col gap-16 sm:gap-24">
             {study.chapters.map((chapter) => (
-              <div key={chapter.index} className="flex w-full flex-col gap-10">
-                <div className="flex w-full gap-10">
-                  <div className="w-[300px] shrink-0">
+              <div key={chapter.index} className="flex w-full flex-col gap-8 sm:gap-10">
+                <div className="flex w-full flex-col gap-4 lg:flex-row lg:gap-10">
+                  <div className="lg:w-[300px] lg:shrink-0">
                     <p className="text-base font-semibold text-label uppercase">// {chapter.index}</p>
-                    <p className="mt-3 text-[28px] leading-[1.2] font-bold text-heading">{chapter.title}</p>
+                    <p className="mt-3 text-2xl leading-[1.2] font-bold text-heading sm:text-[28px]">
+                      {chapter.title}
+                    </p>
                   </div>
-                  <div className="flex flex-1 flex-col gap-10">
-                    <div className="flex flex-col gap-4 text-[17px] leading-[1.6] text-body">
+                  <div className="flex flex-1 flex-col gap-8 sm:gap-10">
+                    <div className="flex flex-col gap-4 text-base leading-[1.6] text-body sm:text-lg">
                       {chapter.body.map((paragraph, i) => (
                         <p key={i}>{paragraph}</p>
                       ))}
@@ -144,13 +161,13 @@ export default function CaseStudyDetail() {
       </div>
 
       {study.metrics && (
-        <div className="w-full bg-ink py-16">
-          <div className="mx-auto flex max-w-[1280px] flex-col gap-6 px-20">
+        <div className="w-full bg-ink py-12 sm:py-16">
+          <div className="mx-auto flex max-w-[1280px] flex-col gap-6 px-6 sm:px-10 lg:px-20">
             <p className="text-base font-semibold text-[#a2a2a2] uppercase">// Results</p>
             <div className="grid grid-cols-2 gap-4 text-white sm:grid-cols-3 md:grid-cols-5">
               {study.metrics.map((metric) => (
-                <div key={metric.label} className="flex flex-col items-center gap-1 py-9 text-center">
-                  <p className="text-[54px] leading-none font-bold">{metric.value}</p>
+                <div key={metric.label} className="flex flex-col items-center gap-1 py-6 text-center sm:py-9">
+                  <p className="text-4xl leading-none font-bold sm:text-5xl lg:text-[54px]">{metric.value}</p>
                   <p className="text-sm">{metric.label}</p>
                 </div>
               ))}
@@ -159,7 +176,7 @@ export default function CaseStudyDetail() {
         </div>
       )}
 
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-16 px-20 pt-16 pb-[120px]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-12 px-6 pt-16 pb-20 sm:gap-16 sm:px-10 sm:pb-[120px] lg:px-20">
         <CaseStudies studies={otherStudies} heading="More case studies" />
         <Footer />
       </div>

@@ -10,7 +10,7 @@ export default function Home() {
       <StickyHeader />
       <Hero />
 
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-[164px] px-20 pt-16 pb-[120px]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-20 px-6 pt-16 pb-20 sm:gap-28 sm:px-10 sm:pb-24 lg:gap-[164px] lg:px-20 lg:pb-[120px]">
         <CaseStudies />
         <Bio />
         <Footer />

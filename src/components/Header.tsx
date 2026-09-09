@@ -12,11 +12,14 @@ function LogoMark() {
 export default function Header() {
   return (
     <header className="flex w-full items-center justify-between uppercase">
-      <Link to="/" className="flex items-center gap-4 text-xl font-bold text-ink transition-opacity hover:opacity-70">
+      <Link
+        to="/"
+        className="flex items-center gap-2 text-base font-bold text-ink transition-opacity hover:opacity-70 sm:gap-4 sm:text-xl"
+      >
         <LogoMark />
-        Chris Blair
+        <span className="hidden sm:inline">Chris Blair</span>
       </Link>
-      <nav className="flex items-center gap-[68px] text-base font-semibold text-ink">
+      <nav className="flex items-center gap-6 text-sm font-semibold text-ink sm:gap-10 sm:text-base lg:gap-[68px]">
         <Link to="/resume" className="transition-colors hover:text-accent">
           Resume
         </Link>
