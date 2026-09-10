@@ -1,6 +1,10 @@
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'framer-motion'
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 
+// The fixed first half of the headline. It never changes, so it renders as
+// plain static text — only the rotating phrase after it animates.
+const STATIC_HEADING = 'Design leadership for'
+
 const ROTATIONS = ['The age of ai', 'shipping products', 'human beings', 'hard problems', 'Taste & craft']
 
 const GRADIENT_IMAGE = 'linear-gradient(93deg, #FF1494 0.24%, #FF9900 58.87%)'
@@ -15,7 +19,7 @@ const SWEEP_AMPLITUDE = 80
 const SWEEP_REFERENCE_FONT_SIZE = 108
 const SWEEP_PERIOD_MS = 1800
 
-const ROTATION_INTERVAL_MS = 3200
+const ROTATION_INTERVAL_MS = 3600
 
 // The per-letter flip/blur reveal is modeled on vercel.com/domains' animated
 // headline: each character tips in on its own, one after another, from a
@@ -25,15 +29,24 @@ const ROTATION_INTERVAL_MS = 3200
 // 1 just slightly, giving the settle a tiny bit of bounce instead of a dead
 // stop.
 const SWIFT_EASE = [0.175, 0.885, 0.32, 1.1] as const
-const FLIP_DURATION = 0.75
+const FLIP_DURATION = 0.3
 const FLIP_OFFSET = 12
 const FLIP_ROTATE = 80
 const FLIP_BLUR = 2
 
-// Delay between each character's flip, not each word's — this is what makes
-// the reveal read as a single cascade rippling across the whole phrase
-// rather than each word popping in all at once.
-const LETTER_STAGGER = 0.025
+// Delay between the start of one character's flip and the next. Kept at
+// roughly a third of FLIP_DURATION so the next letter kicks off while the
+// current one is only ~30% through its flip — the flips overlap heavily,
+// which is what reads as one smooth rippling cascade rather than a row of
+// separate little flips.
+const LETTER_STAGGER = 0.09
+
+// The exit is deliberately quicker and tighter than the entrance: with
+// AnimatePresence mode="wait" the outgoing phrase has to fully clear before
+// the next one starts, so a slow staggered exit would leave a dead gap
+// where the rotating slot sits empty.
+const EXIT_DURATION = 0.22
+const EXIT_STAGGER = 0.018
 
 function StaggeredWords({
   text,
@@ -51,7 +64,7 @@ function StaggeredWords({
     hidden: {},
     visible: { transition: { staggerChildren: reduceMotion ? 0 : LETTER_STAGGER } },
     exit: {
-      transition: { staggerChildren: reduceMotion ? 0 : LETTER_STAGGER / 2, staggerDirection: -1 },
+      transition: { staggerChildren: reduceMotion ? 0 : EXIT_STAGGER, staggerDirection: -1 },
     },
   }
 
@@ -74,7 +87,7 @@ function StaggeredWords({
       y: reduceMotion ? 0 : FLIP_OFFSET,
       rotateX: reduceMotion ? 0 : -FLIP_ROTATE,
       filter: reduceMotion ? 'blur(0px)' : `blur(${FLIP_BLUR}px)`,
-      transition: { duration: reduceMotion ? 0 : FLIP_DURATION, ease: SWIFT_EASE },
+      transition: { duration: reduceMotion ? 0 : EXIT_DURATION, ease: SWIFT_EASE },
     },
   }
 
@@ -209,7 +222,16 @@ export default function Intro() {
       className="relative w-full text-[40px] leading-[0.95] font-bold tracking-[-0.8px] uppercase sm:text-[56px] sm:tracking-[-1.1px] md:text-[76px] md:tracking-[-1.5px] lg:text-[108px] lg:tracking-[-2.16px]"
       style={{ fontStretch: '125%' }}
     >
-      <StaggeredWords text="Design leadership for" className="text-ink" />
+      {/* Static half of the heading — plain text, no animation. Uses the same
+          contents / mr-[0.28em] structure as the rotating phrase below so the
+          two flow together as one continuous line. */}
+      <span className="contents text-ink">
+        {STATIC_HEADING.split(' ').map((w, i) => (
+          <span key={i} className="mr-[0.28em] inline-block">
+            {w}
+          </span>
+        ))}
+      </span>
       <div
         ref={measureRef}
         aria-hidden

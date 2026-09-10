@@ -30,3 +30,94 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/*
+ * Resume page — print / "Save as PDF" layout.
+ *
+ * On screen the resume renders at the site's normal reading scale with the
+ * label/content rows stacking on mobile. This block collapses it to a tight,
+ * single-page document: site chrome (nav, download button, footer) is hidden,
+ * the rows are forced side-by-side, type drops to resume scale, and each role
+ * / capability group is kept from splitting across a page break.
+ */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .resume-chrome {
+    display: none !important;
+  }
+
+  .resume-root {
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #1a1a1a;
+    /* Keep the red section labels and pill outlines in the printed output */
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .resume-header {
+    margin-top: 0 !important;
+    padding-bottom: 14px !important;
+  }
+
+  .resume-main {
+    margin-top: 16px !important;
+    gap: 14px !important;
+  }
+
+  .resume-row {
+    flex-direction: row !important;
+    gap: 20px !important;
+  }
+
+  .resume-section-label {
+    width: 110px !important;
+    padding-top: 1px !important;
+    font-size: 9px !important;
+  }
+
+  .resume-jobs {
+    gap: 12px !important;
+  }
+
+  .resume-caps {
+    gap: 10px !important;
+  }
+
+  .resume-entry {
+    break-inside: avoid;
+  }
+
+  .resume-name {
+    font-size: 22px !important;
+  }
+
+  .resume-contact {
+    font-size: 9px !important;
+  }
+
+  .resume-role-title,
+  .resume-group-title {
+    font-size: 10px !important;
+  }
+
+  .resume-text {
+    font-size: 9.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  .resume-pill {
+    padding: 2px 7px !important;
+    font-size: 9px !important;
+  }
+}

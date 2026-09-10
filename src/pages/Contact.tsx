@@ -1,25 +1,30 @@
 import PageShell from '../components/PageShell'
 
+const EMAIL = 'chrblair@gmail.com'
+const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent('Hello from chrisblair.design')}`
+const LINKEDIN = 'https://www.linkedin.com/in/chrisblair'
+
 export default function Contact() {
   return (
-    <PageShell eyebrow="About" title="Contact">
-      <div className="flex max-w-[720px] flex-col gap-6">
+    <PageShell title="Contact">
+      <div className="flex max-w-[600px] flex-col gap-8">
         <p className="text-base leading-[1.6] text-body sm:text-lg">
-          [Placeholder] A line inviting people to reach out — what kind of conversations you're
-          open to.
+          I'm looking for my next design leadership role at a mission-driven company. If you're
+          hiring, building something hard, or just want to compare notes, I'd like to hear from you.
         </p>
-        <div className="flex flex-col gap-3">
+
+        <div className="flex flex-wrap gap-3">
           <a
-            href="mailto:hello@example.com"
-            className="w-fit text-lg font-bold text-heading transition-colors hover:text-accent"
+            href={MAILTO}
+            className="rounded-full border border-border px-6 py-3 text-base font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
           >
-            Email →
+            {EMAIL}
           </a>
           <a
-            href="https://linkedin.com"
+            href={LINKEDIN}
             target="_blank"
             rel="noreferrer"
-            className="w-fit text-lg font-bold text-heading transition-colors hover:text-accent"
+            className="rounded-full border border-border px-6 py-3 text-base font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
           >
             LinkedIn →
           </a>
