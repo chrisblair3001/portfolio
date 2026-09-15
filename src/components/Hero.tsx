@@ -21,7 +21,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#fcf4f6]">
+    <section className="relative w-full overflow-hidden">
       <CursorGlow />
       <div className="relative z-10 mx-auto flex min-h-screen max-w-[1280px] flex-col px-6 sm:px-10 lg:px-20">
         <div className="h-24 shrink-0 sm:h-28 lg:h-36" />

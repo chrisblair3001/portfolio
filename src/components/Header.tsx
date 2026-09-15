@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function LogoMark() {
   return (
-    <svg viewBox="0 0 38 22" fill="none" className="h-[22px] w-[38px] shrink-0 text-accent">
+    <svg viewBox="0 0 38 22" fill="none" className="h-[0.71em] w-auto shrink-0 text-accent">
       <path d="M15.9863 22L28.6676 0H38.0004L25.3192 22H15.9863Z" fill="currentColor" />
       <path d="M0 22L12.6813 0H22.0141L9.33284 22H0Z" fill="currentColor" />
     </svg>

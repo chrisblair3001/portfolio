@@ -33,7 +33,7 @@ export default function ImageGallery({ images }: { images: CaseStudyImage[] }) {
 
   return (
     <div className="relative">
-      <div ref={scrollRef} className="no-scrollbar flex gap-4 overflow-x-auto pb-2">
+      <div ref={scrollRef} className="no-scrollbar flex gap-5 overflow-x-auto pb-2">
         {images.map((img, i) => (
           <ExpandableImage
             key={i}
