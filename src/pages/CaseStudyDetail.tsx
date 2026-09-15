@@ -6,6 +6,37 @@ import ImageGallery from '../components/ImageGallery'
 import StickyHeader from '../components/StickyHeader'
 import { caseStudies } from '../data/caseStudies'
 
+// Recreations of the gradient-circle families from the Figma board
+// (radial "gem" highlights, conic wheels, a linear sweep) as CSS, so the
+// role/team markers get a bit of colour without pulling in raster assets
+// for a 24px decorative dot.
+const DOT_GRADIENTS = [
+  'radial-gradient(circle at 32% 28%, #7fd4f5, #2f6fd6 72%)',
+  'linear-gradient(135deg, #ff7a3d, #ff2e63)',
+  'radial-gradient(circle at 35% 30%, #7ff0c4, #0f9d68 78%)',
+  'radial-gradient(circle at 62% 34%, #c99bff, #7b3ff0 82%)',
+  'radial-gradient(circle at 40% 34%, #ff9db0, #e11d48 76%)',
+  'radial-gradient(circle at 42% 30%, #3b4a63, #0b1220 82%)',
+  'conic-gradient(from 210deg at 50% 50%, #ffb347, #ff2e63, #ffb347)',
+  'conic-gradient(from 0deg, #ff2e63, #ffd23f, #12d8a0, #4d96ff, #b06ab3, #ff2e63)',
+  'conic-gradient(from 170deg at 50% 50%, #a9f2fb, #6aa8ff, #c9b7ff, #a9f2fb)',
+  'radial-gradient(circle at 45% 38%, #ffe58a, #f59e0b 68%, #b45309)',
+]
+
+// Deterministic gradient per marker: the slug picks a per-study starting
+// colour, then `step` walks the palette in a stride that's coprime with its
+// length, so every dot on a page lands on a different gradient while each
+// study still starts somewhere different.
+function GradientDot({ slug, step }: { slug: string; step: number }) {
+  let hash = 0
+  for (let i = 0; i < slug.length; i++) hash = (Math.imul(hash, 31) + slug.charCodeAt(i)) | 0
+  const start = Math.abs(hash) % DOT_GRADIENTS.length
+  const gradient = DOT_GRADIENTS[(start + step * 3) % DOT_GRADIENTS.length]
+  return (
+    <span aria-hidden className="size-6 shrink-0 rounded-full" style={{ backgroundImage: gradient }} />
+  )
+}
+
 export default function CaseStudyDetail() {
   const { slug } = useParams()
   const study = caseStudies.find((s) => s.slug === slug)
@@ -23,6 +54,7 @@ export default function CaseStudyDetail() {
 
   const otherStudies = caseStudies.filter((s) => s.slug !== study.slug)
   const hasRoleOrTeam = study.role || (study.team && study.team.length > 0)
+  const reportsCount = study.role?.reports?.length ?? 0
 
   return (
     <div className="min-h-screen w-full">
@@ -61,16 +93,16 @@ export default function CaseStudyDetail() {
                     <p className="text-base font-semibold text-label uppercase">Role</p>
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-4">
-                        <span className="size-6 shrink-0 rounded-full bg-hairline" />
+                        <GradientDot slug={study.slug} step={0} />
                         <p className="text-sm font-medium text-heading">{study.role.title}</p>
                       </div>
                       <p className="pl-10 text-sm leading-[1.6] text-muted">{study.role.scope}</p>
                     </div>
                     {study.role.reports && study.role.reports.length > 0 && (
                       <div className="flex flex-col gap-3">
-                        {study.role.reports.map((report) => (
+                        {study.role.reports.map((report, i) => (
                           <div key={report} className="flex items-center gap-4">
-                            <span className="size-6 shrink-0 rounded-full bg-hairline" />
+                            <GradientDot slug={study.slug} step={1 + i} />
                             <p className="text-sm font-medium text-heading">{report}</p>
                           </div>
                         ))}
@@ -82,9 +114,9 @@ export default function CaseStudyDetail() {
                   <div className="flex w-full flex-col gap-4 sm:w-[324px]">
                     <p className="text-base font-semibold text-label uppercase">Team</p>
                     <div className="flex flex-col gap-3">
-                      {study.team.map((member) => (
+                      {study.team.map((member, i) => (
                         <div key={member} className="flex items-center gap-4">
-                          <span className="size-6 shrink-0 rounded-full bg-hairline" />
+                          <GradientDot slug={study.slug} step={1 + reportsCount + i} />
                           <p className="text-sm font-medium text-heading">{member}</p>
                         </div>
                       ))}

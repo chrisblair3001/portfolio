@@ -16,9 +16,17 @@ const titleVariants: Variants = {
   hover: { x: 8, color: '#ffffff', transition: { duration: 0.25, ease: EASE_OUT_CUBIC } },
 }
 
+// The white backdrop keeps the description legible over the section's
+// cursor-glow dot trail at rest; on hover the row itself turns solid ink,
+// so the backdrop fades out to blend with it instead of leaving a mismatched
+// white patch.
 const taglineVariants: Variants = {
-  rest: { color: 'var(--color-base-secondary)' },
-  hover: { color: '#f2f2f2', transition: { duration: 0.25, ease: EASE_OUT_CUBIC } },
+  rest: { color: 'var(--color-base-secondary)', backgroundColor: '#ffffff' },
+  hover: {
+    color: '#f2f2f2',
+    backgroundColor: 'rgba(255,255,255,0)',
+    transition: { duration: 0.25, ease: EASE_OUT_CUBIC },
+  },
 }
 
 const arrowVariants: Variants = {
@@ -43,12 +51,21 @@ function ArrowIcon() {
 type CaseStudiesProps = {
   studies?: CaseStudy[]
   heading?: string
+  comingSoon?: boolean
 }
 
-export default function CaseStudies({ studies = allCaseStudies, heading = 'Case studies' }: CaseStudiesProps) {
+export default function CaseStudies({
+  studies = allCaseStudies,
+  heading = 'Case studies',
+  comingSoon = false,
+}: CaseStudiesProps) {
   return (
     <section className="flex w-full flex-col gap-12">
-      <h2 className="w-full text-base font-semibold text-ink uppercase">// {heading}</h2>
+      <h2 className="w-full text-base font-semibold text-label uppercase">
+        <span className="bg-white px-1.5 py-0.5 [-webkit-box-decoration-break:clone] [box-decoration-break:clone]">
+          // {heading}
+        </span>
+      </h2>
       <div className="group/list flex w-full flex-col">
         {studies.map((study, i) => (
           <div key={study.slug}>
@@ -68,15 +85,25 @@ export default function CaseStudies({ studies = allCaseStudies, heading = 'Case 
                 >
                   {study.shortTitle ?? study.title}
                 </motion.p>
-                <motion.p variants={taglineVariants} className="flex-1 text-sm sm:text-base">
-                  {study.tagline ?? study.summary}
-                </motion.p>
+                <p className="flex-1 text-sm sm:text-base">
+                  <motion.span
+                    variants={taglineVariants}
+                    className="px-1.5 py-0.5 [-webkit-box-decoration-break:clone] [box-decoration-break:clone]"
+                  >
+                    {study.tagline ?? study.summary}
+                  </motion.span>
+                </p>
                 <ArrowIcon />
               </Link>
             </motion.div>
-            {i < studies.length - 1 && <Divider />}
+            {(i < studies.length - 1 || comingSoon) && <Divider />}
           </div>
         ))}
+        {comingSoon && (
+          <p className="py-6 text-sm text-muted italic sm:py-8 sm:text-base">
+            More case studies coming soon
+          </p>
+        )}
       </div>
     </section>
   )

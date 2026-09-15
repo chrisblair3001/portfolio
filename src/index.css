@@ -4,7 +4,7 @@
   --font-archivo: "Archivo", sans-serif;
   --font-manrope: "Manrope", sans-serif;
 
-  --color-bg: #fafaf8;
+  --color-bg: #ffffff;
   --color-accent: #f0204d;
   --color-ink: #292828;
   --color-heading: #111111;
@@ -29,6 +29,22 @@ body {
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/*
+ * Homepage section snapping. "proximity" only pulls toward a section
+ * boundary once the scroll has settled near one — it never intercepts the
+ * scroll gesture itself, so free scrolling still feels normal. The class is
+ * added/removed by the Home component so other routes scroll plainly.
+ */
+html.snap-sections {
+  scroll-snap-type: y proximity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.snap-sections {
+    scroll-snap-type: none;
+  }
 }
 
 /*

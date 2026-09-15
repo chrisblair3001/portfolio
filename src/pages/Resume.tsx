@@ -109,7 +109,7 @@ const EDUCATION: { degree: string; school: string }[] = [
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="resume-row flex flex-col gap-3 md:flex-row md:gap-10">
-      <p className="resume-section-label shrink-0 pt-1 text-xs font-bold tracking-wide text-accent uppercase md:w-[150px]">
+      <p className="resume-section-label shrink-0 pt-1 text-xs font-bold tracking-wide text-label uppercase md:w-[150px]">
         {label}
       </p>
       <div className="max-w-[620px] flex-1">{children}</div>
@@ -138,7 +138,7 @@ export default function Resume() {
         <button
           type="button"
           onClick={() => window.print()}
-          className="rounded-full border border-border px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
+          className="rounded-full border border-border bg-white px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
         >
           Download PDF
         </button>

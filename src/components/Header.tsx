@@ -19,12 +19,12 @@ export default function Header() {
         <LogoMark />
         <span className="hidden sm:inline">Chris Blair</span>
       </Link>
-      <nav className="flex items-center gap-6 text-sm font-semibold text-ink sm:gap-10 sm:text-base lg:gap-[68px]">
-        <Link to="/resume" className="transition-colors hover:text-accent">
+      <nav className="flex items-center">
+        <Link
+          to="/resume"
+          className="rounded-full border border-border bg-white px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
+        >
           Resume
-        </Link>
-        <Link to="/contact" className="transition-colors hover:text-accent">
-          Contact
         </Link>
       </nav>
     </header>
