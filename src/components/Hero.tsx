@@ -3,7 +3,11 @@ import Intro from './Intro'
 
 function DropDownArrow() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="size-8 text-ink/90">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="size-8 animate-bounce text-ink/90 motion-reduce:animate-none"
+    >
       <path
         d="M4 8L12 16L20 8"
         stroke="currentColor"
