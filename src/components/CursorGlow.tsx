@@ -119,7 +119,7 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
     let frame: number
     const draw = () => {
       if (autoDrift) {
-        const t = performance.now() * 0.00011
+        const t = performance.now() * 0.0001485
         target.x = sectionSize.width * (0.5 + 0.33 * Math.sin(t + seed))
         target.y = sectionSize.height * (0.5 + 0.33 * Math.sin(t * 0.72 + seed * 1.7))
       }
