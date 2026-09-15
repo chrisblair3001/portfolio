@@ -56,8 +56,33 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
+    // Touch devices have no real cursor to react to, so instead of sitting
+    // static, the trail slowly drifts on its own — a gentle Lissajous path
+    // (mismatched x/y frequencies keep it from ever tracing the same loop
+    // twice). `seed`, derived from the section's color, offsets each
+    // section's path so multiple instances on screen don't drift in lockstep.
+    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const autoDrift = isTouch && !reduceMotion
+    const seed = color.charCodeAt(0) + color.length
+
+    // On a phone this is an ambient background animation rather than
+    // something the visitor summoned by moving their mouse, and it can
+    // linger directly over text for a while — so it's toned down further
+    // than the already-tuned desktop intensity to keep body copy and the
+    // Hero headline (which has no white backdrop of its own) readable.
+    const opacityScale = autoDrift ? 0.45 : 1
+
+    let sectionSize = { width: 0, height: 0 }
+    // The trail's falloff radii were tuned for a ~1280px-wide desktop
+    // section; on a narrow phone viewport that same pixel size blankets
+    // almost the whole section, so it's scaled down proportionally below
+    // that reference width instead of staying a fixed size.
+    let sizeScale = 1
     const resize = () => {
       const rect = section.getBoundingClientRect()
+      sectionSize = { width: rect.width, height: rect.height }
+      sizeScale = Math.min(1, rect.width / 900)
       canvas.width = Math.max(1, Math.round(rect.width * dpr))
       canvas.height = Math.max(1, Math.round(rect.height * dpr))
       canvas.style.width = `${rect.width}px`
@@ -66,8 +91,7 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
     resize()
     window.addEventListener('resize', resize)
 
-    const rect0 = section.getBoundingClientRect()
-    const start = { x: rect0.width * 0.85, y: rect0.height * 0.85 }
+    const start = { x: sectionSize.width * 0.85, y: sectionSize.height * 0.85 }
     const target = { ...start }
     const positions = TRAIL.map(() => ({ ...start }))
 
@@ -76,7 +100,9 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
       target.x = e.clientX - r.left
       target.y = e.clientY - r.top
     }
-    section.addEventListener('mousemove', handleMove)
+    if (!autoDrift) {
+      section.addEventListener('mousemove', handleMove)
+    }
 
     // Pause the (heavier, per-dot) draw loop while the section is scrolled
     // out of view — several of these run at once (one per homepage slide),
@@ -92,6 +118,12 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
 
     let frame: number
     const draw = () => {
+      if (autoDrift) {
+        const t = performance.now() * 0.00011
+        target.x = sectionSize.width * (0.5 + 0.33 * Math.sin(t + seed))
+        target.y = sectionSize.height * (0.5 + 0.33 * Math.sin(t * 0.72 + seed * 1.7))
+      }
+
       positions.forEach((pos, i) => {
         const lead = i === 0 ? target : positions[i - 1]
         const ease = TRAIL[i].ease
@@ -108,7 +140,7 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
         let maxX = -Infinity
         let maxY = -Infinity
         positions.forEach((pos, i) => {
-          const radius = TRAIL[i].size / 2
+          const radius = (TRAIL[i].size / 2) * sizeScale
           minX = Math.min(minX, pos.x - radius)
           minY = Math.min(minY, pos.y - radius)
           maxX = Math.max(maxX, pos.x + radius)
@@ -132,11 +164,11 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
             for (let i = 0; i < positions.length; i++) {
               const pos = positions[i]
               const segment = TRAIL[i]
-              const radius = segment.size / 2
+              const radius = (segment.size / 2) * sizeScale
               const dx = gx - pos.x
               const dy = gy - pos.y
               const t = Math.sqrt(dx * dx + dy * dy) / radius
-              if (t < 1) intensity += (1 - t) * (1 - t) * segment.opacity
+              if (t < 1) intensity += (1 - t) * (1 - t) * segment.opacity * opacityScale
             }
             intensity = Math.min(1, intensity)
             if (intensity > 0.04) {
