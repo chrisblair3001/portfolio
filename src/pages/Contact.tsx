@@ -16,7 +16,7 @@ export default function Contact() {
         <div className="flex flex-wrap gap-3">
           <a
             href={MAILTO}
-            className="rounded-full border border-border px-6 py-3 text-base font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
+            className="rounded-full border border-border bg-white px-6 py-3 text-base font-medium text-ink transition-colors hover:bg-ink hover:text-bg"
           >
             {EMAIL}
           </a>
@@ -24,7 +24,7 @@ export default function Contact() {
             href={LINKEDIN}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-border px-6 py-3 text-base font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
+            className="rounded-full border border-border bg-white px-6 py-3 text-base font-medium text-ink transition-colors hover:bg-ink hover:text-bg"
           >
             LinkedIn →
           </a>
