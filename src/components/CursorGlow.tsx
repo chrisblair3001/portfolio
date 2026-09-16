@@ -79,10 +79,46 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
     // almost the whole section, so it's scaled down proportionally below
     // that reference width instead of staying a fixed size.
     let sizeScale = 1
+    // On mobile, the drift's vertical range is biased toward whichever side
+    // (above or below) of the section's actual content has more open space,
+    // so the trail mostly wanders past the text instead of parking behind
+    // it. Content is marked with a `data-glow-avoid` attribute on whatever
+    // element in the section tightly wraps the visible text (not a
+    // flex-stretched layout container, which would report the whole
+    // section's height instead of just the text's). `center`/`amplitude`
+    // are fractions of section height, same units the default 0.5 / 0.33
+    // center-of-section sweep already used.
+    let safeBand = { center: 0.5, amplitude: 0.33 }
     const resize = () => {
       const rect = section.getBoundingClientRect()
       sectionSize = { width: rect.width, height: rect.height }
       sizeScale = Math.min(1, rect.width / 900)
+
+      if (autoDrift) {
+        const contentEls = Array.from(section.querySelectorAll('[data-glow-avoid]'))
+        let top = Infinity
+        let bottom = -Infinity
+        contentEls.forEach((el) => {
+          const r = el.getBoundingClientRect()
+          top = Math.min(top, r.top - rect.top)
+          bottom = Math.max(bottom, r.bottom - rect.top)
+        })
+
+        const MIN_BAND = 80
+        const spaceAbove = contentEls.length ? top : 0
+        const spaceBelow = contentEls.length ? rect.height - bottom : 0
+        if (contentEls.length && Math.max(spaceAbove, spaceBelow) > MIN_BAND) {
+          const bandHeight = Math.max(spaceAbove, spaceBelow)
+          const bandCenterPx = spaceAbove >= spaceBelow ? top / 2 : bottom + spaceBelow / 2
+          safeBand = {
+            center: bandCenterPx / rect.height,
+            amplitude: Math.min(0.33, (bandHeight * 0.42) / rect.height),
+          }
+        } else {
+          safeBand = { center: 0.5, amplitude: 0.33 }
+        }
+      }
+
       canvas.width = Math.max(1, Math.round(rect.width * dpr))
       canvas.height = Math.max(1, Math.round(rect.height * dpr))
       canvas.style.width = `${rect.width}px`
@@ -119,9 +155,9 @@ export default function CursorGlow({ className, color = 'pink' }: CursorGlowProp
     let frame: number
     const draw = () => {
       if (autoDrift) {
-        const t = performance.now() * 0.0001485
+        const t = performance.now() * 0.00019
         target.x = sectionSize.width * (0.5 + 0.33 * Math.sin(t + seed))
-        target.y = sectionSize.height * (0.5 + 0.33 * Math.sin(t * 0.72 + seed * 1.7))
+        target.y = sectionSize.height * (safeBand.center + safeBand.amplitude * Math.sin(t * 0.72 + seed * 1.7))
       }
 
       positions.forEach((pos, i) => {

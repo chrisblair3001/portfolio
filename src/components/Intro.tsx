@@ -219,6 +219,7 @@ export default function Intro() {
   return (
     <div
       ref={rootRef}
+      data-glow-avoid
       className="relative w-full text-[40px] leading-[0.95] font-bold tracking-[-0.8px] uppercase sm:text-[56px] sm:tracking-[-1.1px] md:text-[76px] md:tracking-[-1.5px] lg:text-[108px] lg:tracking-[-2.16px]"
       style={{ fontStretch: '125%' }}
     >

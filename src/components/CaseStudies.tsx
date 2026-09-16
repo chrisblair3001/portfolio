@@ -60,7 +60,7 @@ export default function CaseStudies({
   comingSoon = false,
 }: CaseStudiesProps) {
   return (
-    <section className="flex w-full flex-col gap-12">
+    <section data-glow-avoid className="flex w-full flex-col gap-12">
       <h2 className="w-full text-base font-semibold text-label uppercase">
         <span className="bg-white px-1.5 py-0.5 [-webkit-box-decoration-break:clone] [box-decoration-break:clone]">
           // {heading}

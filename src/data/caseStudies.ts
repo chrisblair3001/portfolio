@@ -102,7 +102,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Omni',
     shortTitle: 'Omni',
     summary:
-      "Directed design for airia's all-in-one AI assistant: a single place to ask a question, go deep on research, collaborate with a team, and turn a conversation into real work.",
+      "Directed design for Airia's enterprise-grade AI assistant: a secure place to find and understand your organization's data, go deep on research, collaborate with the team, and get work done.",
     tagline: 'A full featured chat experience for the enterprise',
     tags: ['Enterprise AI', 'Conversational Design', 'Design Leadership'],
     role: {
@@ -117,7 +117,7 @@ export const caseStudies: CaseStudy[] = [
         index: '01',
         title: 'Overview',
         body: [
-          "Omni starts from one box. Type a question, or grab a quick action: a deck, a scheduled task, some code, a spreadsheet. Whatever comes back, you can edit it right there. Early versions just described what they'd made in plain text, and that fell flat every time. People wanted the actual thing, not a summary of it. So we wired in the tools teams already run on: Slack, Drive, GitHub, Jira. That gave Omni real context to work with, instead of someone pasting it in by hand.",
+          "Omni had two bars to clear: secure enough for the enterprise, and good enough to compete with ChatGPT and Claude. So it integrates with the tools a team already uses, instead of asking people to change how they work. We also gave people fine-grained control over any document or task in flight, so they could shape what the model handed back.",
         ],
         gallery: [
           { src: omniOverviewHome, alt: 'Omni home screen with quick actions for slides, scheduling, code, spreadsheets, and tasks' },
@@ -133,7 +133,7 @@ export const caseStudies: CaseStudy[] = [
         index: '02',
         title: 'Deep Research',
         body: [
-          "Some questions need more than a quick lookup. So Deep Research turns your question into an actual plan. Omni works through it step by step and cites its sources as it goes. I pushed hard for a pause button early on. Nobody trusts an agent that just runs off and comes back twenty minutes later with an answer they can't check. You get the result two ways: a short summary you can skim, or the full report with a table of contents if you want to go deeper.",
+          "Deep Research had to earn trust, not just answer questions. Nobody wants to hand off a task and wait twenty minutes for an answer they can't check. So we made the process visible: Omni turns a question into a plan, works through it step by step, and cites its sources. Design pushed hard for a pause button, so people could step in before the agent went too far off track. And since not everyone wants a full report, we gave two ways in: a quick summary, or the full write-up with a table of contents.",
         ],
         gallery: [
           { src: omniResearchPrompt, alt: 'Deep Research mode enabled with a multi-part research question typed in' },
@@ -146,7 +146,7 @@ export const caseStudies: CaseStudy[] = [
         index: '03',
         title: 'Workspaces',
         body: [
-          "Not every conversation belongs to just one person. So Workspaces gives a project a shared home: threads, milestones, people, files, all in one place. I pushed to keep chat scoped inside the workspace instead of global. Early testers kept losing context jumping between a project thread and some random one-off chat. Routines came out of that same idea. Take something you ask for every week, like a standup summary, and just let it run on its own.",
+          "Workspaces had to solve a context problem. A lot of conversations belong to a project, not just the person who started them, and early testers kept losing their place jumping between a project thread and a random one-off chat. So we gave each project a shared home: threads, milestones, people, and files, all in one place.",
         ],
         gallery: [
           { src: omniWorkspacesEmpty, alt: 'Empty Workspaces state with starter templates for common project types' },
@@ -164,7 +164,7 @@ export const caseStudies: CaseStudy[] = [
         index: '04',
         title: 'Presentations',
         body: [
-          "Ask for a deck in chat, and Omni drafts the whole thing. Structure, titles, speaker notes, the works, as an actual slide deck, not a document pretending to be one. I fought to get a floating AI toolbar right into the editor. That way, tweaking the tone or swapping a template didn't mean leaving the deck to start a new chat. Presenter mode rounds it out: speaker notes, a timer, a look at what's coming next.",
+          "Presentations had to feel like an actual slide deck, not a document pretending to be one: structure, titles, speaker notes, all of it. The harder problem came after the first draft. Tweaking the tone or swapping a template meant leaving the deck to start over in chat. So I fought to get a floating AI toolbar into the editor, so people could refine in place instead of switching back and forth. Presenter mode came from the same need: speaker notes, a timer, and a look ahead, all without leaving the deck.",
         ],
         gallery: [
           { src: omniPresentationsChat, alt: 'A slide deck generated in chat, with suggested next steps to refine it' },
@@ -178,7 +178,7 @@ export const caseStudies: CaseStudy[] = [
         index: '05',
         title: 'Files',
         body: [
-          "Every file Omni touches needed one home. Generated or uploaded, it shouldn't scatter across a dozen chat threads. So Files became one hub you can filter by type. I added the quick note action after watching people paste a stray thought into a doc just so they wouldn't lose it. Now that thought drops straight into an agent's knowledge base instead. Image generation lives here too. Generate an image, and it just sits next to the decks and docs a team already has.",
+          "Every file a person added or created in Omni needed one home, instead of scattering across a dozen chat threads. So we designed Files to aggregate everything a user added or made, filterable by type, so people could always find what they were looking for.",
         ],
         gallery: [
           { src: omniFilesHome, alt: 'The Files hub empty state with a promo for AI image generation and file-type filters' },
@@ -190,7 +190,7 @@ export const caseStudies: CaseStudy[] = [
         index: '06',
         title: 'Mobile',
         body: [
-          "The same interaction model had to hold up on a much smaller screen. Chat still keeps its quick actions and tool connectors within reach. Meetings folds scheduling into a real calendar with its own meeting-creation flow. And History makes it just as easy to find a past thread or artifact on the go as it is at a desk.",
+          "Mobile had to prove the same interaction model held up on a much smaller screen, not a stripped-down version of it. Chat keeps its quick actions and tool connectors within reach, not buried in menus. Meetings folds scheduling into a real calendar with its own creation flow, instead of a list bolted onto chat.",
         ],
         gallery: [
           { src: omniMobileChat, alt: 'Mobile chat home with quick actions and a connect-to-chat panel for tools and files' },
@@ -205,7 +205,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'SmartScan',
     shortTitle: 'Smartscan',
     summary:
-      'Designed a plain-language rule builder that tags, extracts, and summarizes across an entire file library in one pass, built for legal and education teams.',
+      'Designed a plain-language research tool that tags, extracts, and summarizes across an entire file library in one pass, built for legal and education teams.',
     tagline: 'Intelligent file organization',
     tags: ['Enterprise AI', 'File Management', 'Product Design'],
     role: {
@@ -218,7 +218,7 @@ export const caseStudies: CaseStudy[] = [
         index: '01',
         title: 'Problem Framing',
         body: [
-          "The idea started as a \"Bulk Review Agent.\" Basically, point an assistant at a whole batch of files at once instead of one at a time. It didn't have a home of its own yet, so we had to figure that out first. Should bulk review get its own spot in the nav, or should any assistant just be able to do it? Long-running jobs raised another question we hadn't had to answer before: how do you show someone a job that's still working? I sketched a dedicated \"Working\" section for that. \"Recents\" stayed the list for anything already finished.",
+          "Even in the age of AI, I still like to start ideation in my sketchbook. I was mostly trying to figure out the basic shape of the feature: where it lived in the product, how people would find and understand what Smart Scan actually did, and how they'd pick back up with something they were already working on.",
         ],
         gallery: [
           { src: smartscanProblem1, alt: 'Early whiteboard sketch of the "Bulk Review Agent" concept, applied as a feature of any assistant' },
@@ -232,7 +232,7 @@ export const caseStudies: CaseStudy[] = [
         index: '02',
         title: 'Getting Started',
         body: [
-          "Smart Scan got its own home screen. Templates up top, for the jobs people run most often: a keyword search, a research summary, a complaint review. Every scan you've run sits right underneath, named and timestamped. Need to check on last week's job? One click and you're there.",
+          "Getting started meant solving the blank-page problem. Someone opening Smart Scan for the first time needed to understand what it could actually do, without reading a manual. So the home screen leads with a few common starting points instead of an empty prompt. It also had to make picking back up easy, so returning to a job from last week never took more than a glance.",
         ],
         gallery: [
           { src: smartscanGettingStarted, alt: 'Smart Scan home screen with starter templates and a list of previous scans' },
@@ -242,7 +242,7 @@ export const caseStudies: CaseStudy[] = [
         index: '03',
         title: 'Scan Creation',
         body: [
-          "Setting up a scan starts with your files. Then one plain-language question: what do you want to do with them? I wanted people to write the rule the way they'd actually say it out loud. Tag anything related to a merger. Extract every clause about force majeure. Stuff like that. So Smart Scan suggests criteria as you type, instead of making you guess at the right phrasing. Tag, Extract, and Summarize can all run in the same pass, each with its own criteria. One scan does what used to take three.",
+          "Setting up a scan needed to feel simple: add your files, then just say what you want done with them, in plain language. Type things like tag anything about a merger, or extract every force majeure clause, and Smart Scan suggests criteria as you go instead of making you guess at the phrasing.",
         ],
         gallery: [
           { src: smartscanScanEmpty, alt: 'Add Files step of a new Smart Scan, before any files are added' },
@@ -254,7 +254,7 @@ export const caseStudies: CaseStudy[] = [
         index: '04',
         title: 'Reports',
         body: [
-          "Results land in a table shaped by whatever you asked for. Every criterion becomes its own column, filled in per file as the scan works through your library. I didn't want a result to ever be a dead end. So a document explorer sits one click away from the actual file, even non-text ones like images. You can always trace it back to the source.",
+          "Results land in a table shaped by whatever you asked for, one column per criterion, filled in as the scan works through your library. You can edit or add columns right from that same view, so tweaking a criterion doesn't mean rerunning the whole scan. I didn't want a result to ever be a dead end, so a document explorer sits one click away from the actual file, even images. You can always trace it back to the source.",
         ],
         gallery: [
           { src: smartscanReportsProgress, alt: 'A Smart Scan in progress, with files still processing' },

@@ -40,7 +40,7 @@ const HIGHLIGHT =
 
 export default function Bio() {
   return (
-    <section className="flex w-full flex-col items-start gap-10 xl:flex-row xl:justify-between xl:gap-16">
+    <section data-glow-avoid className="flex w-full flex-col items-start gap-10 xl:flex-row xl:justify-between xl:gap-16">
       <div className="flex max-w-[600px] flex-col gap-8">
         <h2 className="w-full text-base font-semibold text-[#2a5c43] uppercase">
           <span className={HIGHLIGHT}>// About</span>
