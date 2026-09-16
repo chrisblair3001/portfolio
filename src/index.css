@@ -87,13 +87,24 @@ html.snap-sections {
   }
 
   .resume-main {
+    /* Chrome's print engine treats a flex-column container as one
+       unbreakable block: if the whole stack of rows doesn't fit in the
+       remaining space on the current page, it pushes the entire thing to
+       the next page instead of breaking between rows. Switching to block
+       layout (with margin standing in for the flex gap) lets each row
+       paginate independently. */
+    display: block !important;
     margin-top: 16px !important;
-    gap: 14px !important;
   }
 
   .resume-row {
     flex-direction: row !important;
     gap: 20px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .resume-row:last-child {
+    margin-bottom: 0 !important;
   }
 
   .resume-section-label {
