@@ -129,6 +129,10 @@ html.snap-sections {
     font-size: 22px !important;
   }
 
+  .resume-title {
+    font-size: 10px !important;
+  }
+
   .resume-contact {
     font-size: 9px !important;
   }
@@ -141,10 +145,5 @@ html.snap-sections {
   .resume-text {
     font-size: 9.5px !important;
     line-height: 1.4 !important;
-  }
-
-  .resume-pill {
-    padding: 2px 7px !important;
-    font-size: 9px !important;
   }
 }
