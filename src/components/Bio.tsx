@@ -2,7 +2,7 @@ import chrisPortrait from '../assets/chris-portrait.jpg'
 
 const EMAIL = 'chrblair@gmail.com'
 const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent('Hello from chrisblair.design')}`
-const LINKEDIN = 'https://www.linkedin.com/in/chrisblair'
+const LINKEDIN = 'https://www.linkedin.com/in/chris-blair-5526a16'
 
 function MailIcon() {
   return (

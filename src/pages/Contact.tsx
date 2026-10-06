@@ -2,7 +2,7 @@ import PageShell from '../components/PageShell'
 
 const EMAIL = 'chrblair@gmail.com'
 const MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent('Hello from chrisblair.design')}`
-const LINKEDIN = 'https://www.linkedin.com/in/chrisblair'
+const LINKEDIN = 'https://www.linkedin.com/in/chris-blair-5526a16'
 
 export default function Contact() {
   return (
