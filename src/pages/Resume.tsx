@@ -298,7 +298,7 @@ export default function Resume() {
         </button>
       </div>
 
-      <header className="resume-header mt-10 flex flex-wrap items-start justify-between gap-6 border-b border-hairline pb-8 sm:mt-12">
+      <header className="resume-header mt-10 flex flex-wrap items-end justify-between gap-x-6 gap-y-5 border-b border-hairline pb-8 sm:mt-12">
         <div className="flex flex-col gap-2">
           <h1
             className="resume-name text-[28px] leading-tight font-bold text-ink uppercase sm:text-[32px]"
@@ -310,18 +310,26 @@ export default function Resume() {
             Director of Product Design  ·  Head of UX
           </p>
         </div>
-        <div className="resume-contact flex flex-col text-sm text-muted">
-          <span>Atlanta, GA · remote / hybrid / on-site</span>
-          <div className="flex items-center gap-2">
-            <span>205-335-9869</span>
-            <span aria-hidden>·</span>
+        <div className="resume-contact flex flex-col gap-0.5 text-sm leading-normal text-muted sm:text-right">
+          <p>Atlanta, GA · remote / hybrid / on-site</p>
+          <p>
+            205-335-9869 ·{' '}
             <a href="mailto:chrblair@gmail.com" className="transition-colors hover:text-heading">
               chrblair@gmail.com
             </a>
-          </div>
-          <a href="https://chrisblair.design" className="transition-colors hover:text-heading">
-            chrisblair.design
-          </a>
+          </p>
+          <p>
+            <a href="https://chrisblair.design" className="transition-colors hover:text-heading">
+              chrisblair.design
+            </a>{' '}
+            ·{' '}
+            <a
+              href="https://www.linkedin.com/in/chris-blair-5526a16"
+              className="transition-colors hover:text-heading"
+            >
+              linkedin.com/in/chris-blair-5526a16
+            </a>
+          </p>
         </div>
       </header>
 
