@@ -21,10 +21,10 @@ const EXPERIENCE: ExperienceEntry[] = [
     roles: [
       {
         title: 'Lead Product Designer (Contract)',
-        meta: 'Jan 2026 – Aug 2026  ·  Boston, MA (Remote)',
-        body: 'Led design for the Argo mobile and web applications at an early-stage startup, defining the design language and system, mapping core user flows, and shaping key features and journeys. Established qualitative user testing practices and applied AI extensively throughout the design process.',
+        meta: 'May 2026 – Aug 2026  ·  Boston, MA (Remote)',
+        body: 'Leads design for the Argo mobile and web applications at a startup company, defining the design language and system, mapping core user flows, and shaping key features and journeys across the experience. Established qualitative user testing practices and applied AI extensively throughout the design process.',
         bullets: [
-          'Created and evaluated a set of user personas, aligning a stalled product team on inventory and property management and converting features into a defined roadmap.',
+          'Created and evaluated a set of user personas, aligning a stalled product team on inventory and property management for the Argo home management app, and converting features into a defined product strategy and roadmap.',
         ],
       },
     ],
@@ -35,10 +35,10 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Head of Product Design',
         meta: 'Feb 2024 – May 2026  ·  Atlanta, GA',
-        body: 'Design leader and player-coach who built a product function from scratch, managing a distributed team of up to eight designers across Latin America. Established design review practices and partnered with Product and Engineering to make design part of core product decisions, while staying hands-on and introducing AI to improve output organization-wide.',
+        body: 'Design leader and player-coach who built a product design function from scratch, managing a distributed team of up to eight designers across Latin America. Established design review practices and collaborated closely with Product and Engineering to integrate design into core product decisions. Led multiple projects while remaining hands-on, and introduced AI to enhance team workflows and personal design execution, improving output organization-wide.',
         bullets: [
-          'Scaled adoption with ~500 enterprise customers by redesigning the AI chat experience for premium usability and security, launching deep thinking mode, file and slide creation, and automated tasks.',
-          'Established a connected design system spanning Figma, Storybook, and Claude Code that enforced consistent UX and surfaced drift automatically, protecting design quality as AI tooling accelerated build velocity.',
+          'Scaled adoption with ~500 enterprise customers by redesigning the AI chat experience for premium usability and security, and launching features like deep thinking mode, file and slide creation, and automated tasks to shape the product vision for agentic AI workflows.',
+          'Established a connected design system spanning Figma, Storybook, and Claude Code that enforced consistent UX and surfaced drift automatically, setting strategic direction with design leadership to raise the quality bar as AI tooling accelerated build velocity.',
         ],
       },
     ],
@@ -50,7 +50,7 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Senior Director, Product Design',
         meta: 'Jan 2022 – Jan 2024',
-        body: 'Managed and grew a 14-person design team, expanding capabilities across cross-functional collaboration, design system maturity, user research, and new product exploration.',
+        body: 'Managed and grew a 14-person design team, expanding capabilities across cross-functional collaboration, design system maturity, user research, and new project exploration.',
         bullets: [
           "Drove a 10% lift in plan upgrades, doubled Safety Hub engagement, and cut support contacts 5% by leading a large-scale redesign of the app's information architecture that improved feature discovery across the platform.",
         ],
@@ -58,15 +58,15 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Director, Product Design',
         meta: 'Jan 2021 – Jan 2022',
-        body: 'Directed UX design across the entire product surface while building the team, staffing cross-functional squads, and keeping initiatives on track. Ran design reviews and team rituals to sustain a consistently high quality bar.',
+        body: 'Directed UX design across the entire product surface while building the design team, staffing cross-functional teams, and keeping initiatives on track. Ran design reviews and team rituals to sustain a consistently high quality bar.',
         bullets: [
-          'Grew the design team from 3 to 14 by creating a growth plan, justifying headcount, and implementing weekly cadences to manage design debt during rapid growth.',
+          'Grew the design team from 3 to 14 by creating a growth plan, justifying headcount, and implementing weekly cadences to manage design debt during rapid growth while mentoring and fostering career development.',
         ],
       },
       {
         title: 'Senior Product Designer',
         meta: 'Jan 2020 – Jan 2021',
-        body: 'Designed end-to-end flows for core user journeys — chores, allowance, and card management — supporting an ongoing redesign in close collaboration with the VP of Design. Partnered with Brand to deliver a seamless customer experience across touchpoints.',
+        body: 'Designed end-to-end flows for core user journeys, including chores, allowance, and card management, supporting an ongoing redesign effort in close collaboration with the VP of Design. Partnered with the Brand team to deliver a seamless customer experience across touchpoints.',
       },
     ],
   },
@@ -76,9 +76,9 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Lead Designer',
         meta: 'Jan 2020 – Jun 2020  ·  Atlanta, GA',
-        body: 'Lead designer for Scout, a social recommendation app, running design sprints, prototypes, user flows, and roadmaps with developers. Collaborated with a Ukrainian engineering team and managed a local designer.',
+        body: 'Lead designer for Scout, a social recommendation app, conducting design sprints, creating prototypes, designing user flows and roadmaps, and working with developers. Collaborated with a Ukrainian team and managed a local designer.',
         bullets: [
-          'Secured stakeholder alignment on Scout with a clear product roadmap and prototypes, using design thinking and rapid prototyping to focus the team on core features and flows.',
+          'Secured stakeholder alignment on the Scout app with a clear product roadmap and prototypes, using design thinking and rapid prototyping to focus the team on core features and user flows through strong communication skills that built cross-functional trust and influence.',
         ],
       },
     ],
@@ -89,11 +89,11 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Senior Product Designer',
         meta: 'May 2015 – Jan 2020  ·  Atlanta, GA',
-        body: 'Product designer across multiple cross-functional teams spanning enterprise email (Mandrill), developer support, ecommerce, audience management, and Mailchimp.com. Designed and tested user flows, conducted research, and contributed to in-app branding.',
+        body: 'Served as Product Designer across multiple cross-functional teams spanning enterprise email (Mandrill), developer support, ecommerce, audience management, and Mailchimp.com. Designed and tested user flows, conducted user research, and contributed to in-app branding.',
         bullets: [
-          'Ran a 20-participant study and multi-survey campaign with a third-party partner to gather tagging, demographic, and location data for a comprehensive audience management redesign.',
+          "Conducted a 20-participant study and multi-survey campaign with a third-party partner to gather tagging, demographic, and location data for a comprehensive audience management redesign, demonstrating creativity in research design and communication with stakeholders to assess users' perception of the platform as a CRM.",
           'Refreshed brand expression across the core application by co-creating and rolling out a new illustration system that carried the product until a full brand refresh two years later, and was widely imitated industry-wide.',
-          'Boosted usage of the pop-up form builder through a full redesign that made list-building easier, then extended the new pattern to rebuild the four remaining sign-up form types on that foundation.',
+          "Boosted usage of Mailchimp's pop-up form builder through a full redesign that made list-building easier, and extended the new pattern to rebuild the additional four sign-up form types on that foundation.",
         ],
       },
     ],
@@ -104,10 +104,10 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'UX Design Lead',
         meta: 'Jan 2012 – Apr 2015  ·  Atlanta, GA',
-        body: 'Set UX direction and oversaw design across an enterprise admin console and end-user mobile applications, leading a distributed team of six designers across local and India-based locations. Operated as a player-coach, contributing directly as design lead alongside management responsibilities.',
+        body: 'Set UX direction and oversaw design projects across an enterprise admin console and end-user mobile applications, leading a distributed team of 6 designers across local and India-based locations. Operated as a player-coach, contributing directly as Design Lead alongside management responsibilities.',
         bullets: [
-          'Led the redesign and rebuild of a rigid proprietary platform onto open standards, breaking through a platform-wide UX quality ceiling while personally owning both the UX design and the entire front-end codebase.',
-          "Co-led an autonomous ground-up redesign of the platform's navigation and core product areas, clearing accumulated UX debt and delivering a flagship release the founder credited as a contributing factor in the company's ~$1.5B acquisition.",
+          'Led the redesign and rebuild of a rigid proprietary platform onto open standards, breaking through a platform-wide UX quality ceiling while personally owning both the UX design and the entire front-end codebase to demonstrate design leadership and mastery of end-to-end delivery.',
+          "Co-led an autonomous ground-up redesign of the platform's navigation and core product areas, clearing accumulated UX debt and delivering a flagship release that the founder credited as a contributing factor in the company's ~$1.5B acquisition while strengthening product strategy across core journeys.",
         ],
       },
     ],
@@ -139,62 +139,105 @@ const HIGHLIGHTS: { lead: string; body: string }[] = [
   },
 ]
 
-const CAPABILITIES: { group: string; items: string[] }[] = [
-  {
-    group: 'Leadership',
-    items: [
-      'Scaling design orgs',
-      'Hiring & talent development',
-      'Founder & exec partnership',
-      'Player-coach execution',
-      'AI adoption & change management',
-      'DesignOps',
-      'Remote & distributed team leadership',
-      'Design quality governance',
-    ],
-  },
-  {
-    group: 'Craft & strategy',
-    items: [
-      'Product strategy & discovery',
-      '0 → 1 product development',
-      'Design systems',
-      'Information architecture',
-      'Interaction design',
-      'Prototyping',
-      'UX research & usability testing',
-      'Accessibility',
-      'SaaS, fintech, enterprise, B2B & B2C',
-    ],
-  },
-  {
-    group: 'Tools & methods',
-    items: [
-      'Figma (Make, FigJam, MCP)',
-      'Storybook',
-      'Claude (Code, Design, Cowork)',
-      'Cursor',
-      'Google Stitch',
-      'Lovable',
-      'ChatGPT, Gemini, Perplexity',
-      'Adobe Creative Suite',
-      'HTML, CSS, JavaScript',
-      'Agile & Scrum',
-    ],
-  },
+// Each inner array is one printed line; a line can hold more than one labeled
+// group (Languages and Systems share a line).
+const CAPABILITY_LINES: { group: string; items: string[] }[][] = [
+  [
+    {
+      group: 'Professional & leadership',
+      items: [
+        'Product Design Leadership',
+        'Head of Design',
+        'VP of Product Design',
+        'Design Director',
+        'User Experience (UX) Design',
+        'UI Design',
+        'Design Systems',
+        'Design Operations (DesignOps)',
+        'UX Research',
+        'Usability Testing',
+        'Product Strategy',
+        'Product Discovery',
+        'Information Architecture',
+        'Interaction Design',
+        'Prototyping',
+        'Figma',
+        'AI-Augmented Workflows',
+        'AI Adoption & Change Management',
+        'Generative AI Tooling',
+        '0 to 1 Product Development',
+        'SaaS',
+        'Fintech',
+        'B2B and B2C Product',
+        'Mobile App Design',
+        'Enterprise Software',
+        'Cross-Functional Leadership',
+        'Strategic Planning',
+        'Team Building & Mentorship',
+        'Hiring and Talent Development',
+        'Stakeholder Management',
+        'Executive Partnership',
+        'Agile & Scrum',
+        'Roadmap Planning',
+        'Remote Team Leadership',
+        'Accessibility',
+        'Design Quality Governance',
+      ],
+    },
+  ],
+  [
+    {
+      group: 'Software & applications',
+      items: [
+        'Figma',
+        'Figma Make',
+        'FigJam',
+        'Cursor',
+        'Google Stitch',
+        'Claude Code',
+        'Claude Design',
+        'Claude Cowork',
+        'ChatGPT',
+        'Gemini',
+        'Perplexity Computer',
+        'Lovable',
+        'Adobe Creative Suite',
+        'Google Suite',
+        'Microsoft Office',
+      ],
+    },
+  ],
+  [
+    { group: 'Languages', items: ['HTML', 'CSS', 'JavaScript'] },
+    { group: 'Systems', items: ['Mac OS', 'Windows'] },
+  ],
+  [
+    {
+      group: 'Methodologies',
+      items: ['Agile', 'Scrum', 'AI-first design & development', 'Design systems'],
+    },
+  ],
 ]
 
-const INDUSTRY_EXPERIENCE = [
-  'Fintech & financial software',
-  'AI & developer tools',
-  'Enterprise software & ERP',
-  'Security & device management',
-  'CRM & business intelligence',
+const INDUSTRIES = [
+  'Research & development',
+  'Information & document management',
   'Advertising & marketing',
+  'Multimedia & graphic design',
+  'Custom software & IT services',
+  'Architecture, engineering & design',
+  'Restaurants',
   'Mobile app development',
-  'Healthcare',
-  'Legal',
-  'Content & collaboration',
+  'Business intelligence (BI) software',
+  'Legal software',
+  'CRM software',
+  'Storage & system management software',
+  'Financial software',
+  'Database & file management software',
+  'Security software',
+  'ERP software',
+  'Content & collaboration software',
+  'Healthcare software',
 ]
 
 const EDUCATION: { degree: string; school: string }[] = [
@@ -208,7 +251,7 @@ const EDUCATION: { degree: string; school: string }[] = [
 const CERTIFICATION = 'Mobile App Design Bootcamp'
 
 const RECOGNITION = [
-  'Interactive Programmer of the Year, Peak 2006 — Birmingham Advertising Federation',
+  'Interactive Programmer of the Year, Peak 2006 · Birmingham Advertising Federation',
   'Patent: Display screen with a graphical user interface for a management console application',
 ]
 
@@ -236,7 +279,7 @@ function RoleBlock({ role, subtitle }: { role: Role; subtitle?: ReactNode }) {
       </div>
       <p className="resume-text text-base leading-[1.55] text-body">{role.body}</p>
       {role.bullets && (
-        <ul className="flex list-disc flex-col gap-1 pl-5">
+        <ul className="resume-list flex list-disc flex-col gap-1 pl-5">
           {role.bullets.map((bullet, i) => (
             <li key={i} className="resume-text text-base leading-[1.55] text-body">
               {bullet}
@@ -265,12 +308,12 @@ function ExperienceItem({ entry }: { entry: ExperienceEntry }) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="resume-group flex flex-col gap-4">
       <div className="flex flex-col gap-0.5">
         <p className="resume-group-title text-base font-semibold text-ink">{entry.company}</p>
         {entry.companyMeta && <p className="resume-text text-sm text-muted">{entry.companyMeta}</p>}
       </div>
-      <div className="flex flex-col gap-6 border-l border-hairline pl-4">
+      <div className="resume-subroles flex flex-col gap-6 border-l border-hairline pl-4">
         {entry.roles.map((role) => (
           <RoleBlock key={role.title} role={role} subtitle={<span className="font-semibold">{role.title}</span>} />
         ))}
@@ -298,7 +341,7 @@ export default function Resume() {
         </button>
       </div>
 
-      <header className="resume-header mt-10 flex flex-wrap items-end justify-between gap-x-6 gap-y-5 border-b border-hairline pb-8 sm:mt-12">
+      <header className="resume-header mt-10 flex flex-wrap items-start justify-between gap-x-6 gap-y-5 border-b border-hairline pb-8 sm:mt-12">
         <div className="flex flex-col gap-2">
           <h1
             className="resume-name text-[28px] leading-tight font-bold text-ink uppercase sm:text-[32px]"
@@ -307,27 +350,26 @@ export default function Resume() {
             Chris Blair
           </h1>
           <p className="resume-title text-sm font-semibold tracking-wide text-accent uppercase sm:text-base">
-            Director of Product Design  ·  Head of UX
+            Principal Product Designer
           </p>
         </div>
         <div className="resume-contact flex flex-col gap-0.5 text-sm leading-normal text-muted sm:text-right">
-          <p>Atlanta, GA · remote / hybrid / on-site</p>
           <p>
-            205-335-9869 ·{' '}
+            Atlanta, GA · 205-335-9869 ·{' '}
             <a href="mailto:chrblair@gmail.com" className="transition-colors hover:text-heading">
               chrblair@gmail.com
             </a>
           </p>
           <p>
-            <a href="https://chrisblair.design" className="transition-colors hover:text-heading">
-              chrisblair.design
+            <a href="https://www.chrisblair.design" className="transition-colors hover:text-heading">
+              www.chrisblair.design
             </a>{' '}
             ·{' '}
             <a
               href="https://www.linkedin.com/in/chris-blair-5526a16"
               className="transition-colors hover:text-heading"
             >
-              linkedin.com/in/chris-blair-5526a16
+              www.linkedin.com/in/chris-blair-5526a16
             </a>
           </p>
         </div>
@@ -338,22 +380,23 @@ export default function Resume() {
           <div className="flex flex-col gap-3">
             <p className="resume-text text-base leading-[1.6] text-body">
               An award-winning product design leader with 15+ years building and scaling design
-              functions across SaaS, fintech, and AI — including a 14-person org scaled from the
+              functions across SaaS, fintech, and AI, including a 14-person org scaled from the
               ground up at Greenlight and a full design function built from scratch at Airia. Acts
               as a player-coach, collaborating with founders, stakeholders, and engineering
-              leaders to set product direction and raise craft. Runs an AI-first design practice,
-              integrating Figma, Storybook, and Claude Code for consistent visual and behavioral
-              output.
+              leaders to set product direction and product strategy while mentoring designers to
+              elevate craft and mastery. Runs an AI-first design practice, integrating Figma,
+              Storybook, and Claude Code for consistent visual and behavioral output.
             </p>
             <p className="resume-text text-base leading-[1.6] text-body">
               Targeting senior design leadership at mission-driven, high-growth companies where
-              hands-on leadership, design systems, and AI-enhanced workflows are key advantages.
+              hands-on leadership, design systems, and AI-enhanced workflows are key advantages,
+              with a track record of fostering creativity across multi-disciplinary teams.
             </p>
           </div>
         </Row>
 
         <Row label="Highlights">
-          <ul className="flex list-disc flex-col gap-2.5 pl-5">
+          <ul className="resume-list flex list-disc flex-col gap-2.5 pl-5">
             {HIGHLIGHTS.map((h) => (
               <li key={h.lead} className="resume-text text-base leading-[1.55] text-body">
                 <span className="font-semibold text-ink">{h.lead}</span> {h.body}
@@ -376,10 +419,18 @@ export default function Resume() {
 
         <Row label="Capabilities">
           <div className="resume-caps flex flex-col gap-3">
-            {CAPABILITIES.map((cap) => (
-              <p key={cap.group} className="resume-entry resume-text text-base leading-[1.55] text-body">
-                <span className="resume-group-title font-semibold text-ink">{cap.group}: </span>
-                {cap.items.join('  ·  ')}
+            {CAPABILITY_LINES.map((line) => (
+              <p
+                key={line[0].group}
+                className="resume-entry resume-text text-base leading-[1.55] text-body"
+              >
+                {line.map((cap, i) => (
+                  <span key={cap.group}>
+                    {i > 0 ? ' ' : null}
+                    <span className="resume-group-title font-semibold text-ink">{cap.group}: </span>
+                    {cap.items.join('  ·  ')}
+                  </span>
+                ))}
               </p>
             ))}
           </div>
@@ -387,7 +438,7 @@ export default function Resume() {
 
         <Row label="Industries">
           <p className="resume-text text-base leading-[1.55] text-body">
-            {INDUSTRY_EXPERIENCE.join('  ·  ')}
+            {INDUSTRIES.join('  ·  ')}
           </p>
         </Row>
 

@@ -83,7 +83,7 @@ html.snap-sections {
 
   .resume-header {
     margin-top: 0 !important;
-    padding-bottom: 14px !important;
+    padding-bottom: 12px !important;
   }
 
   .resume-main {
@@ -94,13 +94,13 @@ html.snap-sections {
        layout (with margin standing in for the flex gap) lets each row
        paginate independently. */
     display: block !important;
-    margin-top: 16px !important;
+    margin-top: 14px !important;
   }
 
   .resume-row {
     flex-direction: row !important;
     gap: 20px !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 12px !important;
   }
 
   .resume-row:last-child {
@@ -114,7 +114,19 @@ html.snap-sections {
   }
 
   .resume-jobs {
-    gap: 12px !important;
+    gap: 10px !important;
+  }
+
+  .resume-list {
+    gap: 3px !important;
+  }
+
+  .resume-group {
+    gap: 6px !important;
+  }
+
+  .resume-subroles {
+    gap: 10px !important;
   }
 
   .resume-caps {
@@ -123,6 +135,7 @@ html.snap-sections {
 
   .resume-entry {
     break-inside: avoid;
+    gap: 4px !important;
   }
 
   .resume-name {
