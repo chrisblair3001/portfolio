@@ -22,7 +22,7 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Lead Product Designer (Contract)',
         meta: 'May 2026 – Aug 2026  ·  Boston, MA (Remote)',
-        body: 'Leads design for the Argo mobile and web applications at a startup company, defining the design language and system, mapping core user flows, and shaping key features and journeys across the experience. Established qualitative user testing practices and applied AI extensively throughout the design process.',
+        body: 'Led design for the Argo mobile and web applications at a startup, defining the design language and system, mapping core user flows, and shaping key features and journeys across the experience. Established qualitative user testing practices and applied AI extensively throughout the design process.',
         bullets: [
           'Created and evaluated a set of user personas, aligning a stalled product team on inventory and property management for the Argo home management app, and converting features into a defined product strategy and roadmap.',
         ],
@@ -35,9 +35,9 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Head of Product Design',
         meta: 'Feb 2024 – May 2026  ·  Atlanta, GA',
-        body: 'Design leader and player-coach who built a product design function from scratch, managing a distributed team of up to eight designers across Latin America. Established design review practices and collaborated closely with Product and Engineering to integrate design into core product decisions. Led multiple projects while remaining hands-on, and introduced AI to enhance team workflows and personal design execution, improving output organization-wide.',
+        body: 'Design leader and player-coach who built a product design function from scratch, hiring and managing a distributed team of up to eight designers across Latin America. Established design review practices and collaborated closely with Product and Engineering to integrate design into core product decisions. Led multiple projects while remaining hands-on, and introduced AI to enhance team workflows and personal design execution, improving output organization-wide.',
         bullets: [
-          'Scaled adoption with ~500 enterprise customers by redesigning the AI chat experience for premium usability and security, and launching features like deep thinking mode, file and slide creation, and automated tasks to shape the product vision for agentic AI workflows.',
+          'Scaled adoption with ~500 enterprise customers by redesigning the AI chat experience for consumer-grade usability and security, and launching features like deep thinking mode, file and slide creation, and automated tasks to shape the product vision for agentic AI workflows.',
           'Established a connected design system spanning Figma, Storybook, and Claude Code that enforced consistent UX and surfaced drift automatically, setting strategic direction with design leadership to raise the quality bar as AI tooling accelerated build velocity.',
         ],
       },
@@ -45,14 +45,14 @@ const EXPERIENCE: ExperienceEntry[] = [
   },
   {
     company: 'Greenlight Financial Technology',
-    companyMeta: 'Atlanta, GA  ·  Jan 2020 – Jan 2024',
+    companyMeta: 'Atlanta, GA  ·  Jan 2020 – Jan 2024  ·  Consumer fintech app for kids and families',
     roles: [
       {
         title: 'Senior Director, Product Design',
         meta: 'Jan 2022 – Jan 2024',
-        body: 'Managed and grew a 14-person design team, expanding capabilities across cross-functional collaboration, design system maturity, user research, and new project exploration.',
+        body: 'Managed and grew a 14-person design team, including the team responsible for lessons, chores, and growth experimentation, expanding capabilities across cross-functional collaboration, design system maturity, user research, and new project exploration.',
         bullets: [
-          "Drove a 10% lift in plan upgrades, doubled Safety Hub engagement, and cut support contacts 5% by leading a large-scale redesign of the app's information architecture that improved feature discovery across the platform.",
+          "Drove a 10% lift in plan upgrades and a 10% drop in downgrades, doubled Safety Hub visits, and cut support contacts 5% by leading a research-driven redesign of the app's navigation and information architecture that improved feature discovery across the platform.",
         ],
       },
       {
@@ -76,7 +76,7 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Lead Designer',
         meta: 'Jan 2020 – Jun 2020  ·  Atlanta, GA',
-        body: 'Lead designer for Scout, a social recommendation app, conducting design sprints, creating prototypes, designing user flows and roadmaps, and working with developers. Collaborated with a Ukrainian team and managed a local designer.',
+        body: 'Lead designer for Scout, a consumer social recommendation app, conducting design sprints, creating prototypes, designing user flows and roadmaps, and working with developers. Collaborated with a Ukrainian team and managed a local designer.',
         bullets: [
           'Secured stakeholder alignment on the Scout app with a clear product roadmap and prototypes, using design thinking and rapid prototyping to focus the team on core features and user flows through strong communication skills that built cross-functional trust and influence.',
         ],
@@ -89,7 +89,7 @@ const EXPERIENCE: ExperienceEntry[] = [
       {
         title: 'Senior Product Designer',
         meta: 'May 2015 – Jan 2020  ·  Atlanta, GA',
-        body: 'Served as Product Designer across multiple cross-functional teams spanning enterprise email (Mandrill), developer support, ecommerce, audience management, and Mailchimp.com. Designed and tested user flows, conducted user research, and contributed to in-app branding.',
+        body: 'Served as Product Designer across multiple cross-functional teams spanning enterprise email (Mandrill), developer support, ecommerce, audience management, and Mailchimp.com. Designed and tested user flows, conducted user research, partnered with content designers on Mailchimp.com, and contributed to in-app branding.',
         bullets: [
           "Conducted a 20-participant study and multi-survey campaign with a third-party partner to gather tagging, demographic, and location data for a comprehensive audience management redesign, demonstrating creativity in research design and communication with stakeholders to assess users' perception of the platform as a CRM.",
           'Refreshed brand expression across the core application by co-creating and rolling out a new illustration system that carried the product until a full brand refresh two years later, and was widely imitated industry-wide.',
@@ -118,24 +118,24 @@ const EARLY_CAREER = 'Web Designer · Southern Web Group (now SiteCare)  ·  Mul
 
 const HIGHLIGHTS: { lead: string; body: string }[] = [
   {
+    lead: 'Measurable product impact.',
+    body: "Led a research-driven redesign of Greenlight's navigation and information architecture: plan upgrades up 10%, downgrades down 10%, Safety Hub visits doubled, lesson completions up 5%, and support contacts down 5%.",
+  },
+  {
     lead: 'Design org building and scaling.',
     body: "Scaled Greenlight's design team from 3 to 14 designers, building the hiring, onboarding, and leveling structure that let design keep pace with a high-growth fintech.",
   },
   {
-    lead: '0 → 1 function creation.',
-    body: 'Joined Airia as its first design leader and stood up the entire design function — team, rituals, and system — from nothing.',
+    lead: '0 to 1 function creation.',
+    body: "Joined Airia as its first design leader, stood up the design function, including the team, rituals, and design system, and led the team's move to AI-first workflows.",
   },
   {
-    lead: 'AI-first design practice.',
-    body: 'Built and ran a production AI-first design process linking a Figma design library, Storybook, and Claude Code to keep UX consistent and surface drift automatically.',
+    lead: 'AI product design.',
+    body: "Directed the redesign of Airia's AI chat experience, including deep thinking mode, file and slide creation, and automated tasks, shaping the product vision for agentic AI workflows across roughly 500 enterprise customers.",
   },
   {
-    lead: 'Measurable product impact.',
-    body: "Led Greenlight's information architecture redesign, producing a 10% increase in plan upgrades, 2× Safety Hub visits, a 5% rise in lesson completions, and a 5% drop in support contacts.",
-  },
-  {
-    lead: 'Enterprise-grade AI product leadership.',
-    body: "Directed the redesign of Airia's end-user AI chat experience — deep thinking mode, file and slide creation, automated tasks — bringing a premium chat experience to roughly 500 enterprise customers.",
+    lead: 'Design system as shared infrastructure.',
+    body: "Partnered with engineering to connect Airia's Figma library to Storybook and Claude Code, making live code the source of truth and surfacing drift automatically.",
   },
 ]
 
@@ -147,11 +147,17 @@ const CAPABILITY_LINES: { group: string; items: string[] }[][] = [
       group: 'Professional & leadership',
       items: [
         'Product Design Leadership',
-        'Head of Design',
-        'VP of Product Design',
-        'Design Director',
-        'User Experience (UX) Design',
-        'UI Design',
+        'Visual Design',
+        'Interaction Design',
+        'AI Product Design',
+        'AI Adoption & Change Management',
+        'Behavioral Design',
+        'Experimentation & A/B Testing',
+        'Growth Design',
+        'Content Design Partnership',
+        'Consumer Fintech',
+        'Consumer Apps',
+        'Growth & Engagement',
         'Design Systems',
         'Design Operations (DesignOps)',
         'UX Research',
@@ -159,27 +165,17 @@ const CAPABILITY_LINES: { group: string; items: string[] }[][] = [
         'Product Strategy',
         'Product Discovery',
         'Information Architecture',
-        'Interaction Design',
+        'UI Design',
         'Prototyping',
-        'Figma',
-        'AI-Augmented Workflows',
-        'AI Adoption & Change Management',
-        'Generative AI Tooling',
-        '0 to 1 Product Development',
-        'SaaS',
-        'Fintech',
-        'B2B and B2C Product',
         'Mobile App Design',
-        'Enterprise Software',
+        'AI-Augmented Workflows',
+        '0 to 1 Product Development',
+        'Executive Partnership',
         'Cross-Functional Leadership',
-        'Strategic Planning',
+        'Stakeholder Management',
         'Team Building & Mentorship',
         'Hiring and Talent Development',
-        'Stakeholder Management',
-        'Executive Partnership',
-        'Agile & Scrum',
         'Roadmap Planning',
-        'Remote Team Leadership',
         'Accessibility',
         'Design Quality Governance',
       ],
@@ -217,27 +213,6 @@ const CAPABILITY_LINES: { group: string; items: string[] }[][] = [
       items: ['Agile', 'Scrum', 'AI-first design & development', 'Design systems'],
     },
   ],
-]
-
-const INDUSTRIES = [
-  'Research & development',
-  'Information & document management',
-  'Advertising & marketing',
-  'Multimedia & graphic design',
-  'Custom software & IT services',
-  'Architecture, engineering & design',
-  'Restaurants',
-  'Mobile app development',
-  'Business intelligence (BI) software',
-  'Legal software',
-  'CRM software',
-  'Storage & system management software',
-  'Financial software',
-  'Database & file management software',
-  'Security software',
-  'ERP software',
-  'Content & collaboration software',
-  'Healthcare software',
 ]
 
 const EDUCATION: { degree: string; school: string }[] = [
@@ -350,7 +325,7 @@ export default function Resume() {
             Chris Blair
           </h1>
           <p className="resume-title text-sm font-semibold tracking-wide text-accent uppercase sm:text-base">
-            Principal Product Designer
+            Product Design Leader
           </p>
         </div>
         <div className="resume-contact flex flex-col gap-0.5 text-sm leading-normal text-muted sm:text-right">
@@ -379,18 +354,17 @@ export default function Resume() {
         <Row label="Profile">
           <div className="flex flex-col gap-3">
             <p className="resume-text text-base leading-[1.6] text-body">
-              An award-winning product design leader with 15+ years building and scaling design
-              functions across SaaS, fintech, and AI, including a 14-person org scaled from the
-              ground up at Greenlight and a full design function built from scratch at Airia. Acts
-              as a player-coach, collaborating with founders, stakeholders, and engineering
-              leaders to set product direction and product strategy while mentoring designers to
-              elevate craft and mastery. Runs an AI-first design practice, integrating Figma,
-              Storybook, and Claude Code for consistent visual and behavioral output.
+              Product design leader with 15+ years designing consumer, fintech, SaaS, and AI
+              products and 8+ years building and leading design teams. Scaled Greenlight's design
+              team from 3 to 14 and led a redesign that lifted plan upgrades 10% and cut downgrades
+              10%, then built Airia's design function from scratch. Stays hands-on as a
+              player-coach, pairing user research with product metrics, holding a high bar for
+              interaction and visual craft, and running an AI-first practice across Figma,
+              Storybook, and Claude Code.
             </p>
             <p className="resume-text text-base leading-[1.6] text-body">
-              Targeting senior design leadership at mission-driven, high-growth companies where
-              hands-on leadership, design systems, and AI-enhanced workflows are key advantages,
-              with a track record of fostering creativity across multi-disciplinary teams.
+              Best fit for teams that want a design leader who can set direction, grow designers,
+              partner with executives, and still get into the work.
             </p>
           </div>
         </Row>
@@ -434,12 +408,6 @@ export default function Resume() {
               </p>
             ))}
           </div>
-        </Row>
-
-        <Row label="Industries">
-          <p className="resume-text text-base leading-[1.55] text-body">
-            {INDUSTRIES.join('  ·  ')}
-          </p>
         </Row>
 
         <Row label="Education">
