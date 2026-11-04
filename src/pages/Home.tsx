@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import Hero from '../components/Hero'
 import SectionDots from '../components/SectionDots'
 import StickyHeader from '../components/StickyHeader'
+import { caseStudies } from '../data/caseStudies'
 
 export default function Home() {
   // Soft scroll-snap only while the homepage is mounted — the "proximity"
@@ -32,7 +33,7 @@ export default function Home() {
       >
         <CursorGlow color="teal" />
         <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 py-24 sm:px-10 lg:px-20">
-          <CaseStudies />
+          <CaseStudies studies={caseStudies} />
         </div>
       </section>
 

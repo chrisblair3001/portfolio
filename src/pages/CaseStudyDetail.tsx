@@ -3,6 +3,7 @@ import CaseStudies from '../components/CaseStudies'
 import Divider from '../components/Divider'
 import Footer from '../components/Footer'
 import ImageGallery from '../components/ImageGallery'
+import StackBlock from '../components/StackBlock'
 import StickyHeader from '../components/StickyHeader'
 import { caseStudies } from '../data/caseStudies'
 
@@ -166,6 +167,8 @@ export default function CaseStudyDetail() {
                         ))}
                       </div>
                     )}
+
+                    {chapter.stack && <StackBlock sections={chapter.stack} />}
 
                     {chapter.validations && (
                       <div className="flex flex-col gap-8">

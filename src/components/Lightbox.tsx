@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect } from 'react'
-import type { CaseStudyImage } from '../data/caseStudies'
+import type { CaseStudyImage } from '../data/caseStudyTypes'
 
 function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
   return (
