@@ -17,7 +17,7 @@ const sections = [
   { id: 'bio', label: 'About' },
 ]
 
-/** The fixed dots on the right edge of the home page, one per section, colored to match each section's cursor glow. Desktop only. */
+/** The fixed dots on the right edge of the home page, one per section, small and quiet until a section is active, when its dot grows and takes that section's color (lime, teal, blue). Desktop only. */
 export const Default: Story = {
   globals: { viewport: { value: 'desktop' } },
   render: () => (

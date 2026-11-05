@@ -19,11 +19,6 @@
     "component": "PortfolioProvider"
   },
   "buildCmd": "npm run build:lib",
-  "extraFonts": [
-    "node_modules/@fontsource-variable/archivo/standard.css",
-    "node_modules/@fontsource/manrope/400.css",
-    "node_modules/@fontsource/manrope/500.css"
-  ],
   "overrides": {
     "Hero": {
       "cardMode": "single",
@@ -75,6 +70,9 @@
       "skip": [
         "layout-header--on-phone"
       ]
+    },
+    "Reveal": {
+      "cardMode": "column"
     }
   },
   "readmeHeader": ".design-sync/conventions.md",

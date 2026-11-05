@@ -1,25 +1,56 @@
+/* Self-hosted fonts: Bricolage Grotesque (headlines, with its optical-size axis), Manrope (body and
+   labels) and JetBrains Mono (numbering, captions, meta). They load from this bundle, not a CDN. */
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "@fontsource-variable/manrope/index.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
 @import "tailwindcss";
 
+/* "Night" palette. The lime accent is for dark backgrounds only: it fails contrast on light ones, so
+   the print block below swaps in a darker accent along with the rest of the light palette. */
 @theme {
-  --font-archivo: "Archivo", sans-serif;
-  --font-manrope: "Manrope", sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Bricolage Grotesque", sans-serif;
+  --font-sans: "Manrope Variable", "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  --color-bg: #ffffff;
-  --color-accent: #f0204d;
-  --color-ink: #292828;
-  --color-heading: #111111;
-  --color-body: #3c3635;
-  --color-muted: #555555;
-  --color-label: #938787;
-  --color-border: #828282;
-  --color-hairline: #e5e2e0;
-  --color-base-secondary: #7b7274;
+  --color-bg: #121212;
+  --color-ink: #f2f0ec;
+  --color-heading: #f7f5f2;
+  --color-body: #cfcac4;
+  --color-muted: #9a948d;
+  --color-label: #8c8680;
+  --color-border: #6a6560;
+  --color-hairline: #2b2928;
+  --color-accent: #c6f432;
+
+  /* Headline gradient stops (lime to teal) and the third section dot (About). */
+  --color-g1: #c6f432;
+  --color-g2: #35e0c4;
+  --color-dot-3: #8ab4ff;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
+  margin: 0;
   background-color: var(--color-bg);
   color: var(--color-body);
-  font-family: var(--font-archivo);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
 }
 
 .no-scrollbar {
@@ -31,24 +62,43 @@ body {
   display: none;
 }
 
-/*
- * Homepage section snapping. "proximity" only pulls toward a section
- * boundary once the scroll has settled near one — it never intercepts the
- * scroll gesture itself, so free scrolling still feels normal. The class is
- * added/removed by the Home component so other routes scroll plainly.
- */
-html.snap-sections {
-  scroll-snap-type: y proximity;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html.snap-sections {
-    scroll-snap-type: none;
+/* The hero headline: each letter of the rotating phrase rises in, and the old phrase rises out. */
+@keyframes rise-in {
+  from {
+    transform: translateY(0.55em);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes rise-out {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-0.45em);
+    opacity: 0;
   }
 }
 
 /*
  * Resume page — print / "Save as PDF" layout.
+ *
+ * Paper is white, so print swaps the whole palette to a light one (every color utility reads these
+ * tokens), including a darker accent in place of the lime.
  *
  * On screen the resume renders at the site's normal reading scale with the
  * label/content rows stacking on mobile. This block collapses it to a tight,
@@ -60,6 +110,24 @@ html.snap-sections {
   @page {
     size: letter;
     margin: 0.5in;
+  }
+
+  :root {
+    --color-bg: #ffffff;
+    --color-ink: #1a1a1a;
+    --color-heading: #111111;
+    --color-body: #3c3635;
+    --color-muted: #555555;
+    --color-label: #6e6663;
+    --color-border: #828282;
+    --color-hairline: #d9d5d1;
+    --color-accent: #4f6b00;
+  }
+
+  /* The page itself is dark-scheme on screen; paper is always white. */
+  html {
+    color-scheme: light;
+    background: #fff;
   }
 
   body {
@@ -76,7 +144,7 @@ html.snap-sections {
     margin: 0 !important;
     padding: 0 !important;
     color: #1a1a1a;
-    /* Keep the red section labels and pill outlines in the printed output */
+    /* Keep the accent section labels and pill outlines in the printed output */
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }

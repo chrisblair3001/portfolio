@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>
 
 const body = (
   <p className="max-w-[600px] text-base leading-[1.6] text-body sm:text-lg">
-    The frame for the simpler pages: a back link, an uppercase page title, your content, and the footer.
+    The frame for the simpler pages: a back link, a page title, your content, and the footer.
   </p>
 )
 

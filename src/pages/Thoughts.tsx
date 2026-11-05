@@ -12,7 +12,7 @@ export default function Thoughts() {
       <div className="flex max-w-[720px] flex-col gap-10">
         {POSTS.map((post) => (
           <div key={post.title} className="flex flex-col gap-1 border-b border-hairline pb-8">
-            <p className="text-xl font-bold text-heading">{post.title}</p>
+            <p className="font-display text-xl font-bold tracking-[-0.02em] text-heading">{post.title}</p>
             <p className="text-sm text-muted">{post.date}</p>
           </div>
         ))}

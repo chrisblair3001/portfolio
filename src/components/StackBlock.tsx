@@ -5,11 +5,11 @@ import type { StackSection } from '../data/caseStudyTypes'
 function Steps({ section }: { section: StackSection }) {
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-lg font-semibold text-heading">{section.title}</p>
-      <ol className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-hairline bg-hairline sm:grid-cols-4">
+      <p className="font-display text-xl font-bold tracking-[-0.02em] text-heading">{section.title}</p>
+      <ol className="grid grid-cols-2 gap-px overflow-hidden rounded-md border border-hairline bg-hairline sm:grid-cols-4">
         {section.items.map((step, i) => (
-          <li key={step.name} className="flex flex-col gap-1.5 bg-white p-4">
-            <span className="text-xs font-semibold text-label">{String(i + 1).padStart(2, '0')}</span>
+          <li key={step.name} className="flex flex-col gap-1.5 bg-bg p-4">
+            <span className="font-mono text-[11px] font-medium text-accent">{String(i + 1).padStart(2, '0')}</span>
             <span className="text-base font-semibold text-heading">{step.name}</span>
             <span className="text-sm leading-[1.5] text-muted">{step.note}</span>
           </li>
@@ -22,7 +22,7 @@ function Steps({ section }: { section: StackSection }) {
 function Items({ section }: { section: StackSection }) {
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-lg font-semibold text-heading">{section.title}</p>
+      <p className="font-display text-xl font-bold tracking-[-0.02em] text-heading">{section.title}</p>
       <ul className="grid grid-cols-1 gap-x-10 gap-y-5 sm:grid-cols-2">
         {section.items.map((item) => (
           <li key={item.name} className="flex flex-col gap-1 border-t border-hairline pt-3">

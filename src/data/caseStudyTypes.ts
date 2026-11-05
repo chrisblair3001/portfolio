@@ -9,6 +9,10 @@ export type CaseStudyImage = {
   bare?: boolean
 }
 
+// The picture a case study shows on its home page card. `position` is a CSS object-position, for
+// steering the crop of a screenshot.
+export type CaseStudyCover = CaseStudyImage & { position?: string }
+
 export type StackItem = { name: string; note: string }
 
 // A block of "how it was built" content for a chapter. `steps` renders as a
@@ -43,6 +47,7 @@ export type CaseStudy = {
   shortTitle?: string
   summary: string
   tagline?: string
+  cover?: CaseStudyCover
   tags?: string[]
   role?: CaseStudyRole
   team?: string[]

@@ -310,7 +310,7 @@ export default function Resume() {
         <button
           type="button"
           onClick={() => window.print()}
-          className="rounded-full border border-border bg-white px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
+          className="rounded-full border border-border bg-bg px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
         >
           Download PDF
         </button>
@@ -319,7 +319,7 @@ export default function Resume() {
       <header className="resume-header mt-10 flex flex-wrap items-start justify-between gap-x-6 gap-y-5 border-b border-hairline pb-8 sm:mt-12">
         <div className="flex flex-col gap-2">
           <h1
-            className="resume-name text-[28px] leading-tight font-bold text-ink uppercase sm:text-[32px]"
+            className="resume-name font-display text-[28px] leading-tight font-bold text-ink uppercase sm:text-[32px]"
             style={{ fontStretch: '125%' }}
           >
             Chris Blair

@@ -10,20 +10,21 @@ type PageShellProps = {
 
 export default function PageShell({ eyebrow, title, children }: PageShellProps) {
   return (
-    <div className="mx-auto flex min-h-screen max-w-[1280px] flex-col gap-10 px-6 pt-16 pb-20 sm:gap-14 sm:px-10 sm:pt-20 sm:pb-[120px] lg:px-20">
+    <div className="mx-auto flex min-h-screen max-w-[1088px] flex-col gap-10 px-[clamp(24px,6vw,80px)] pt-16 pb-12 sm:gap-14 sm:pt-20">
       <div className="flex flex-col gap-8 sm:gap-12">
         <Link
           to="/"
-          className="w-fit text-sm font-bold text-muted uppercase transition-colors hover:text-heading"
+          className="w-fit text-sm font-bold text-muted uppercase transition-colors hover:text-accent"
         >
           ← Back home
         </Link>
-        <div className="flex flex-col gap-2">
-          {eyebrow && <p className="text-xl font-semibold text-label sm:text-2xl">{eyebrow}</p>}
-          <h1
-            className="text-[32px] leading-none font-bold text-heading uppercase sm:text-[40px] lg:text-[48px]"
-            style={{ fontStretch: '125%' }}
-          >
+        <div className="flex flex-col gap-3">
+          {eyebrow && (
+            <p className="text-[13.6px] font-semibold tracking-[0.02em] text-label uppercase">
+              // {eyebrow}
+            </p>
+          )}
+          <h1 className="font-display text-[clamp(32px,5vw,48px)] leading-[0.95] font-bold tracking-[-0.045em] text-heading">
             {title}
           </h1>
         </div>

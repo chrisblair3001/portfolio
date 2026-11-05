@@ -84,6 +84,7 @@ export type {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'dispatch-ai-daily-podcast',
+    cover: { src: dispatchToday, alt: "Dispatch: the Today screen, with this morning's episode and its segments", position: 'center top' },
     title: 'Dispatch',
     shortTitle: 'Dispatch',
     summary:
@@ -253,6 +254,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'omni-enterprise-chat-experience',
+    cover: { src: omniOverviewHome, alt: "Omni: the home screen with the prompt box and quick actions", position: 'center' },
     title: 'Omni',
     shortTitle: 'Omni',
     summary:
@@ -356,6 +358,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'smart-scan-file-organization',
+    cover: { src: smartscanReportsViewer, alt: "SmartScan: the report viewer with a document list and a preview", position: 'center' },
     title: 'SmartScan',
     shortTitle: 'Smartscan',
     summary:
@@ -420,6 +423,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'rebuilding-greenlights-ia',
+    cover: { src: glxHifiUpdates, alt: "Greenlight: hi-fi updates to the parent app across four screens", position: 'center' },
     title: 'Greenlight IA',
     shortTitle: 'Greenlight IA',
     summary:

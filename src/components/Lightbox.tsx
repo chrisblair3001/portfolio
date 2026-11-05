@@ -4,7 +4,11 @@ import type { CaseStudyImage } from '../data/caseStudyTypes'
 
 function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className={`size-6 ${direction === 'left' ? '' : 'rotate-180'}`}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={`size-6 ${direction === 'left' ? '' : 'rotate-180'}`}
+    >
       <path
         d="M15 6L9 12L15 18"
         stroke="currentColor"
@@ -15,6 +19,11 @@ function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
     </svg>
   )
 }
+
+// Both arrows are always there so you can see where you are; the one that has nowhere to go dims.
+// The dark backing keeps them visible over light screenshots.
+const ARROW =
+  'absolute top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-black/60 text-white backdrop-blur-sm transition-colors enabled:cursor-pointer enabled:hover:bg-black/80 disabled:opacity-30'
 
 type LightboxProps = {
   images: CaseStudyImage[]
@@ -49,46 +58,51 @@ export default function Lightbox({ images, index, onClose, onNavigate }: Lightbo
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
-        className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-ink/90 p-6"
+        className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-black/90 p-6"
         onClick={onClose}
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-6 right-6 text-sm font-bold tracking-wide text-bg uppercase hover:opacity-70"
+          className="absolute top-6 right-6 text-sm font-bold tracking-wide text-white uppercase hover:opacity-70"
           aria-label="Close"
         >
           Close ✕
         </button>
 
-        {hasPrev && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation()
-              onNavigate(index - 1)
-            }}
-            aria-label="Previous image"
-            className="absolute left-4 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-bg backdrop-blur-sm transition-colors hover:bg-white/20 sm:left-6"
-          >
-            <ChevronIcon direction="left" />
-          </button>
-        )}
-        {hasNext && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation()
-              onNavigate(index + 1)
-            }}
-            aria-label="Next image"
-            className="absolute right-4 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-bg backdrop-blur-sm transition-colors hover:bg-white/20 sm:right-6"
-          >
-            <ChevronIcon direction="right" />
-          </button>
+        {images.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                onNavigate(index - 1)
+              }}
+              disabled={!hasPrev}
+              aria-label="Previous image"
+              className={`${ARROW} left-4 sm:left-6`}
+            >
+              <ChevronIcon direction="left" />
+            </button>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                onNavigate(index + 1)
+              }}
+              disabled={!hasNext}
+              aria-label="Next image"
+              className={`${ARROW} right-4 sm:right-6`}
+            >
+              <ChevronIcon direction="right" />
+            </button>
+          </>
         )}
 
-        <div className="flex max-w-[90vw] flex-col items-center gap-3" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="flex max-w-[90vw] flex-col items-center gap-3"
+          onClick={(e) => e.stopPropagation()}
+        >
           <motion.img
             key={current.src}
             src={current.src}
@@ -97,12 +111,17 @@ export default function Lightbox({ images, index, onClose, onNavigate }: Lightbo
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.96, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
+            className="max-h-[80vh] max-w-full rounded-lg object-contain shadow-2xl"
           />
           {current.alt && (
-            <p className="text-center text-sm text-bg/80">
+            <p className="text-center text-sm text-white/80">
               {current.alt}
-              {images.length > 1 && <span className="text-bg/50"> — {index + 1} / {images.length}</span>}
+              {images.length > 1 && (
+                <span className="text-white/50">
+                  {' '}
+                  — {index + 1} / {images.length}
+                </span>
+              )}
             </p>
           )}
         </div>
