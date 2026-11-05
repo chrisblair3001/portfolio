@@ -10,3 +10,16 @@ dist-ssr
 .claude/
 .vercel
 .env*
+
+# Claude Design sync (see .design-sync/NOTES.md): build outputs and caches
+dist-lib
+storybook-static
+ds-bundle
+ds-bundle.nosync
+.design-sync/sb-reference
+.design-sync/.cache
+.ds-sync/
+.design-sync/learnings/
+.design-sync/node_modules
+.design-sync/.*.log
+.design-sync/.resync*

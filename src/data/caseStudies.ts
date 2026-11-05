@@ -57,46 +57,200 @@ import glxHifiUpdates from '../assets/glx-hifi-updates.png'
 import glxParentExperience from '../assets/glx-parent-experience.png'
 import glxKidExperience from '../assets/glx-kid-experience.png'
 import glxTabBarDocs from '../assets/glx-tab-bar-docs.png'
+import dispatchWelcome from '../assets/dispatch-welcome.jpg'
+import dispatchPickSegments from '../assets/dispatch-pick-segments.jpg'
+import dispatchToday from '../assets/dispatch-today.jpg'
+import dispatchTextures from '../assets/dispatch-textures.jpg'
+import dispatchEpisodes from '../assets/dispatch-episodes.jpg'
+import dispatchPhoneShare from '../assets/dispatch-phone-share.jpg'
+import dispatchDetails from '../assets/dispatch-details.jpg'
+import dispatchPodcastApp from '../assets/dispatch-podcast-app.jpg'
+import dispatchPhoneToday from '../assets/dispatch-phone-today.jpg'
+import dispatchQuietDay from '../assets/dispatch-quiet-day.jpg'
+import dispatchDesignBoard from '../assets/dispatch-design-board.jpg'
+import dispatchStorybook from '../assets/dispatch-storybook.jpg'
 
-export type CaseStudyImage = {
-  src: string
-  alt: string
-  // Some Figma exports already render their own card frame/border. For
-  // those, skip the gallery's own border so it doesn't double up.
-  bare?: boolean
-}
+import type { CaseStudy } from './caseStudyTypes'
 
-export type CaseStudyChapter = {
-  index: string
-  title: string
-  body: string[]
-  stats?: { group: string; chips: string[] }[]
-  validations?: { title: string; body: string }[]
-  gallery?: CaseStudyImage[]
-}
-
-export type CaseStudyRole = {
-  title: string
-  scope: string
-  // Designers who reported into this role on the project, listed
-  // individually the same way CaseStudy.team is.
-  reports?: string[]
-}
-
-export type CaseStudy = {
-  slug: string
-  title: string
-  shortTitle?: string
-  summary: string
-  tagline?: string
-  tags?: string[]
-  role?: CaseStudyRole
-  team?: string[]
-  chapters?: CaseStudyChapter[]
-  metrics?: { label: string; value: string }[]
-}
+export type {
+  CaseStudy,
+  CaseStudyChapter,
+  CaseStudyImage,
+  CaseStudyRole,
+  StackItem,
+  StackSection,
+} from './caseStudyTypes'
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: 'dispatch-ai-daily-podcast',
+    title: 'Dispatch',
+    shortTitle: 'Dispatch',
+    summary:
+      'A side project to learn what it takes to build a real product with AI. Dispatch turns the articles you save, and the topics you pick, into a short daily podcast hosted by two AI voices, delivered to the podcast app you already use.',
+    tagline: 'A personal daily podcast, built with AI',
+    tags: ['Consumer AI', '0 to 1', 'Built with Claude Code'],
+    role: {
+      title: 'Designer & Builder',
+      scope: 'Product design  •  Visual identity  •  Full-stack build with AI  •  Design system',
+    },
+    team: ['Claude Code', 'Claude Design'],
+    chapters: [
+      {
+        index: '01',
+        title: 'Problem to solve',
+        body: [
+          "Dispatch started with a simple idea: save an article, and hear it later as a podcast. I wanted it to be something anyone could use, not just people who like tinkering with AI. Right now, AI automations and workflows work best for people who are really into AI. Dispatch hides all of that. There are no prompts and no setup. You pick what you care about, and a podcast shows up.",
+          "The biggest product decision came after the first version. Dispatch only worked with articles you saved, which meant nothing happened on days you saved nothing. I made a deliberate call to widen it. You can now pick up to three segments, like Morning Briefing, Signal or Close to Home, or write your own, and Dispatch builds your episode every weekday. Your saved articles always play first. It went from a tool you have to feed to a show that shows up on its own.",
+          "This was also a learning project. I wanted to find out what building a full product with AI really takes, and to design something with AI that felt unique and not like slop.",
+        ],
+        gallery: [
+          { src: dispatchWelcome, alt: 'Dispatch welcome screen with the headline "Today\'s reading, in one short listen" and sign-in options' },
+          { src: dispatchPickSegments, alt: 'Onboarding step where a listener picks up to three daily segments, like Morning Briefing and Close to Home' },
+          { src: dispatchToday, alt: 'The Today screen with an episode ready, showing the intro, saved articles first, and then each segment as chapters' },
+        ],
+      },
+      {
+        index: '02',
+        title: 'Design direction and details',
+        body: [
+          "Dispatch needed a point of view. The goal was a product that doesn't look like it came out of a template, so the UI is dark and flat, with square corners and no shadows except on menus and dialogs. Two colors stand in for the two hosts: slate for Nora and rose for Theo. Rose is used for new things and highlights, and is never an error color.",
+          "Texture does the rest. Licensed photos run through SVG filters give the app its look, and every episode gets its own cover, rendered on the server from the same textures, so your podcast app looks like Dispatch too.",
+          "Getting articles in had to take one tap. There's a Chrome extension, an iPhone share sheet shortcut, and a paste field on Today. The shortcut started as a setup you had to paste a key into, and I cut it down to a single link.",
+          "Setup is a few choices instead of a form. Pick your segments, add a city if you want local news, write your own segment, skip topics you never want to hear about, then add your private feed to a podcast app. Dispatch notices when the app picks it up and confirms it for you.",
+          "Episodes can come up empty or fail, so those states are designed too. On a quiet day, Nora and Theo tell you what they didn't find. When an episode fails, it says what happened and offers a retry.",
+        ],
+        gallery: [
+          { src: dispatchTextures, alt: 'The Dispatch texture library: licensed photographs run through brand filters, with credits' },
+          { src: dispatchEpisodes, alt: 'The Episodes screen, a grid of episode covers each rendered from a different texture' },
+          { src: dispatchPhoneShare, alt: 'The phone confirmation after sharing an article to Dispatch from the iPhone share sheet' },
+          { src: dispatchDetails, alt: 'Onboarding details step with a city field, a write-your-own segment, and topics to skip' },
+          { src: dispatchPodcastApp, alt: 'Onboarding step for adding the private feed to Apple Podcasts, Pocket Casts or Overcast, with a connected state' },
+          { src: dispatchPhoneToday, alt: 'The Today screen on a phone, with the player and chapters grouped by saved articles and segments' },
+          { src: dispatchQuietDay, alt: 'A quiet day state: Nora and Theo found nothing new for two segments, so there is no episode today' },
+        ],
+      },
+      {
+        index: '03',
+        title: 'Building with AI',
+        body: [
+          "Dispatch was built in a loop between two tools. I started with a working prototype in Claude Code, then took it to Claude Design to refine the look and feel. When a design was ready, Claude Design bundled the files and the full chat history, and I sent that back to Claude Code to build it exactly as designed. Because the bundle carries the reasoning as well as the pixels, the code came back accurate instead of approximate.",
+          "Storybook and the design-sync skill hold that loop together. Every component and screen lives in Storybook in every state, and design-sync publishes that library to Claude Design along with a conventions file. So when Claude Design draws a button or an episode cover, it's using the real one.",
+        ],
+        stack: [
+          {
+            kind: 'steps',
+            title: 'The build loop',
+            items: [
+              { name: 'Prototype', note: 'A working first version in Claude Code.' },
+              { name: 'Refine', note: 'Claude Design for type, color, textures and every screen.' },
+              { name: 'Bundle', note: 'Designs, files and the chat history packaged as one handoff.' },
+              { name: 'Build', note: 'Back to Claude Code, which builds from the bundle instead of guessing.' },
+            ],
+          },
+          {
+            kind: 'items',
+            title: 'Skills used',
+            items: [
+              { name: 'design-sync', note: 'Publishes the Storybook library to Claude Design with a conventions file, so designs use the real components.' },
+              { name: 'voice-mastering', note: 'A custom skill for diagnosing and fixing how Nora and Theo sound.' },
+              { name: 'claude-api', note: 'For building the script writer and story discovery on the Anthropic API.' },
+              { name: 'ux-writing', note: 'A pass over the copy on every screen: labels, empty states and errors.' },
+              { name: 'design-critique', note: 'Structured critiques of screens during the polish pass.' },
+            ],
+          },
+        ],
+        gallery: [
+          { src: dispatchDesignBoard, alt: 'A Claude Design board for the Dispatch interface components: buttons, tags, navigation and text fields' },
+          { src: dispatchStorybook, alt: 'Storybook open on the Today screen, with every screen and component listed in the sidebar' },
+        ],
+      },
+      {
+        index: '04',
+        title: 'Tech stack',
+        body: [
+          "Here is everything Dispatch runs on, and the job each piece does. This is a real product, so it covers the unglamorous parts too: sign-in, email, domains, backups and store review.",
+          "The biggest cost decision was the voice. Dispatch started on ElevenLabs, which sounded great but ran about $0.20 per 1,000 characters. By my estimates that's roughly $0.70 for a short episode, or about $15 a month for one weekday listener, in voice alone. I moved to Chatterbox, an open-source model hosted on fal.ai. In a blind listening test I slightly preferred it, and it brings an episode down to about $0.09, or around $2 a month.",
+        ],
+        stack: [
+          {
+            kind: 'steps',
+            title: 'How an article becomes an episode',
+            items: [
+              { name: 'Save', note: 'Chrome extension, iPhone share sheet or a pasted link. Stored as pending.' },
+              { name: 'Discover', note: "Claude searches the web for fresh stories for each picked segment." },
+              { name: 'Wake up', note: "A scheduler starts each listener's run before their chosen time, on weekdays." },
+              { name: 'Write', note: 'Claude turns the stories into a two-host script, saved articles first.' },
+              { name: 'Voice', note: 'Chatterbox reads each line as Nora or Theo.' },
+              { name: 'Stitch', note: 'ffmpeg joins the clips, evens out the volume and marks chapters.' },
+              { name: 'Store', note: 'Audio and a rendered cover go to Cloudflare R2.' },
+              { name: 'Publish', note: "A private RSS feed delivers it to the listener's podcast app." },
+            ],
+          },
+          {
+            kind: 'items',
+            title: 'Making the episode',
+            items: [
+              { name: 'Anthropic Claude', note: 'Writes the scripts and searches the web for segment stories.' },
+              { name: 'Chatterbox on fal.ai', note: 'The open-source voice model that reads every line.' },
+              { name: 'ffmpeg', note: 'Joins clips, levels the audio and finds chapter times.' },
+              { name: 'Playwright', note: "Renders each episode's cover in a real browser." },
+              { name: 'Wikimedia Commons', note: 'Licensed photos behind the textures.' },
+            ],
+          },
+          {
+            kind: 'items',
+            title: 'Where it runs',
+            items: [
+              { name: 'Vercel', note: "Hosts the web app and holds the domain's DNS." },
+              { name: 'Render', note: 'Runs the API, scheduler and episode generation. Redeploys on every push.' },
+              { name: 'GitHub', note: 'Stores the code for the web app and the backend.' },
+              { name: 'SQLite and Drizzle', note: 'One database file for users, articles, episodes and runs.' },
+              { name: 'Cloudflare R2', note: 'Stores episode audio and covers, plus nightly private backups.' },
+            ],
+          },
+          {
+            kind: 'items',
+            title: 'Accounts and email',
+            items: [
+              { name: 'Clerk', note: 'Invite-only sign-in with Google or an emailed link.' },
+              { name: 'Resend', note: 'Sends the phone install link and failure alerts.' },
+              { name: 'ImprovMX', note: 'Forwards the support address.' },
+            ],
+          },
+          {
+            kind: 'items',
+            title: 'Saving and listening',
+            items: [
+              { name: 'Chrome extension', note: 'Manifest V3 in TypeScript, live on the Chrome Web Store. Reads the page with Readability.' },
+              { name: 'iPhone Shortcut', note: 'Adds Save to Dispatch to the share sheet.' },
+              { name: 'RSS', note: 'A private feed per listener for Apple Podcasts, Overcast or Pocket Casts.' },
+            ],
+          },
+          {
+            kind: 'items',
+            title: 'Code',
+            items: [
+              { name: 'React 19 and TypeScript', note: 'The app, with strict typing.' },
+              { name: 'Vite', note: 'Builds the app and the extension.' },
+              { name: 'Tailwind CSS 4', note: "Styling, with the defaults switched off so it doesn't look stock." },
+              { name: 'Storybook', note: 'Every component and screen, in every state.' },
+              { name: 'Express, Zod and node-cron', note: 'The API, request checking and the scheduler.' },
+            ],
+          },
+        ],
+      },
+      {
+        index: '05',
+        title: "What's next",
+        body: [
+          "Dispatch is in private beta, open by invitation. The Chrome extension is live on the Chrome Web Store, and new features are in progress.",
+          "Next up: more segments, more hosts to choose from, and an education mode, where you tell Dispatch topics you want to learn about and it builds episodes around them over time. After that, newsletters you can forward in, more browsers, and eventually a native iOS app.",
+          "I'm also working out how it can pay for itself. Voice is the biggest cost, which is why the move to Chatterbox mattered, and it means pricing should follow audio minutes. A flat plan with caps, usage-based pricing, and a free tier with paid volume features are all on the table.",
+        ],
+      },
+    ],
+  },
   {
     slug: 'omni-enterprise-chat-experience',
     title: 'Omni',

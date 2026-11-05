@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import ExpandableImage from './ExpandableImage'
 import Lightbox from './Lightbox'
-import type { CaseStudyImage } from '../data/caseStudies'
+import type { CaseStudyImage } from '../data/caseStudyTypes'
 
 export default function ImageGallery({ images }: { images: CaseStudyImage[] }) {
   const scrollRef = useRef<HTMLDivElement>(null)

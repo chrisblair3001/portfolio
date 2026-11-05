@@ -1,0 +1,82 @@
+{
+  "shape": "storybook",
+  "pkg": "chris-blair-portfolio",
+  "globalName": "Portfolio",
+  "storybookStatic": ".design-sync/sb-reference",
+  "tsconfig": "tsconfig.app.json",
+  "titleMap": {
+    "Home": null,
+    "CaseStudy": null,
+    "Resume": null,
+    "Contact": null,
+    "NotFound": null,
+    "Colors": null,
+    "Typography": null,
+    "Patterns": null
+  },
+  "entry": "dist-lib/design-system/index.js",
+  "provider": {
+    "component": "PortfolioProvider"
+  },
+  "buildCmd": "npm run build:lib",
+  "extraFonts": [
+    "node_modules/@fontsource-variable/archivo/standard.css",
+    "node_modules/@fontsource/manrope/400.css",
+    "node_modules/@fontsource/manrope/500.css"
+  ],
+  "overrides": {
+    "Hero": {
+      "cardMode": "single",
+      "skip": [
+        "sections-hero--on-phone"
+      ]
+    },
+    "Bio": {
+      "cardMode": "column",
+      "viewport": "900x1010",
+      "skip": [
+        "sections-bio--on-phone"
+      ]
+    },
+    "CaseStudies": {
+      "cardMode": "column"
+    },
+    "ImageGallery": {
+      "cardMode": "column",
+      "skip": [
+        "content-imagegallery--on-phone"
+      ]
+    },
+    "StackBlock": {
+      "cardMode": "column",
+      "skip": [
+        "content-stackblock--on-phone"
+      ]
+    },
+    "PageShell": {
+      "cardMode": "single"
+    },
+    "Lightbox": {
+      "cardMode": "single"
+    },
+    "StickyHeader": {
+      "cardMode": "single",
+      "skip": [
+        "layout-stickyheader--scrolled"
+      ]
+    },
+    "SectionDots": {
+      "cardMode": "single"
+    },
+    "Intro": {
+      "cardMode": "column"
+    },
+    "Header": {
+      "skip": [
+        "layout-header--on-phone"
+      ]
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md",
+  "projectId": "37fe9de6-69b5-458f-8f8c-05bceadc4994"
+}

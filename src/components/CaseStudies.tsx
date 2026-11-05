@@ -1,6 +1,6 @@
 import { motion, type Variants } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { caseStudies as allCaseStudies, type CaseStudy } from '../data/caseStudies'
+import type { CaseStudy } from '../data/caseStudyTypes'
 import Divider from './Divider'
 
 // Matches the curve wearecollins.com uses for its Programs list hover state
@@ -49,13 +49,13 @@ function ArrowIcon() {
 }
 
 type CaseStudiesProps = {
-  studies?: CaseStudy[]
+  studies: CaseStudy[]
   heading?: string
   comingSoon?: boolean
 }
 
 export default function CaseStudies({
-  studies = allCaseStudies,
+  studies,
   heading = 'Case studies',
   comingSoon = false,
 }: CaseStudiesProps) {

@@ -1,0 +1,17 @@
+/* The site loads Archivo and Manrope from Google Fonts in index.html. Storybook (and Claude Design's
+   sync) use the self-hosted fontsource copies instead, which register Archivo as "Archivo Variable".
+   Point the theme's font token at it; this file is unlayered, so it wins over the @theme default. */
+:root {
+  --font-archivo: "Archivo Variable", "Archivo", sans-serif;
+}
+
+/* The theme's font stack also names plain "Archivo" (the Google Fonts family the live site loads).
+   Register that name from the same self-hosted files so design tools and Storybook both resolve it. */
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url("../node_modules/@fontsource-variable/archivo/files/archivo-latin-standard-normal.woff2") format("woff2-variations");
+}
