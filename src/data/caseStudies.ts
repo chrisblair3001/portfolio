@@ -1,74 +1,78 @@
-import omniOverviewHome from '../assets/omni-overview-home.png'
-import omniOverviewSuggestions from '../assets/omni-overview-suggestions.png'
-import omniOverviewArtifact from '../assets/omni-overview-artifact.png'
-import omniOverviewConnectors from '../assets/omni-overview-connectors.png'
-import omniOverviewTasks from '../assets/omni-overview-tasks.png'
-import omniOverviewScheduled from '../assets/omni-overview-scheduled.png'
-import omniOverviewIncognito from '../assets/omni-overview-incognito.png'
-import omniResearchPrompt from '../assets/omni-research-prompt.png'
-import omniResearchPlan from '../assets/omni-research-plan.png'
-import omniResearchSummary from '../assets/omni-research-summary.png'
-import omniResearchReport from '../assets/omni-research-report.png'
-import omniWorkspacesEmpty from '../assets/omni-workspaces-empty.png'
-import omniWorkspacesList from '../assets/omni-workspaces-list.png'
-import omniWorkspacesThreads from '../assets/omni-workspaces-threads.png'
-import omniWorkspacesMilestones from '../assets/omni-workspaces-milestones.png'
-import omniWorkspacesPeople from '../assets/omni-workspaces-people.png'
-import omniWorkspacesFiles from '../assets/omni-workspaces-files.png'
-import omniWorkspacesChat from '../assets/omni-workspaces-chat.png'
-import omniWorkspacesRoutines from '../assets/omni-workspaces-routines.png'
-import omniWorkspacesRoutinesAlt from '../assets/omni-workspaces-routines-alt.png'
-import omniPresentationsChat from '../assets/omni-presentations-chat.png'
-import omniPresentationsEditor from '../assets/omni-presentations-editor.png'
-import omniPresentationsInlineEdit from '../assets/omni-presentations-inline-edit.png'
-import omniPresentationsInlineEditAlt from '../assets/omni-presentations-inline-edit-alt.png'
-import omniPresentationsPresentMode from '../assets/omni-presentations-present-mode.png'
-import omniFilesHome from '../assets/omni-files-home.png'
-import omniFilesQuickNote from '../assets/omni-files-quick-note.png'
-import omniFilesImageGen from '../assets/omni-files-image-gen.png'
-import omniMobileChat from '../assets/omni-mobile-chat.png'
-import omniMobileMeetings from '../assets/omni-mobile-meetings.png'
-import omniMobileHistory from '../assets/omni-mobile-history.png'
-import smartscanProblem1 from '../assets/smartscan-problem-1.png'
-import smartscanProblem2 from '../assets/smartscan-problem-2.png'
-import smartscanProblem3 from '../assets/smartscan-problem-3.png'
-import smartscanProblem4 from '../assets/smartscan-problem-4.png'
-import smartscanProblem5 from '../assets/smartscan-problem-5.png'
-import smartscanGettingStarted from '../assets/smartscan-getting-started.png'
-import smartscanScanEmpty from '../assets/smartscan-scan-empty.png'
-import smartscanScanPrompts from '../assets/smartscan-scan-prompts.png'
-import smartscanScanCompleted from '../assets/smartscan-scan-completed.png'
-import smartscanReportsProgress from '../assets/smartscan-reports-progress.png'
-import smartscanReportsColumns from '../assets/smartscan-reports-columns.png'
-import smartscanReportsViewer from '../assets/smartscan-reports-viewer.png'
-import glxHypothesis from '../assets/glx-hypothesis.png'
-import glxPersonaTina from '../assets/glx-persona-tina.png'
-import glxFamilyNetwork from '../assets/glx-family-network.png'
-import glxParentSegments from '../assets/glx-parent-segments.png'
-import glxSegmentSizes from '../assets/glx-segment-sizes.png'
-import glxConceptHub from '../assets/glx-concept-hub.png'
-import glxConceptHeartbeat from '../assets/glx-concept-heartbeat.png'
-import glxConceptAssistant from '../assets/glx-concept-assistant.png'
-import glxConceptRecap from '../assets/glx-concept-recap.png'
-import glxUserTestResults from '../assets/glx-user-test-results.png'
-import glxTreeTestResults from '../assets/glx-tree-test-results.png'
-import glxWireframeUpdates from '../assets/glx-wireframe-updates.png'
-import glxHifiUpdates from '../assets/glx-hifi-updates.png'
-import glxParentExperience from '../assets/glx-parent-experience.png'
-import glxKidExperience from '../assets/glx-kid-experience.png'
-import glxTabBarDocs from '../assets/glx-tab-bar-docs.png'
-import dispatchWelcome from '../assets/dispatch-welcome.jpg'
-import dispatchPickSegments from '../assets/dispatch-pick-segments.jpg'
-import dispatchToday from '../assets/dispatch-today.jpg'
-import dispatchTextures from '../assets/dispatch-textures.jpg'
-import dispatchEpisodes from '../assets/dispatch-episodes.jpg'
-import dispatchPhoneShare from '../assets/dispatch-phone-share.jpg'
-import dispatchDetails from '../assets/dispatch-details.jpg'
-import dispatchPodcastApp from '../assets/dispatch-podcast-app.jpg'
-import dispatchPhoneToday from '../assets/dispatch-phone-today.jpg'
-import dispatchQuietDay from '../assets/dispatch-quiet-day.jpg'
-import dispatchDesignBoard from '../assets/dispatch-design-board.jpg'
-import dispatchStorybook from '../assets/dispatch-storybook.jpg'
+import omniOverviewHomeCover from '../assets/omni-overview-home.png'
+import omniOverviewHome from '../assets/omni-overview-home.webp'
+import omniOverviewSuggestions from '../assets/omni-overview-suggestions.webp'
+import omniOverviewArtifact from '../assets/omni-overview-artifact.webp'
+import omniOverviewConnectors from '../assets/omni-overview-connectors.webp'
+import omniOverviewTasks from '../assets/omni-overview-tasks.webp'
+import omniOverviewScheduled from '../assets/omni-overview-scheduled.webp'
+import omniOverviewIncognito from '../assets/omni-overview-incognito.webp'
+import omniResearchPrompt from '../assets/omni-research-prompt.webp'
+import omniResearchPlan from '../assets/omni-research-plan.webp'
+import omniResearchSummary from '../assets/omni-research-summary.webp'
+import omniResearchReport from '../assets/omni-research-report.webp'
+import omniWorkspacesEmpty from '../assets/omni-workspaces-empty.webp'
+import omniWorkspacesList from '../assets/omni-workspaces-list.webp'
+import omniWorkspacesThreads from '../assets/omni-workspaces-threads.webp'
+import omniWorkspacesMilestones from '../assets/omni-workspaces-milestones.webp'
+import omniWorkspacesPeople from '../assets/omni-workspaces-people.webp'
+import omniWorkspacesFiles from '../assets/omni-workspaces-files.webp'
+import omniWorkspacesChat from '../assets/omni-workspaces-chat.webp'
+import omniWorkspacesRoutines from '../assets/omni-workspaces-routines.webp'
+import omniWorkspacesRoutinesAlt from '../assets/omni-workspaces-routines-alt.webp'
+import omniPresentationsChat from '../assets/omni-presentations-chat.webp'
+import omniPresentationsEditor from '../assets/omni-presentations-editor.webp'
+import omniPresentationsInlineEdit from '../assets/omni-presentations-inline-edit.webp'
+import omniPresentationsInlineEditAlt from '../assets/omni-presentations-inline-edit-alt.webp'
+import omniPresentationsPresentMode from '../assets/omni-presentations-present-mode.webp'
+import omniFilesHome from '../assets/omni-files-home.webp'
+import omniFilesImageGen from '../assets/omni-files-image-gen.webp'
+import omniMobileChat from '../assets/omni-mobile-chat.webp'
+import omniMobileMeetings from '../assets/omni-mobile-meetings.webp'
+import omniMobileHistory from '../assets/omni-mobile-history.webp'
+import smartscanProblem1 from '../assets/smartscan-problem-1.webp'
+import smartscanProblem2 from '../assets/smartscan-problem-2.webp'
+import smartscanProblem3 from '../assets/smartscan-problem-3.webp'
+import smartscanProblem4 from '../assets/smartscan-problem-4.webp'
+import smartscanProblem5 from '../assets/smartscan-problem-5.webp'
+import smartscanGettingStarted from '../assets/smartscan-getting-started.webp'
+import smartscanScanEmpty from '../assets/smartscan-scan-empty.webp'
+import smartscanScanPrompts from '../assets/smartscan-scan-prompts.webp'
+import smartscanScanCompleted from '../assets/smartscan-scan-completed.webp'
+import smartscanReportsProgress from '../assets/smartscan-reports-progress.webp'
+import smartscanReportsColumns from '../assets/smartscan-reports-columns.webp'
+import smartscanReportsViewerCover from '../assets/smartscan-reports-viewer.png'
+import smartscanReportsViewer from '../assets/smartscan-reports-viewer.webp'
+import glxHypothesis from '../assets/glx-hypothesis.webp'
+import glxPersonaTina from '../assets/glx-persona-tina.webp'
+import glxFamilyNetwork from '../assets/glx-family-network.webp'
+import glxParentSegments from '../assets/glx-parent-segments.webp'
+import glxSegmentSizes from '../assets/glx-segment-sizes.webp'
+import glxConceptHub from '../assets/glx-concept-hub.webp'
+import glxConceptHeartbeat from '../assets/glx-concept-heartbeat.webp'
+import glxConceptAssistant from '../assets/glx-concept-assistant.webp'
+import glxConceptRecap from '../assets/glx-concept-recap.webp'
+import glxUserTestResults from '../assets/glx-user-test-results.webp'
+import glxTreeTestResults from '../assets/glx-tree-test-results.webp'
+import glxWireframeUpdates from '../assets/glx-wireframe-updates.webp'
+import glxHifiUpdatesCover from '../assets/glx-hifi-updates.png'
+import glxHifiUpdates from '../assets/glx-hifi-updates.webp'
+import glxParentExperience from '../assets/glx-parent-experience.webp'
+import glxKidExperience from '../assets/glx-kid-experience.webp'
+import glxTabBarDocs from '../assets/glx-tab-bar-docs.webp'
+import dispatchWelcome from '../assets/dispatch-welcome.webp'
+import dispatchPickSegments from '../assets/dispatch-pick-segments.webp'
+import dispatchTodayCover from '../assets/dispatch-today.jpg'
+import dispatchToday from '../assets/dispatch-today.webp'
+import dispatchTextures from '../assets/dispatch-textures.webp'
+import dispatchEpisodes from '../assets/dispatch-episodes.webp'
+import dispatchPodcastPlayer from '../assets/dispatch-podcast-player.webp'
+import dispatchPhoneShare from '../assets/dispatch-phone-share.webp'
+import dispatchDetails from '../assets/dispatch-details.webp'
+import dispatchPodcastApp from '../assets/dispatch-podcast-app.webp'
+import dispatchPhoneToday from '../assets/dispatch-phone-today.webp'
+import dispatchQuietDay from '../assets/dispatch-quiet-day.webp'
+import dispatchDesignBoard from '../assets/dispatch-design-board.webp'
+import dispatchStorybook from '../assets/dispatch-storybook.webp'
 
 import type { CaseStudy } from './caseStudyTypes'
 
@@ -84,11 +88,11 @@ export type {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'dispatch-ai-daily-podcast',
-    cover: { src: dispatchToday, alt: "Dispatch: the Today screen, with this morning's episode and its segments", position: 'center top' },
+    cover: { src: dispatchTodayCover, alt: "Dispatch: the Today screen, with this morning's episode and its segments", position: 'center top' },
     title: 'Dispatch',
     shortTitle: 'Dispatch',
     summary:
-      'A side project to learn what it takes to build a real product with AI. Dispatch turns the articles you save, and the topics you pick, into a short daily podcast hosted by two AI voices, delivered to the podcast app you already use.',
+      'A side project to learn what building a real product with AI takes. Dispatch turns your saved articles and chosen topics into a short daily podcast, hosted by two AI voices and delivered to your podcast app.',
     tagline: 'A personal daily podcast, built with AI',
     tags: ['Consumer AI', '0 to 1', 'Built with Claude Code'],
     role: {
@@ -101,9 +105,8 @@ export const caseStudies: CaseStudy[] = [
         index: '01',
         title: 'Problem to solve',
         body: [
-          "Dispatch started with a simple idea: save an article, and hear it later as a podcast. I wanted it to be something anyone could use, not just people who like tinkering with AI. Right now, AI automations and workflows work best for people who are really into AI. Dispatch hides all of that. There are no prompts and no setup. You pick what you care about, and a podcast shows up.",
-          "The biggest product decision came after the first version. Dispatch only worked with articles you saved, which meant nothing happened on days you saved nothing. I made a deliberate call to widen it. You can now pick up to three segments, like Morning Briefing, Signal or Close to Home, or write your own, and Dispatch builds your episode every weekday. Your saved articles always play first. It went from a tool you have to feed to a show that shows up on its own.",
-          "This was also a learning project. I wanted to find out what building a full product with AI really takes, and to design something with AI that felt unique and not like slop.",
+          'Dispatch started with a simple idea: save an article, and hear it later as a podcast. I wanted anyone to be able to use it, so there are no prompts and no setup. You pick what you care about, and a podcast shows up.',
+          'The first version only worked with articles you saved, so nothing happened on days you saved nothing. Now you pick up to three segments, like Morning Briefing or Close to Home, and Dispatch builds an episode every weekday, saved articles first. It went from a tool you feed to a show that shows up on its own.',
         ],
         gallery: [
           { src: dispatchWelcome, alt: 'Dispatch welcome screen with the headline "Today\'s reading, in one short listen" and sign-in options' },
@@ -113,17 +116,17 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         index: '02',
-        title: 'Design direction and details',
+        title: 'Design direction',
         body: [
-          "Dispatch needed a point of view. The goal was a product that doesn't look like it came out of a template, so the UI is dark and flat, with square corners and no shadows except on menus and dialogs. Two colors stand in for the two hosts: slate for Nora and rose for Theo. Rose is used for new things and highlights, and is never an error color.",
-          "Texture does the rest. Licensed photos run through SVG filters give the app its look, and every episode gets its own cover, rendered on the server from the same textures, so your podcast app looks like Dispatch too.",
-          "Getting articles in had to take one tap. There's a Chrome extension, an iPhone share sheet shortcut, and a paste field on Today. The shortcut started as a setup you had to paste a key into, and I cut it down to a single link.",
-          "Setup is a few choices instead of a form. Pick your segments, add a city if you want local news, write your own segment, skip topics you never want to hear about, then add your private feed to a podcast app. Dispatch notices when the app picks it up and confirms it for you.",
-          "Episodes can come up empty or fail, so those states are designed too. On a quiet day, Nora and Theo tell you what they didn't find. When an episode fails, it says what happened and offers a retry.",
+          "The goal was a product that doesn't look like a template: dark and flat, with square corners and no shadows except on menus and dialogs. Two colors stand in for the hosts, slate for Nora and rose for Theo. Rose also marks new things, and is never an error color.",
+          'Licensed photos run through SVG filters give the app its texture, and each episode gets its own cover, so your podcast app looks like Dispatch too.',
+          'Getting articles in takes one tap: a Chrome extension, an iPhone share sheet shortcut, or a paste field on Today. The shortcut started as a setup you pasted a key into. I cut it to a single link.',
+          "Empty and failed episodes are designed too. On a quiet day, Nora and Theo tell you what they didn't find. When an episode fails, it says what happened and offers a retry.",
         ],
         gallery: [
           { src: dispatchTextures, alt: 'The Dispatch texture library: licensed photographs run through brand filters, with credits' },
           { src: dispatchEpisodes, alt: 'The Episodes screen, a grid of episode covers each rendered from a different texture' },
+          { src: dispatchPodcastPlayer, alt: 'Dispatch in Apple Podcasts with the latest episode started: the show cover art, a progress bar with 3:07 left, and the episode in the mini player' },
           { src: dispatchPhoneShare, alt: 'The phone confirmation after sharing an article to Dispatch from the iPhone share sheet' },
           { src: dispatchDetails, alt: 'Onboarding details step with a city field, a write-your-own segment, and topics to skip' },
           { src: dispatchPodcastApp, alt: 'Onboarding step for adding the private feed to Apple Podcasts, Pocket Casts or Overcast, with a connected state' },
@@ -135,29 +138,29 @@ export const caseStudies: CaseStudy[] = [
         index: '03',
         title: 'Building with AI',
         body: [
-          "Dispatch was built in a loop between two tools. I started with a working prototype in Claude Code, then took it to Claude Design to refine the look and feel. When a design was ready, Claude Design bundled the files and the full chat history, and I sent that back to Claude Code to build it exactly as designed. Because the bundle carries the reasoning as well as the pixels, the code came back accurate instead of approximate.",
-          "Storybook and the design-sync skill hold that loop together. Every component and screen lives in Storybook in every state, and design-sync publishes that library to Claude Design along with a conventions file. So when Claude Design draws a button or an episode cover, it's using the real one.",
+          'Dispatch was built in a loop between Claude Code and Claude Design. Because the handoff bundle carries the reasoning as well as the pixels, the code came back accurate instead of approximate.',
+          'Storybook and the design-sync skill hold the loop together: design-sync publishes every component and screen to Claude Design, so designs use the real components.',
         ],
         stack: [
           {
             kind: 'steps',
             title: 'The build loop',
             items: [
-              { name: 'Prototype', note: 'A working first version in Claude Code.' },
-              { name: 'Refine', note: 'Claude Design for type, color, textures and every screen.' },
-              { name: 'Bundle', note: 'Designs, files and the chat history packaged as one handoff.' },
-              { name: 'Build', note: 'Back to Claude Code, which builds from the bundle instead of guessing.' },
+              { name: 'Prototype', note: 'First version in Claude Code.' },
+              { name: 'Refine', note: 'Claude Design for every screen.' },
+              { name: 'Bundle', note: 'Designs, files and chat history.' },
+              { name: 'Build', note: 'Claude Code builds from the bundle.' },
             ],
           },
           {
             kind: 'items',
             title: 'Skills used',
             items: [
-              { name: 'design-sync', note: 'Publishes the Storybook library to Claude Design with a conventions file, so designs use the real components.' },
-              { name: 'voice-mastering', note: 'A custom skill for diagnosing and fixing how Nora and Theo sound.' },
-              { name: 'claude-api', note: 'For building the script writer and story discovery on the Anthropic API.' },
-              { name: 'ux-writing', note: 'A pass over the copy on every screen: labels, empty states and errors.' },
-              { name: 'design-critique', note: 'Structured critiques of screens during the polish pass.' },
+              { name: 'design-sync', note: 'Publishes Storybook to Claude Design.' },
+              { name: 'voice-mastering', note: 'Fixes how Nora and Theo sound.' },
+              { name: 'claude-api', note: 'Script writer and story discovery.' },
+              { name: 'ux-writing', note: 'Copy pass: labels, empty states, errors.' },
+              { name: 'design-critique', note: 'Critiques of screens while polishing.' },
             ],
           },
         ],
@@ -170,74 +173,38 @@ export const caseStudies: CaseStudy[] = [
         index: '04',
         title: 'Tech stack',
         body: [
-          "Here is everything Dispatch runs on, and the job each piece does. This is a real product, so it covers the unglamorous parts too: sign-in, email, domains, backups and store review.",
-          "The biggest cost decision was the voice. Dispatch started on ElevenLabs, which sounded great but ran about $0.20 per 1,000 characters. By my estimates that's roughly $0.70 for a short episode, or about $15 a month for one weekday listener, in voice alone. I moved to Chatterbox, an open-source model hosted on fal.ai. In a blind listening test I slightly preferred it, and it brings an episode down to about $0.09, or around $2 a month.",
+          'Everything Dispatch runs on, including the unglamorous parts like sign-in and email.',
+          'The biggest cost decision was the voice. ElevenLabs sounded great but cost roughly $0.70 an episode, about $15 a month for one weekday listener, by my estimates. I slightly preferred Chatterbox, an open-source model on fal.ai, in a blind listening test, and it costs about $0.09 an episode, around $2 a month.',
         ],
         stack: [
           {
             kind: 'steps',
             title: 'How an article becomes an episode',
             items: [
-              { name: 'Save', note: 'Chrome extension, iPhone share sheet or a pasted link. Stored as pending.' },
-              { name: 'Discover', note: "Claude searches the web for fresh stories for each picked segment." },
-              { name: 'Wake up', note: "A scheduler starts each listener's run before their chosen time, on weekdays." },
-              { name: 'Write', note: 'Claude turns the stories into a two-host script, saved articles first.' },
-              { name: 'Voice', note: 'Chatterbox reads each line as Nora or Theo.' },
-              { name: 'Stitch', note: 'ffmpeg joins the clips, evens out the volume and marks chapters.' },
-              { name: 'Store', note: 'Audio and a rendered cover go to Cloudflare R2.' },
-              { name: 'Publish', note: "A private RSS feed delivers it to the listener's podcast app." },
+              { name: 'Save', note: 'Extension, share sheet or pasted link.', tools: ['Chrome extension', 'iPhone Shortcut'] },
+              { name: 'Discover', note: 'Claude finds fresh stories per segment.', tools: ['Anthropic Claude'] },
+              { name: 'Wake up', note: 'A scheduler starts each weekday run.', tools: ['node-cron'] },
+              { name: 'Write', note: 'Claude writes a two-host script.', tools: ['Anthropic Claude'] },
+              { name: 'Voice', note: 'Chatterbox reads each line.', tools: ['Chatterbox on fal.ai'] },
+              { name: 'Stitch', note: 'ffmpeg joins clips and marks chapters.', tools: ['ffmpeg'] },
+              { name: 'Store', note: 'Audio and cover go to Cloudflare R2.', tools: ['Cloudflare R2', 'Playwright', 'Wikimedia Commons'] },
+              { name: 'Publish', note: 'A private RSS feed delivers it.', tools: ['RSS'] },
             ],
           },
           {
-            kind: 'items',
-            title: 'Making the episode',
-            items: [
-              { name: 'Anthropic Claude', note: 'Writes the scripts and searches the web for segment stories.' },
-              { name: 'Chatterbox on fal.ai', note: 'The open-source voice model that reads every line.' },
-              { name: 'ffmpeg', note: 'Joins clips, levels the audio and finds chapter times.' },
-              { name: 'Playwright', note: "Renders each episode's cover in a real browser." },
-              { name: 'Wikimedia Commons', note: 'Licensed photos behind the textures.' },
-            ],
-          },
-          {
-            kind: 'items',
+            kind: 'chips',
             title: 'Where it runs',
-            items: [
-              { name: 'Vercel', note: "Hosts the web app and holds the domain's DNS." },
-              { name: 'Render', note: 'Runs the API, scheduler and episode generation. Redeploys on every push.' },
-              { name: 'GitHub', note: 'Stores the code for the web app and the backend.' },
-              { name: 'SQLite and Drizzle', note: 'One database file for users, articles, episodes and runs.' },
-              { name: 'Cloudflare R2', note: 'Stores episode audio and covers, plus nightly private backups.' },
-            ],
+            items: [{ name: 'Vercel' }, { name: 'Render' }, { name: 'GitHub' }, { name: 'SQLite' }, { name: 'Drizzle' }],
           },
           {
-            kind: 'items',
+            kind: 'chips',
             title: 'Accounts and email',
-            items: [
-              { name: 'Clerk', note: 'Invite-only sign-in with Google or an emailed link.' },
-              { name: 'Resend', note: 'Sends the phone install link and failure alerts.' },
-              { name: 'ImprovMX', note: 'Forwards the support address.' },
-            ],
+            items: [{ name: 'Clerk' }, { name: 'Resend' }, { name: 'ImprovMX' }],
           },
           {
-            kind: 'items',
-            title: 'Saving and listening',
-            items: [
-              { name: 'Chrome extension', note: 'Manifest V3 in TypeScript, live on the Chrome Web Store. Reads the page with Readability.' },
-              { name: 'iPhone Shortcut', note: 'Adds Save to Dispatch to the share sheet.' },
-              { name: 'RSS', note: 'A private feed per listener for Apple Podcasts, Overcast or Pocket Casts.' },
-            ],
-          },
-          {
-            kind: 'items',
-            title: 'Code',
-            items: [
-              { name: 'React 19 and TypeScript', note: 'The app, with strict typing.' },
-              { name: 'Vite', note: 'Builds the app and the extension.' },
-              { name: 'Tailwind CSS 4', note: "Styling, with the defaults switched off so it doesn't look stock." },
-              { name: 'Storybook', note: 'Every component and screen, in every state.' },
-              { name: 'Express, Zod and node-cron', note: 'The API, request checking and the scheduler.' },
-            ],
+            kind: 'chips',
+            title: 'The app',
+            items: [{ name: 'React 19' }, { name: 'TypeScript' }, { name: 'Vite' }, { name: 'Tailwind CSS 4' }, { name: 'Storybook' }, { name: 'Express' }, { name: 'Zod' }],
           },
         ],
       },
@@ -245,16 +212,16 @@ export const caseStudies: CaseStudy[] = [
         index: '05',
         title: "What's next",
         body: [
-          "Dispatch is in private beta, open by invitation. The Chrome extension is live on the Chrome Web Store, and new features are in progress.",
-          "Next up: more segments, more hosts to choose from, and an education mode, where you tell Dispatch topics you want to learn about and it builds episodes around them over time. After that, newsletters you can forward in, more browsers, and eventually a native iOS app.",
-          "I'm also working out how it can pay for itself. Voice is the biggest cost, which is why the move to Chatterbox mattered, and it means pricing should follow audio minutes. A flat plan with caps, usage-based pricing, and a free tier with paid volume features are all on the table.",
+          'Dispatch is in private beta, open by invitation. The Chrome extension is live on the Chrome Web Store.',
+          'Next: more segments and hosts, and an education mode that builds episodes around topics you want to learn. After that: newsletters you can forward in, more browsers, and a native iOS app.',
+          'Voice is the biggest cost, so pricing should follow audio minutes. A capped flat plan, usage-based pricing and a free tier are all on the table.',
         ],
       },
     ],
   },
   {
     slug: 'omni-enterprise-chat-experience',
-    cover: { src: omniOverviewHome, alt: "Omni: the home screen with the prompt box and quick actions", position: 'center' },
+    cover: { src: omniOverviewHomeCover, alt: "Omni: the home screen with the prompt box and quick actions", position: 'center' },
     title: 'Omni',
     shortTitle: 'Omni',
     summary:
@@ -338,7 +305,6 @@ export const caseStudies: CaseStudy[] = [
         ],
         gallery: [
           { src: omniFilesHome, alt: 'The Files hub empty state with a promo for AI image generation and file-type filters' },
-          { src: omniFilesQuickNote, alt: 'Quick note panel for adding a thought to an agent’s knowledge base' },
           { src: omniFilesImageGen, alt: 'Recent AI-generated images alongside a team’s uploaded files' },
         ],
       },
@@ -358,7 +324,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'smart-scan-file-organization',
-    cover: { src: smartscanReportsViewer, alt: "SmartScan: the report viewer with a document list and a preview", position: 'center' },
+    cover: { src: smartscanReportsViewerCover, alt: "SmartScan: the report viewer with a document list and a preview", position: 'center' },
     title: 'SmartScan',
     shortTitle: 'Smartscan',
     summary:
@@ -423,7 +389,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'rebuilding-greenlights-ia',
-    cover: { src: glxHifiUpdates, alt: "Greenlight: hi-fi updates to the parent app across four screens", position: 'center' },
+    cover: { src: glxHifiUpdatesCover, alt: "Greenlight: hi-fi updates to the parent app across four screens", position: 'center' },
     title: 'Greenlight IA',
     shortTitle: 'Greenlight IA',
     summary:

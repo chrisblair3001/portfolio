@@ -8,9 +8,13 @@ type ImageGalleryProps = {
   // `strip` (the default) is a horizontally scrolling row with edge fades. `carousel` shows one
   // screenshot at a time on a fixed stage, with buttons: better in a narrow column.
   variant?: 'strip' | 'carousel'
+  // Strip only: Tailwind padding classes that move where the row starts without shrinking the scroll
+  // area, e.g. `lg:pl-[348px]` to line the first image up with a text column. Once the row is
+  // scrolled, images slide through the padding out to the edge as usual.
+  inset?: string
 }
 
-export default function ImageGallery({ images, variant = 'strip' }: ImageGalleryProps) {
+export default function ImageGallery({ images, variant = 'strip', inset }: ImageGalleryProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const [stageIndex, setStageIndex] = useState(0)
 
@@ -31,7 +35,7 @@ export default function ImageGallery({ images, variant = 'strip' }: ImageGallery
       {lightbox}
     </Carousel>
   ) : (
-    <Strip images={images} onOpen={setOpenIndex}>
+    <Strip images={images} onOpen={setOpenIndex} inset={inset}>
       {lightbox}
     </Strip>
   )
@@ -40,10 +44,11 @@ export default function ImageGallery({ images, variant = 'strip' }: ImageGallery
 type StripProps = {
   images: CaseStudyImage[]
   onOpen: (index: number) => void
+  inset?: string
   children?: React.ReactNode
 }
 
-function Strip({ images, onOpen, children }: StripProps) {
+function Strip({ images, onOpen, inset = '', children }: StripProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
@@ -72,7 +77,7 @@ function Strip({ images, onOpen, children }: StripProps) {
 
   return (
     <div className="relative">
-      <div ref={scrollRef} className="no-scrollbar flex gap-5 overflow-x-auto pb-2">
+      <div ref={scrollRef} className={`no-scrollbar flex gap-5 overflow-x-auto pb-2 ${inset}`}>
         {images.map((img, i) => (
           <ExpandableImage
             key={i}

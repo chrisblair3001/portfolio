@@ -1,3 +1,18 @@
+import {
+  ClipboardList,
+  Compass,
+  Cpu,
+  Crown,
+  Layers,
+  Palette,
+  PenTool,
+  PencilRuler,
+  Target,
+  Terminal,
+  TrendingUp,
+  UserRound,
+  type LucideIcon,
+} from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import CaseStudies from '../components/CaseStudies'
 import Divider from '../components/Divider'
@@ -11,35 +26,29 @@ const LABEL = 'text-[13.6px] font-semibold tracking-[0.02em] text-label uppercas
 const CHIP =
   'rounded-full border border-border px-4 py-1.5 text-sm font-medium whitespace-nowrap text-body'
 
-// Recreations of the gradient-circle families from the Figma board
-// (radial "gem" highlights, conic wheels, a linear sweep) as CSS, so the
-// role/team markers get a bit of colour without pulling in raster assets
-// for a 24px decorative dot.
-const DOT_GRADIENTS = [
-  'radial-gradient(circle at 32% 28%, #7fd4f5, #2f6fd6 72%)',
-  'linear-gradient(135deg, #ff7a3d, #ff2e63)',
-  'radial-gradient(circle at 35% 30%, #7ff0c4, #0f9d68 78%)',
-  'radial-gradient(circle at 62% 34%, #c99bff, #7b3ff0 82%)',
-  'radial-gradient(circle at 40% 34%, #ff9db0, #e11d48 76%)',
-  'radial-gradient(circle at 42% 30%, #3b4a63, #0b1220 82%)',
-  'conic-gradient(from 210deg at 50% 50%, #ffb347, #ff2e63, #ffb347)',
-  'conic-gradient(from 0deg, #ff2e63, #ffd23f, #12d8a0, #4d96ff, #b06ab3, #ff2e63)',
-  'conic-gradient(from 170deg at 50% 50%, #a9f2fb, #6aa8ff, #c9b7ff, #a9f2fb)',
-  'radial-gradient(circle at 45% 38%, #ffe58a, #f59e0b 68%, #b45309)',
-]
+// Small icons beside the role and team entries, so each row reads at a glance. Every title gets
+// its own icon for what the person does, so no two rows on a page look alike. A title that isn't
+// listed here falls back to a plain person: add it to get a proper icon.
+const PEOPLE_ICONS: Record<string, LucideIcon> = {
+  'Designer & Builder': PencilRuler,
+  'Design Director': Compass,
+  'Director, Product Design': Compass,
+  'Lead Designer': PenTool,
+  'Lead Product Designer': PenTool,
+  'Senior Designer': Layers,
+  CTO: Cpu,
+  'Chief Product Officer': Crown,
+  'Director of Product, End Users': Target,
+  'Director of Product, Growth': TrendingUp,
+  'Senior Product Manager': ClipboardList,
+  'Claude Code': Terminal,
+  'Claude Design': Palette,
+}
 
-// Deterministic gradient per marker: the slug picks a per-study starting
-// colour, then `step` walks the palette in a stride that's coprime with its
-// length, so every dot on a page lands on a different gradient while each
-// study still starts somewhere different.
-function GradientDot({ slug, step }: { slug: string; step: number }) {
-  let hash = 0
-  for (let i = 0; i < slug.length; i++) hash = (Math.imul(hash, 31) + slug.charCodeAt(i)) | 0
-  const start = Math.abs(hash) % DOT_GRADIENTS.length
-  const gradient = DOT_GRADIENTS[(start + step * 3) % DOT_GRADIENTS.length]
-  return (
-    <span aria-hidden className="size-6 shrink-0 rounded-full" style={{ backgroundImage: gradient }} />
-  )
+const iconFor = (title: string): LucideIcon => PEOPLE_ICONS[title] ?? UserRound
+
+function RowIcon({ icon: Icon }: { icon: LucideIcon }) {
+  return <Icon aria-hidden className="size-5 shrink-0 text-label" strokeWidth={1.75} />
 }
 
 export default function CaseStudyDetail() {
@@ -62,7 +71,6 @@ export default function CaseStudyDetail() {
 
   const others = caseStudies.filter((s) => s.slug !== study.slug)
   const hasRoleOrTeam = study.role || (study.team && study.team.length > 0)
-  const reportsCount = study.role?.reports?.length ?? 0
 
   return (
     <div className="min-h-screen w-full bg-bg">
@@ -73,7 +81,7 @@ export default function CaseStudyDetail() {
           <div className="flex w-full flex-col items-start gap-10 lg:flex-row lg:justify-between lg:gap-20">
             <div className="flex max-w-full flex-col gap-8 lg:max-w-[640px]">
               <p className={LABEL}>Case Study</p>
-              <h1 className="-mb-[0.12em] bg-[linear-gradient(93deg,var(--color-g1),var(--color-g2))] bg-clip-text pb-[0.12em] font-display text-[clamp(40px,6vw,64px)] leading-[0.95] font-bold tracking-[-0.045em] text-transparent">
+              <h1 className="font-display text-[clamp(40px,6vw,64px)] leading-[0.95] font-bold tracking-[-0.045em] text-heading">
                 {study.title}
               </h1>
               <p className="text-base leading-[1.6] text-body sm:text-lg">{study.summary}</p>
@@ -95,16 +103,16 @@ export default function CaseStudyDetail() {
                     <p className={LABEL}>Role</p>
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-4">
-                        <GradientDot slug={study.slug} step={0} />
+                        <RowIcon icon={iconFor(study.role.title)} />
                         <p className="text-sm font-medium text-heading">{study.role.title}</p>
                       </div>
-                      <p className="pl-10 text-sm leading-[1.6] text-muted">{study.role.scope}</p>
+                      <p className="pl-9 text-sm leading-[1.6] text-muted">{study.role.scope}</p>
                     </div>
                     {study.role.reports && study.role.reports.length > 0 && (
                       <div className="flex flex-col gap-4">
-                        {study.role.reports.map((report, i) => (
+                        {study.role.reports.map((report) => (
                           <div key={report} className="flex items-center gap-4">
-                            <GradientDot slug={study.slug} step={1 + i} />
+                            <RowIcon icon={iconFor(report)} />
                             <p className="text-sm font-medium text-heading">{report}</p>
                           </div>
                         ))}
@@ -116,9 +124,9 @@ export default function CaseStudyDetail() {
                   <div className="flex w-full flex-col gap-5 sm:w-[324px]">
                     <p className={LABEL}>Team</p>
                     <div className="flex flex-col gap-4">
-                      {study.team.map((member, i) => (
+                      {study.team.map((member) => (
                         <div key={member} className="flex items-center gap-4">
-                          <GradientDot slug={study.slug} step={1 + reportsCount + i} />
+                          <RowIcon icon={iconFor(member)} />
                           <p className="text-sm font-medium text-heading">{member}</p>
                         </div>
                       ))}
@@ -137,7 +145,7 @@ export default function CaseStudyDetail() {
               <div key={chapter.index} className="flex w-full flex-col gap-10 sm:gap-12">
                 <div className="flex w-full flex-col gap-5 lg:flex-row lg:gap-12">
                   <div className="lg:w-[300px] lg:shrink-0">
-                    <p className="font-mono text-[13px] font-medium text-accent">{chapter.index}</p>
+                    <p className="font-mono text-[13px] font-medium text-label">{chapter.index}</p>
                     <p className="mt-4 font-display text-[clamp(26px,3vw,32px)] leading-[1.1] font-bold tracking-[-0.04em] text-heading">
                       {chapter.title}
                     </p>
@@ -190,7 +198,12 @@ export default function CaseStudyDetail() {
                   </div>
                 </div>
 
-                {chapter.gallery && <ImageGallery images={chapter.gallery} />}
+                {chapter.gallery && (
+                  // Start the first image under the paragraph, not at the left edge. The offset is
+                  // the title column (300px) plus the gap beside it (48px), which only exists once
+                  // the two columns sit side by side at lg.
+                  <ImageGallery images={chapter.gallery} inset="lg:pl-[348px]" />
+                )}
               </div>
             ))}
           </div>
