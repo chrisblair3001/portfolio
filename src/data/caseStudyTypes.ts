@@ -9,12 +9,19 @@ export type CaseStudyImage = {
   bare?: boolean
 }
 
-export type StackItem = { name: string; note: string }
+// The picture a case study shows on its home page card. `position` is a CSS object-position, for
+// steering the crop of a screenshot.
+export type CaseStudyCover = CaseStudyImage & { position?: string }
 
-// A block of "how it was built" content for a chapter. `steps` renders as a
-// numbered flow; `items` renders as a titled list of tools and what each does.
+// `tools` lists the technologies behind a step, shown as small pills under its note. In a `chips`
+// section the note is not used: each item is one pill.
+export type StackItem = { name: string; note?: string; tools?: string[] }
+
+// A block of "how it was built" content for a chapter. `steps` renders as a numbered flow, with the
+// tools behind each step; `items` renders as a titled list of tools and what each does; `chips`
+// renders as a labelled row of tool names.
 export type StackSection = {
-  kind: 'steps' | 'items'
+  kind: 'steps' | 'items' | 'chips'
   title: string
   items: StackItem[]
 }
@@ -43,6 +50,7 @@ export type CaseStudy = {
   shortTitle?: string
   summary: string
   tagline?: string
+  cover?: CaseStudyCover
   tags?: string[]
   role?: CaseStudyRole
   team?: string[]

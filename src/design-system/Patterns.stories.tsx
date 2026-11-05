@@ -9,17 +9,16 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const PILL =
-  'rounded-full border border-border bg-white px-6 py-3 text-base font-medium text-ink transition-colors hover:bg-ink hover:text-bg'
+  'rounded-full border border-border bg-bg px-6 py-3 text-[13.6px] font-medium text-ink transition-colors duration-200 hover:bg-ink hover:text-bg'
 const PILL_SMALL =
-  'rounded-full border border-border bg-white px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-bg'
-const CHIP =
-  'rounded-full bg-white px-4 py-1.5 text-sm font-medium whitespace-nowrap text-body shadow-[0px_2px_4px_2px_rgba(0,0,0,0.06)]'
-const HIGHLIGHT = 'bg-white px-1.5 py-0.5 [-webkit-box-decoration-break:clone] [box-decoration-break:clone]'
+  'rounded-full border border-border bg-bg px-5 py-2 text-xs font-bold tracking-[0.02em] text-ink uppercase transition-colors duration-200 hover:bg-ink hover:text-bg'
+const CHIP = 'rounded-full border border-border px-4 py-1.5 text-sm font-medium whitespace-nowrap text-body'
+const MONO_LABEL = 'font-mono text-[13px] font-medium tracking-[0.06em] text-label uppercase'
 
 function Pattern({ name, classes, children }: { name: string; classes: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-3 border-t border-hairline pt-5">
-      <p className="text-lg font-semibold text-heading">{name}</p>
+      <p className="font-display text-xl font-bold tracking-[-0.02em] text-heading">{name}</p>
       <div>{children}</div>
       <code className="text-xs break-words text-muted">{classes}</code>
     </div>
@@ -34,15 +33,13 @@ export const Patterns: Story = {
         <button type="button" className={PILL}>hello@example.com</button>
       </Pattern>
       <Pattern name="Small pill button (header)" classes={PILL_SMALL}>
-        <button type="button" className={PILL_SMALL}>RESUME</button>
+        <button type="button" className={PILL_SMALL}>Resume</button>
       </Pattern>
       <Pattern name="Tag chip" classes={CHIP}>
         <span className={CHIP}>Enterprise AI</span>
       </Pattern>
-      <Pattern name="Per-line text highlight, for text over the cursor glow" classes={HIGHLIGHT}>
-        <div className="max-w-[420px] bg-ink p-4 text-base leading-[1.6] text-body">
-          <span className={HIGHLIGHT}>Each wrapped line gets its own white backdrop instead of one box for the whole paragraph.</span>
-        </div>
+      <Pattern name="Mono label" classes={MONO_LABEL}>
+        <span className={MONO_LABEL}>Role</span>
       </Pattern>
     </div>
   ),

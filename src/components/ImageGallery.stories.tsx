@@ -20,7 +20,7 @@ const meta = {
   args: { images },
   decorators: [
     (Story) => (
-      <div className="mx-auto max-w-[1280px] px-6 py-10 sm:px-10 lg:px-20">
+      <div className="mx-auto max-w-[1088px] px-[clamp(24px,6vw,80px)] py-10">
         <Story />
       </div>
     ),
@@ -32,5 +32,11 @@ type Story = StoryObj<typeof meta>
 
 /** A horizontally scrolling strip of screenshots with edge fades. Click an image to open the lightbox. */
 export const Default: Story = {}
+
+/** One screenshot at a time on a fixed 4:3 stage, with previous and next buttons, a counter and the image's description as a caption. Better in a narrow column. */
+export const Carousel: Story = { args: { variant: 'carousel' } }
+
+/** A carousel with a single screenshot shows it at natural size with no controls. */
+export const SingleImage: Story = { args: { variant: 'carousel', images: images.slice(0, 1) } }
 
 export const OnPhone: Story = { globals: { viewport: { value: 'phone' } } }

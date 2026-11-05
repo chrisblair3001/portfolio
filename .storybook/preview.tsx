@@ -1,11 +1,7 @@
 import type { Preview } from '@storybook/react-vite'
 import { MemoryRouter } from 'react-router-dom'
+// The self-hosted fonts (Bricolage Grotesque, Manrope, JetBrains Mono) are imported by index.css.
 import '../src/index.css'
-// Archivo with both the weight and width axes (the headlines use font-stretch: 125%), and Manrope.
-import '@fontsource-variable/archivo/standard.css'
-import '@fontsource/manrope/400.css'
-import '@fontsource/manrope/500.css'
-import './fonts.css'
 
 const preview: Preview = {
   tags: ['autodocs'],
@@ -22,8 +18,8 @@ const preview: Preview = {
     controls: { matchers: { color: /(background|color)$/i } },
     backgrounds: {
       options: {
-        white: { name: 'White', value: '#ffffff' },
-        ink: { name: 'Ink', value: '#292828' },
+        night: { name: 'Night', value: '#121212' },
+        paper: { name: 'Paper', value: '#ffffff' },
       },
     },
     viewport: {
@@ -36,7 +32,7 @@ const preview: Preview = {
     a11y: { test: 'todo' },
   },
   initialGlobals: {
-    backgrounds: { value: 'white' },
+    backgrounds: { value: 'night' },
   },
 }
 

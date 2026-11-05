@@ -1,254 +1,139 @@
-import { AnimatePresence, motion, useReducedMotion, type Variants } from 'framer-motion'
-import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
+import { useReducedMotion } from 'framer-motion'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 
-// The fixed first half of the headline. It never changes, so it renders as
-// plain static text — only the rotating phrase after it animates.
+// The fixed first half of the headline is plain text; only the phrase after it rotates.
 const STATIC_HEADING = 'Design leadership for'
+const PHRASES = ['the age of AI', 'shipping products', 'human beings', 'hard problems', 'taste & craft']
 
-const ROTATIONS = ['The age of ai', 'shipping products', 'human beings', 'hard problems', 'Taste & craft']
+const ROTATE_MS = 3600 // how long each phrase stays before the next one takes over
+const EXIT_GAP_MS = 400 // after the exit starts, how long until the next phrase begins
 
-const GRADIENT_IMAGE = 'linear-gradient(93deg, #FF1494 0.24%, #FF9900 58.87%)'
+// Letters rise into place one after another, with a slight overshoot; the old phrase rises away faster.
+const ENTER = 'rise-in 560ms cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+const EXIT = 'rise-out 220ms cubic-bezier(0.6, 0, 0.8, 0.2)'
+const ENTER_STAGGER_MS = 28
+const EXIT_STAGGER_MS = 8
 
-// How far the gradient drifts left/right of its resting position, and how
-// long a full back-and-forth cycle takes, to give the sweep a lively,
-// dynamic feel rather than a static gradient. Tuned against the desktop
-// (108px) heading size — scaled down proportionally at smaller font sizes
-// so the drift stays subtle on mobile instead of overshooting a much
-// shorter line of text.
-const SWEEP_AMPLITUDE = 80
-const SWEEP_REFERENCE_FONT_SIZE = 108
+// The gradient drifts side to side around its resting position. The amplitude is tuned for the
+// largest headline size and scaled down with the font so it stays subtle on a phone.
 const SWEEP_PERIOD_MS = 1800
+const SWEEP_AMPLITUDE = 80
+const SWEEP_REFERENCE_FONT_PX = 108
 
-const ROTATION_INTERVAL_MS = 3600
+type Fit = { offsets: number[]; width: number; fontPx: number }
 
-// The per-letter flip/blur reveal is modeled on vercel.com/domains' animated
-// headline: each character tips in on its own, one after another, from a
-// slight backward 3D rotation with a soft blur, rather than the whole word
-// moving as one unit. "Swift" is Vercel's own name for this easing curve
-// (read straight off their site's CSS custom property) — it overshoots past
-// 1 just slightly, giving the settle a tiny bit of bounce instead of a dead
-// stop.
-const SWIFT_EASE = [0.175, 0.885, 0.32, 1.1] as const
-const FLIP_DURATION = 0.3
-const FLIP_OFFSET = 12
-const FLIP_ROTATE = 80
-const FLIP_BLUR = 2
+function RotatingPhrase({ animate }: { animate: boolean }) {
+  const [state, setState] = useState({ index: 0, phase: 'in' as 'in' | 'out' })
+  const [fit, setFit] = useState<Fit>({ offsets: [], width: 0, fontPx: SWEEP_REFERENCE_FONT_PX })
+  const rootRef = useRef<HTMLSpanElement>(null)
+  const phrase = PHRASES[state.index]
 
-// Delay between the start of one character's flip and the next. Kept at
-// roughly a third of FLIP_DURATION so the next letter kicks off while the
-// current one is only ~30% through its flip — the flips overlap heavily,
-// which is what reads as one smooth rippling cascade rather than a row of
-// separate little flips.
-const LETTER_STAGGER = 0.09
+  useEffect(() => {
+    if (!animate) return
+    const exit = setTimeout(() => setState((s) => ({ ...s, phase: 'out' })), ROTATE_MS)
+    const next = setTimeout(
+      () => setState((s) => ({ index: (s.index + 1) % PHRASES.length, phase: 'in' })),
+      ROTATE_MS + EXIT_GAP_MS,
+    )
+    return () => {
+      clearTimeout(exit)
+      clearTimeout(next)
+    }
+  }, [state.index, animate])
 
-// The exit is deliberately quicker and tighter than the entrance: with
-// AnimatePresence mode="wait" the outgoing phrase has to fully clear before
-// the next one starts, so a slow staggered exit would leave a dead gap
-// where the rotating slot sits empty.
-const EXIT_DURATION = 0.22
-const EXIT_STAGGER = 0.018
+  // The sweep is a CSS variable updated every frame, so it never re-renders the letters.
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el || !animate) return
+    let frame: number
+    const tick = (time: number) => {
+      el.style.setProperty('--sweep', Math.sin((time / SWEEP_PERIOD_MS) * Math.PI * 2).toFixed(3))
+      frame = requestAnimationFrame(tick)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
+  }, [animate])
 
-function StaggeredWords({
-  text,
-  className,
-  getLetterStyle,
-}: {
-  text: string
-  className?: string
-  getLetterStyle?: (flatIndex: number) => CSSProperties | undefined
-}) {
-  const reduceMotion = useReducedMotion()
-  const words = text.split(' ')
+  // Every letter is its own element (for the stagger), but together they must read as one gradient
+  // across the headline. So each letter gets a background as wide as the headline, shifted left by
+  // that letter's own offset. This reads each letter's position and the headline's width.
+  const measure = useCallback(() => {
+    const el = rootRef.current
+    const parent = el?.offsetParent
+    if (!el || !(parent instanceof HTMLElement)) return
+    setFit({
+      offsets: Array.from(el.querySelectorAll<HTMLElement>('[data-letter]')).map((l) => l.offsetLeft),
+      width: parent.offsetWidth,
+      fontPx: parseFloat(getComputedStyle(el).fontSize) || SWEEP_REFERENCE_FONT_PX,
+    })
+  }, [])
 
-  const container: Variants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: reduceMotion ? 0 : LETTER_STAGGER } },
-    exit: {
-      transition: { staggerChildren: reduceMotion ? 0 : EXIT_STAGGER, staggerDirection: -1 },
-    },
-  }
+  useLayoutEffect(measure, [measure, state.index])
 
-  const letter: Variants = {
-    hidden: {
-      opacity: 0,
-      y: reduceMotion ? 0 : -FLIP_OFFSET,
-      rotateX: reduceMotion ? 0 : FLIP_ROTATE,
-      filter: reduceMotion ? 'blur(0px)' : `blur(${FLIP_BLUR}px)`,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      filter: 'blur(0px)',
-      transition: { duration: reduceMotion ? 0 : FLIP_DURATION, ease: SWIFT_EASE },
-    },
-    exit: {
-      opacity: 0,
-      y: reduceMotion ? 0 : FLIP_OFFSET,
-      rotateX: reduceMotion ? 0 : -FLIP_ROTATE,
-      filter: reduceMotion ? 'blur(0px)' : `blur(${FLIP_BLUR}px)`,
-      transition: { duration: reduceMotion ? 0 : EXIT_DURATION, ease: SWIFT_EASE },
-    },
-  }
+  useEffect(() => {
+    window.addEventListener('resize', measure)
+    document.fonts?.ready.then(measure)
+    const late = setTimeout(measure, 400)
+    return () => {
+      window.removeEventListener('resize', measure)
+      clearTimeout(late)
+    }
+  }, [measure])
 
-  // A flat index across every letter in the whole phrase (not reset per
-  // word) — words.map/letters.map below run synchronously in render order,
-  // so incrementing this here always lines up with the matching hidden
-  // measurement clone, whose letters are walked in that same left-to-right
-  // order.
-  let flatIndex = 0
+  const amplitude = (SWEEP_AMPLITUDE * fit.fontPx) / SWEEP_REFERENCE_FONT_PX
+  const words = phrase.split(' ')
+  let letterIndex = 0
 
   return (
-    // display: contents means this element generates no box of its own — its
-    // word spans become direct layout children of the shared heading below,
-    // so every word (static or rotating) wraps together as one continuous
-    // run of text instead of this phrase being an atomic unit that wraps or
-    // doesn't as a whole.
-    <motion.span
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      className={`contents ${className ?? ''}`}
-    >
-      {words.map((w, wi) => (
-        <span key={wi} className="mr-[0.28em] inline-block" style={{ perspective: 1000 }}>
-          {[...w].map((ch, li) => {
-            const i = flatIndex++
+    <span ref={rootRef} className="inline">
+      {words.map((word, wordIndex) => (
+        <span
+          key={wordIndex}
+          className="inline-block whitespace-nowrap"
+          style={{ marginRight: wordIndex < words.length - 1 ? '0.26em' : 0 }}
+        >
+          {Array.from(word).map((char) => {
+            const i = letterIndex++
+            const style: CSSProperties = {
+              display: 'inline-block',
+              backgroundImage: 'linear-gradient(93deg, var(--color-g1) 0%, var(--color-g2) 60%)',
+              backgroundSize: `${fit.width + amplitude * 2}px 100%`,
+              backgroundPosition: `calc(${-(fit.offsets[i] ?? 0) - amplitude}px + var(--sweep, 0) * ${amplitude}px) 0`,
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+              // Padding with an equal negative margin keeps swashes and overhangs (the "&") from being clipped.
+              padding: '0.2em 0.14em',
+              margin: '-0.2em -0.14em',
+              animation: !animate
+                ? 'none'
+                : state.phase === 'in'
+                  ? `${ENTER} ${i * ENTER_STAGGER_MS}ms both`
+                  : `${EXIT} ${i * EXIT_STAGGER_MS}ms both`,
+            }
             return (
-              <motion.span
-                key={li}
-                variants={letter}
-                className="inline-block [backface-visibility:hidden]"
-                style={getLetterStyle?.(i)}
-              >
-                {ch}
-              </motion.span>
+              <span key={`${state.index}-${state.phase}-${i}`} data-letter style={style}>
+                {char}
+              </span>
             )
           })}
         </span>
       ))}
-    </motion.span>
+    </span>
   )
 }
 
 export default function Intro() {
-  const [index, setIndex] = useState(0)
-  // The gradient must read as one continuous sweep across the rotating
-  // phrase (pink on the left, orange on the right), not repeat per letter.
-  // Since each letter is its own DOM node (needed for the per-letter
-  // stagger animation), we size each letter's background to the phrase's
-  // full width and shift it left by that letter's own offset, so together
-  // they reveal one shared gradient.
-  const [fit, setFit] = useState({ offsets: [] as number[], lineWidth: 0 })
-  // A slow sine drift layered on top of that alignment, so the gradient
-  // itself keeps gently sliding left/right instead of sitting static. Kept
-  // as a -1..1 phase rather than a pixel value so it can be rescaled by the
-  // current font size at use-time (see scaledAmplitude below).
-  const [sweepPhase, setSweepPhase] = useState(0)
-  const [fontPx, setFontPx] = useState(SWEEP_REFERENCE_FONT_SIZE)
-  const rootRef = useRef<HTMLDivElement>(null)
-  const measureRef = useRef<HTMLDivElement>(null)
   const reduceMotion = useReducedMotion()
 
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % ROTATIONS.length)
-    }, ROTATION_INTERVAL_MS)
-    return () => clearInterval(id)
-  }, [])
-
-  useEffect(() => {
-    if (reduceMotion) return
-    let frame: number
-    const animate = (time: number) => {
-      setSweepPhase(Math.sin((time / SWEEP_PERIOD_MS) * Math.PI * 2))
-      frame = requestAnimationFrame(animate)
-    }
-    frame = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(frame)
-  }, [reduceMotion])
-
-  const current = ROTATIONS[index]
-  const currentWords = current.split(' ')
-
-  // The rotating phrase flows inline right after "for" now, wrapping
-  // naturally with the rest of the heading instead of being forced onto its
-  // own line. A hidden, non-wrapping clone mirrors the same word/letter
-  // structure as the visible version, purely to read off each letter's
-  // natural offset for the gradient math above. The heading's own font size
-  // is responsive (smaller on mobile), so the clone borrows whatever size is
-  // actually rendering right now via getComputedStyle rather than a fixed
-  // constant — otherwise the gradient math would stay tuned to the desktop
-  // size and drift out of alignment on small screens.
-  useLayoutEffect(() => {
-    const measure = () => {
-      const rootEl = rootRef.current
-      const measureEl = measureRef.current
-      if (!rootEl || !measureEl) return
-      const renderedFontSize = getComputedStyle(rootEl).fontSize
-      measureEl.style.fontSize = renderedFontSize
-      setFontPx(parseFloat(renderedFontSize) || SWEEP_REFERENCE_FONT_SIZE)
-      const letterEls = Array.from(measureEl.querySelectorAll('span > span')) as HTMLElement[]
-      setFit({
-        offsets: letterEls.map((l) => l.offsetLeft),
-        lineWidth: measureEl.offsetWidth,
-      })
-    }
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [current])
-
-  // The gradient canvas is padded by the sweep amplitude on each side so the
-  // drift always slides within it, never sliding the flat pink/orange ends
-  // of the gradient into view.
-  const scaledAmplitude = SWEEP_AMPLITUDE * (fontPx / SWEEP_REFERENCE_FONT_SIZE)
-  const sweep = sweepPhase * scaledAmplitude
-
-  const getLetterStyle = (i: number): CSSProperties => ({
-    backgroundImage: GRADIENT_IMAGE,
-    backgroundSize: `${fit.lineWidth + scaledAmplitude * 2}px 100%`,
-    backgroundPosition: `${-(fit.offsets[i] ?? 0) - scaledAmplitude + sweep}px 0`,
-    WebkitBackgroundClip: 'text',
-    backgroundClip: 'text',
-    color: 'transparent',
-  })
-
   return (
-    <div
-      ref={rootRef}
-      data-glow-avoid
-      className="relative w-full text-[40px] leading-[0.95] font-bold tracking-[-0.8px] uppercase sm:text-[56px] sm:tracking-[-1.1px] md:text-[76px] md:tracking-[-1.5px] lg:text-[108px] lg:tracking-[-2.16px]"
-      style={{ fontStretch: '125%' }}
+    <h1
+      aria-label={`${STATIC_HEADING} ${PHRASES.join(', ')}`}
+      className="relative m-0 w-full font-display text-[clamp(36px,7.57vw,97.3px)] leading-[0.92] font-bold tracking-[-0.045em] text-balance text-heading"
     >
-      {/* Static half of the heading — plain text, no animation. Uses the same
-          contents / mr-[0.28em] structure as the rotating phrase below so the
-          two flow together as one continuous line. */}
-      <span className="contents text-ink">
-        {STATIC_HEADING.split(' ').map((w, i) => (
-          <span key={i} className="mr-[0.28em] inline-block">
-            {w}
-          </span>
-        ))}
+      <span aria-hidden="true">
+        {STATIC_HEADING} <RotatingPhrase animate={!reduceMotion} />
       </span>
-      <div
-        ref={measureRef}
-        aria-hidden
-        className="pointer-events-none absolute -z-10 flex w-max gap-x-[0.28em] whitespace-nowrap opacity-0"
-      >
-        {currentWords.map((w, wi) => (
-          <span key={wi}>
-            {[...w].map((ch, li) => (
-              <span key={li}>{ch}</span>
-            ))}
-          </span>
-        ))}
-      </div>
-      <AnimatePresence mode="wait">
-        <StaggeredWords key={current} text={current} getLetterStyle={getLetterStyle} />
-      </AnimatePresence>
-    </div>
+    </h1>
   )
 }

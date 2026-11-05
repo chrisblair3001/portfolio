@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
 import Header from './Header'
 
-export default function StickyHeader() {
+type StickyHeaderProps = {
+  // `wide` lines the header up with the case study pages' wider (1280px) column; the default
+  // matches the home page and the simpler pages.
+  wide?: boolean
+}
+
+export default function StickyHeader({ wide = false }: StickyHeaderProps) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -17,7 +23,11 @@ export default function StickyHeader() {
         scrolled ? 'border-hairline bg-bg/90 backdrop-blur-sm' : 'border-transparent bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-[1280px] px-6 py-4 sm:px-10 sm:py-6 lg:px-20">
+      <div
+        className={`mx-auto py-5 sm:py-7 ${
+          wide ? 'max-w-[1280px] px-6 sm:px-10 lg:px-20' : 'max-w-[1088px] px-[clamp(24px,6vw,80px)]'
+        }`}
+      >
         <Header />
       </div>
     </div>

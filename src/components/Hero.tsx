@@ -1,4 +1,4 @@
-import CursorGlow from './CursorGlow'
+import HairlineField from './HairlineField'
 import Intro from './Intro'
 
 function DropDownArrow() {
@@ -6,7 +6,7 @@ function DropDownArrow() {
     <svg
       viewBox="0 0 24 24"
       fill="none"
-      className="size-8 animate-bounce text-ink/90 motion-reduce:animate-none"
+      className="size-8 animate-bounce text-ink motion-reduce:animate-none"
     >
       <path
         d="M4 8L12 16L20 8"
@@ -21,22 +21,24 @@ function DropDownArrow() {
 
 export default function Hero() {
   const scrollToNext = () => {
-    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+    const next = document.getElementById('work')
+    if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    else window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
   }
 
   return (
     <section className="relative w-full overflow-hidden">
-      <CursorGlow />
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1280px] flex-col px-6 sm:px-10 lg:px-20">
-        <div className="h-24 shrink-0 sm:h-28 lg:h-36" />
-        <div className="flex flex-1 flex-col justify-center">
+      <HairlineField />
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1088px] flex-col px-[clamp(24px,6vw,80px)]">
+        <div className="h-20 shrink-0 sm:h-24" />
+        <div className="flex flex-1 items-center py-10">
           <Intro />
         </div>
         <button
           type="button"
           onClick={scrollToNext}
           aria-label="Scroll to content"
-          className="mx-auto mb-16 flex items-center justify-center transition-transform hover:translate-y-1"
+          className="mx-auto mb-14 flex cursor-pointer items-center justify-center p-2"
         >
           <DropDownArrow />
         </button>

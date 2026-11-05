@@ -10,7 +10,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** The first section of the home page: the rotating headline over the pink cursor trail, and the bouncing scroll arrow. */
+/** The first section of the home page: the rotating headline over the hairline field that reacts to the pointer, and the bouncing scroll arrow. */
 export const Default: Story = {}
 
 export const OnPhone: Story = { globals: { viewport: { value: 'phone' } } }

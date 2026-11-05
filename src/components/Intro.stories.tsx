@@ -6,7 +6,7 @@ const meta = {
   component: Intro,
   decorators: [
     (Story) => (
-      <div className="mx-auto max-w-[1280px] px-6 py-16 sm:px-10 lg:px-20">
+      <div className="mx-auto max-w-[1088px] px-[clamp(24px,6vw,80px)] py-16">
         <Story />
       </div>
     ),
@@ -16,5 +16,5 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** The headline. "Design leadership for" is fixed; the phrase after it rotates every few seconds with a per-letter flip and an orange-to-pink gradient. */
+/** The headline. "Design leadership for" is fixed; the phrase after it rotates every few seconds with letters rising in one after another, in a lime-to-teal gradient that sweeps side to side. */
 export const Default: Story = {}

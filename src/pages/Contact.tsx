@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <PageShell title="Contact">
       <div className="flex max-w-[600px] flex-col gap-8">
-        <p className="text-base leading-[1.6] text-body sm:text-lg">
+        <p className="text-[15.3px] leading-[1.6] text-body text-pretty">
           I'm looking for my next design leadership role at a mission-driven company. If you're
           hiring, building something hard, or just want to compare notes, I'd like to hear from you.
         </p>
@@ -16,7 +16,7 @@ export default function Contact() {
         <div className="flex flex-wrap gap-3">
           <a
             href={MAILTO}
-            className="rounded-full border border-border bg-white px-6 py-3 text-base font-medium text-ink transition-colors hover:bg-ink hover:text-bg"
+            className="rounded-full border border-border bg-bg px-6 py-3 text-[13.6px] font-medium text-ink transition-colors duration-200 hover:bg-ink hover:text-bg"
           >
             {EMAIL}
           </a>
@@ -24,7 +24,7 @@ export default function Contact() {
             href={LINKEDIN}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-border bg-white px-6 py-3 text-base font-medium text-ink transition-colors hover:bg-ink hover:text-bg"
+            className="rounded-full border border-border bg-bg px-6 py-3 text-[13.6px] font-medium text-ink transition-colors duration-200 hover:bg-ink hover:text-bg"
           >
             LinkedIn →
           </a>

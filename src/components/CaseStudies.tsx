@@ -1,109 +1,55 @@
-import { motion, type Variants } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import type { CaseStudy } from '../data/caseStudyTypes'
-import Divider from './Divider'
 
-// Matches the curve wearecollins.com uses for its Programs list hover state
-const EASE_OUT_CUBIC = [0.215, 0.61, 0.355, 1] as const
+// Every case study as a frameless card in a grid: two across on tablets and up, one on a phone.
+// The cover is grayscale until hovered, then full color with a slight zoom.
 
-const bgVariants: Variants = {
-  rest: { opacity: 0, scale: 1.02 },
-  hover: { opacity: 1, scale: 1, transition: { duration: 0.45, ease: EASE_OUT_CUBIC } },
-}
-
-const titleVariants: Variants = {
-  rest: { x: 0, color: 'var(--color-ink)' },
-  hover: { x: 8, color: '#ffffff', transition: { duration: 0.25, ease: EASE_OUT_CUBIC } },
-}
-
-// The white backdrop keeps the description legible over the section's
-// cursor-glow dot trail at rest; on hover the row itself turns solid ink,
-// so the backdrop fades out to blend with it instead of leaving a mismatched
-// white patch.
-const taglineVariants: Variants = {
-  rest: { color: 'var(--color-base-secondary)', backgroundColor: '#ffffff' },
-  hover: {
-    color: '#f2f2f2',
-    backgroundColor: 'rgba(255,255,255,0)',
-    transition: { duration: 0.25, ease: EASE_OUT_CUBIC },
-  },
-}
-
-const arrowVariants: Variants = {
-  rest: { opacity: 0, x: 8, color: 'var(--color-ink)' },
-  hover: { opacity: 1, x: -4, color: '#ffffff', transition: { duration: 0.4, ease: EASE_OUT_CUBIC } },
-}
-
-function ArrowIcon() {
+function Card({ study, index }: { study: CaseStudy; index: number }) {
+  const cover = study.cover
   return (
-    <motion.svg viewBox="0 0 12 12" fill="none" variants={arrowVariants} className="size-5 shrink-0">
-      <path
-        d="M1.5 6H10.5M6.25 10.25L10.5 6L6.25 1.75"
-        stroke="currentColor"
-        strokeWidth="0.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </motion.svg>
+    <Link to={`/case-studies/${study.slug}`} className="group flex flex-col gap-[18px]">
+      <div className="aspect-[16/11] overflow-hidden rounded-[4px] bg-hairline">
+        {cover ? (
+          <img
+            src={cover.src}
+            alt={cover.alt}
+            loading="lazy"
+            decoding="async"
+            className="size-full object-cover brightness-[0.92] grayscale transition-[transform,filter] duration-[600ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04] group-hover:brightness-100 group-hover:grayscale-0"
+            style={{ objectPosition: cover.position }}
+          />
+        ) : null}
+      </div>
+      <div className="flex items-baseline justify-between gap-3 border-t border-hairline pt-3.5">
+        <div className="flex flex-col gap-1.5">
+          <span className="font-display text-[23px] leading-[1.05] font-bold tracking-[-0.045em] text-heading">
+            {study.title}
+          </span>
+          {(study.tagline ?? study.summary) && (
+            <span className="text-xs leading-[1.5] text-muted">{study.tagline ?? study.summary}</span>
+          )}
+        </div>
+        <span className="font-mono text-[10px] text-label">{String(index + 1).padStart(2, '0')}</span>
+      </div>
+    </Link>
   )
 }
 
 type CaseStudiesProps = {
   studies: CaseStudy[]
   heading?: string
-  comingSoon?: boolean
 }
 
-export default function CaseStudies({
-  studies,
-  heading = 'Case studies',
-  comingSoon = false,
-}: CaseStudiesProps) {
+export default function CaseStudies({ studies, heading = 'Case studies' }: CaseStudiesProps) {
   return (
-    <section data-glow-avoid className="flex w-full flex-col gap-12">
-      <h2 className="w-full text-base font-semibold text-label uppercase">
-        <span className="bg-white px-1.5 py-0.5 [-webkit-box-decoration-break:clone] [box-decoration-break:clone]">
-          // {heading}
-        </span>
+    <section className="flex w-full flex-col gap-10">
+      <h2 className="text-[13.6px] font-semibold tracking-[0.02em] text-label uppercase">
+        // {heading}
       </h2>
-      <div className="group/list flex w-full flex-col">
+      <div className="grid grid-cols-1 gap-x-7 gap-y-12 sm:grid-cols-2">
         {studies.map((study, i) => (
-          <div key={study.slug}>
-            <motion.div initial="rest" whileHover="hover" animate="rest" className="relative">
-              <motion.div
-                variants={bgVariants}
-                className="pointer-events-none absolute -inset-x-[18px] inset-y-0 rounded-2xl bg-ink"
-              />
-              <Link
-                to={`/case-studies/${study.slug}`}
-                className="relative z-10 flex w-full flex-col items-start gap-2 py-6 opacity-100 transition-opacity duration-300 group-has-[a:hover]/list:opacity-45 hover:!opacity-100 sm:flex-row sm:items-center sm:gap-8 sm:py-8"
-              >
-                <motion.p
-                  variants={titleVariants}
-                  className="text-2xl font-semibold tracking-[-0.72px] whitespace-nowrap uppercase sm:w-[280px] sm:shrink-0 sm:text-3xl lg:w-[420px] lg:text-4xl"
-                  style={{ fontStretch: '125%' }}
-                >
-                  {study.shortTitle ?? study.title}
-                </motion.p>
-                <p className="flex-1 text-sm sm:text-base">
-                  <motion.span
-                    variants={taglineVariants}
-                    className="px-1.5 py-0.5 [-webkit-box-decoration-break:clone] [box-decoration-break:clone]"
-                  >
-                    {study.tagline ?? study.summary}
-                  </motion.span>
-                </p>
-                <ArrowIcon />
-              </Link>
-            </motion.div>
-            {(i < studies.length - 1 || comingSoon) && <Divider />}
-          </div>
+          <Card key={study.slug} study={study} index={i} />
         ))}
-        {comingSoon && (
-          <p className="py-6 text-sm text-muted italic sm:py-8 sm:text-base">
-            More case studies coming soon
-          </p>
-        )}
       </div>
     </section>
   )

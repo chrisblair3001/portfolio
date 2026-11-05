@@ -16,8 +16,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** The logo mark and name on the left, the Resume pill on the right. */
+/** The name on the left, the Resume pill on the right. */
 export const Default: Story = {}
 
-/** On a phone the name is hidden and only the logo mark shows. */
+/** The same header on a phone. */
 export const OnPhone: Story = { globals: { viewport: { value: 'phone' } } }

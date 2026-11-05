@@ -1,6 +1,6 @@
 ## How to build with Portfolio
 
-Portfolio is the personal site of a product design leader: a clean white page, near-black text, a single red accent, and a wide, bold, uppercase Archivo headline style. Pages are quiet and typographic; the only decoration is a halftone dot trail that follows the cursor on the home page. Build every screen on the white `bg` surface.
+Portfolio is the personal site of a product design leader, in a dark "Night" design: a near-black page, off-white text, one lime accent, headlines filled with a lime-to-teal gradient, thin hairlines, and small monospace labels. Pages are quiet and typographic; the only decoration is a field of fine hairlines behind the home page hero. Build every screen on the dark `bg` surface.
 
 ### Set up
 
@@ -10,8 +10,8 @@ Link `styles.css` once, load the bundle, and wrap your whole tree in `PortfolioP
 const { PortfolioProvider, Header, CaseStudies } = window.Portfolio;
 
 <PortfolioProvider>
-  <main style={{ background: 'var(--color-bg)', color: 'var(--color-body)', fontFamily: 'var(--font-archivo)' }}>
-    <div style={{ maxWidth: 1280, margin: '0 auto', padding: '24px 80px' }}>
+  <main style={{ background: 'var(--color-bg)', color: 'var(--color-body)', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ maxWidth: 1088, margin: '0 auto', padding: '0 clamp(24px, 6vw, 80px)' }}>
       <Header />
     </div>
   </main>
@@ -20,15 +20,16 @@ const { PortfolioProvider, Header, CaseStudies } = window.Portfolio;
 
 ### Styling idiom: components first, then CSS variables
 
-- Use the library components for the header, footer, page frame, case study list, gallery, lightbox and stack block. They are built with Tailwind utilities, and the stylesheet only contains the utilities the components themselves use. **Do not write Tailwind utility classes for your own markup**; other class names will silently do nothing. For your own layout use plain CSS or inline `style` with the variables below.
-- Colors are `var(--color-*)`: `bg` (page, white), `ink` (near-black surfaces and pill hover), `heading`, `body`, `muted`, `label` (uppercase section labels), `border` (pill outlines), `hairline` (1px dividers), `base-secondary` (case study descriptions) and `accent` (the red, for the logo mark and links only).
-- Type is Archivo, `var(--font-archivo)`, at weights 400 to 900 with its width axis. Headlines are **bold, uppercase and set wide with `font-stretch: 125%`**; body copy is 16 to 18px at a 1.6 line height in `body`; section labels are 16px semibold uppercase in `label`, written like `// Case studies`. Manrope appears only in the footer's copyright line.
-- Shapes: pills are fully rounded (`border-radius: 9999px`) with a 1px `border` outline, white fill, and a hover that fills them with `ink` and turns the text white. Images are `border-radius: 8px` with a 1px `hairline` border and a faint shadow (`0 2px 4px 2px rgba(0,0,0,0.06)`). Everything else is square and flat.
-- Text that sits over the cursor-glow dot trail gets a per-line white backdrop (`background: #fff; padding: 2px 6px; box-decoration-break: clone`), so the copy stays legible.
-- Layout: content sits in a centered column, `max-width: 1280px`, with 24px side padding on phones, 40px on tablets and 80px on desktop. Sections on the home page are full viewport height.
+- Use the library components for the header, footer, page frame, case study grid, gallery, lightbox, stack block and next-case-study row. They are built with Tailwind utilities, and the stylesheet only contains the utilities the components themselves use. **Do not write Tailwind utility classes for your own markup**; other class names will silently do nothing. For your own layout use plain CSS or inline `style` with the variables below.
+- Colors are `var(--color-*)`: `bg` (page, #121212), `ink` (the light fill that pills take on hover, with `bg` as their text), `heading`, `body`, `muted` (secondary text), `label` (section labels and mono meta), `border` (pill outlines), `hairline` (1px dividers), `accent` (lime: links, chapter numbers, progress track), and the gradient stops `g1` (lime) and `g2` (teal). The accent is for dark backgrounds only.
+- Three typefaces, as variables: `var(--font-display)` is Bricolage Grotesque for headlines, **bold, sentence case, `letter-spacing: -0.045em`, line height about 0.92 to 1.05** (never uppercase, never stretched); `var(--font-sans)` is Manrope for body copy (15 to 18px at a 1.6 line height) and labels, which are 13.6px semibold uppercase written like `// Case studies`; `var(--font-mono)` is JetBrains Mono at 500, 11 to 13px, uppercase with `letter-spacing: 0.06em`, for numbering, captions and meta.
+- Gradient text: `background-image: linear-gradient(93deg, var(--color-g1) 0%, var(--color-g2) 60%); background-clip: text; color: transparent`. Give gradient letters padding with an equal negative margin (`padding: .2em .14em; margin: -.2em -.14em`) so overhangs are not clipped.
+- Shapes: pills are fully rounded (`border-radius: 9999px`) with a 1px `border` outline and `bg` fill; on hover they fill with `ink` and the text turns `bg` (200ms). Images are `border-radius: 4px` to `6px`, with a 1px `hairline` border where they sit on the page. No shadows. Everything else is square and flat.
+- Motion is restrained: `Reveal` fades a section up by 40px once as it scrolls into view; covers are grayscale until hovered, then full color at 1.04 scale (600ms); respect `prefers-reduced-motion`.
+- Layout: a centered column, `max-width: 1088px` on the home page and simple pages, 1440px with 1280px of content on case study pages, with `clamp(24px, 6vw, 80px)` side padding. Home sections are at least one viewport tall.
 
 ### Where to look
 
 - `styles.css` and the `_ds_bundle.css` it imports hold every token and component style.
 - `components/<group>/<Name>/<Name>.prompt.md` has usage and examples for each component; `<Name>.d.ts` has its props.
-- The pill, tag-chip and highlight styles are described above rather than shipped as components; rebuild them with the plain CSS given in the styling idiom section.
+- Pill buttons, tag chips and mono labels are not components: build them from the plain CSS described above.
