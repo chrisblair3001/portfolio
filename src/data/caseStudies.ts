@@ -1,4 +1,4 @@
-import omniOverviewHomeCover from '../assets/omni-overview-home.png'
+import omniCover from '../assets/covers/omni-presentations-inline-edit-alt.webp'
 import omniOverviewHome from '../assets/omni-overview-home.webp'
 import omniOverviewSuggestions from '../assets/omni-overview-suggestions.webp'
 import omniOverviewArtifact from '../assets/omni-overview-artifact.webp'
@@ -40,7 +40,7 @@ import smartscanScanPrompts from '../assets/smartscan-scan-prompts.webp'
 import smartscanScanCompleted from '../assets/smartscan-scan-completed.webp'
 import smartscanReportsProgress from '../assets/smartscan-reports-progress.webp'
 import smartscanReportsColumns from '../assets/smartscan-reports-columns.webp'
-import smartscanReportsViewerCover from '../assets/smartscan-reports-viewer.png'
+import smartscanCover from '../assets/covers/smartscan-reports-columns.webp'
 import smartscanReportsViewer from '../assets/smartscan-reports-viewer.webp'
 import glxHypothesis from '../assets/glx-hypothesis.webp'
 import glxPersonaTina from '../assets/glx-persona-tina.webp'
@@ -54,14 +54,14 @@ import glxConceptRecap from '../assets/glx-concept-recap.webp'
 import glxUserTestResults from '../assets/glx-user-test-results.webp'
 import glxTreeTestResults from '../assets/glx-tree-test-results.webp'
 import glxWireframeUpdates from '../assets/glx-wireframe-updates.webp'
-import glxHifiUpdatesCover from '../assets/glx-hifi-updates.png'
+import glxCover from '../assets/covers/glx-concept-hub.webp'
 import glxHifiUpdates from '../assets/glx-hifi-updates.webp'
 import glxParentExperience from '../assets/glx-parent-experience.webp'
 import glxKidExperience from '../assets/glx-kid-experience.webp'
 import glxTabBarDocs from '../assets/glx-tab-bar-docs.webp'
 import dispatchWelcome from '../assets/dispatch-welcome.webp'
 import dispatchPickSegments from '../assets/dispatch-pick-segments.webp'
-import dispatchTodayCover from '../assets/dispatch-today.jpg'
+import dispatchCover from '../assets/covers/dispatch-pick-segments.webp'
 import dispatchToday from '../assets/dispatch-today.webp'
 import dispatchTextures from '../assets/dispatch-textures.webp'
 import dispatchEpisodes from '../assets/dispatch-episodes.webp'
@@ -88,7 +88,7 @@ export type {
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'dispatch-ai-daily-podcast',
-    cover: { src: dispatchTodayCover, alt: "Dispatch: the Today screen, with this morning's episode and its segments", position: 'center top' },
+    cover: { src: dispatchCover, alt: 'Dispatch onboarding: choosing up to three daily segments', position: 'center top' },
     title: 'Dispatch',
     shortTitle: 'Dispatch',
     summary:
@@ -221,7 +221,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'omni-enterprise-chat-experience',
-    cover: { src: omniOverviewHomeCover, alt: "Omni: the home screen with the prompt box and quick actions", position: 'center' },
+    cover: { src: omniCover, alt: 'Omni: a generated slide open in the presentation editor' },
     title: 'Omni',
     shortTitle: 'Omni',
     summary:
@@ -324,7 +324,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'smart-scan-file-organization',
-    cover: { src: smartscanReportsViewerCover, alt: "SmartScan: the report viewer with a document list and a preview", position: 'center' },
+    cover: { src: smartscanCover, alt: 'SmartScan: a report with extracted columns for each document' },
     title: 'SmartScan',
     shortTitle: 'Smartscan',
     summary:
@@ -389,7 +389,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'rebuilding-greenlights-ia',
-    cover: { src: glxHifiUpdatesCover, alt: "Greenlight: hi-fi updates to the parent app across four screens", position: 'center' },
+    cover: { src: glxCover, alt: "Greenlight: the Hub concept shown in three parent screens", frame: 'none' },
     title: 'Greenlight IA',
     shortTitle: 'Greenlight IA',
     summary:

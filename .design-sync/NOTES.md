@@ -31,7 +31,7 @@ npm run storybook                                              # dev server on :
 
 ## Sync state
 
-The Claude Design project was last synced on 2026-11-04, **before the Night redesign** (dark palette, new fonts, new hero/cursor effect, case study grid, new case study page). Components added since: `HairlineField` (replaces `CursorGlow`), `Reveal`, `NextCaseStudy`. Run `/design-sync` again; it will re-verify everything (the build and the styling changed) and `[CSS_FROM_STORYBOOK]` will re-scrape the new tokens.
+Last synced **2026-11-05**: the Night redesign is in the Claude Design project. 17 components (16 graded this run, Lightbox carried), validate clean, 118 files uploaded, `CursorGlow` removed, `HairlineField` / `Reveal` / `NextCaseStudy` added.
 
 ## First sync log (2026-11-04)
 
@@ -48,6 +48,17 @@ Always pass `--out ./ds-bundle.nosync` (not `./ds-bundle`) to build/validate/com
 - `[RENDER_THIN]` on Bio/Header/ImageGallery/StackBlock -> their `OnPhone` stories only set the Storybook viewport global, which cards can't apply, so they render identically -> skipped (also Hero's). StickyHeader `Scrolled` is skipped because it is driven by a play function that scrolls the window.
 - `CSS_FROM_STORYBOOK`: styles are scraped from the compiled Storybook CSS (the lib build ships no CSS). `[CSS_ASSETS]` about 23 url() refs is expected; the fonts are copied separately.
 
+### Re-sync run 2026-11-05 (Night redesign)
+
+- [GENERAL] **The driver does not run `buildCmd`.** `npm run build:lib` must run first or the bundle reflects the old `dist-lib/` (a `PortfolioProvider` edit looked like it did nothing until the lib was rebuilt). Order: `npm run build:lib`, rebuild `.design-sync/sb-reference` if stories or CSS moved, then the driver.
+- [GENERAL] **Previews sat on a white page** (white headings vanished) -> the converter's preview page hard-codes `body{background:#fff}` (`emit.mjs`, app-contract, not forkable) and Storybook's dark canvas comes from the backgrounds addon, which previews don't get -> `PortfolioProvider` now renders a wrapper with `var(--color-bg)`, `var(--color-body)` and `var(--font-sans)`. Previews and the design agent both get the Night surface from the provider. The card's 24px body padding stays white around it.
+- `[FONT_MISSING]` for "Manrope" and "Bricolage Grotesque" -> the shipped `@font-face` names are "Manrope Variable" and "Bricolage Grotesque Variable" (fontsource variable packages); the plain names were unshipped fallbacks in `--font-sans` / `--font-display` -> removed them from the stacks in `src/index.css`. If a font stack gains a family, make sure a `@font-face` ships it.
+- CaseStudies and ImageGallery previews were clipped (capture viewport 900x700, content taller) -> `overrides.CaseStudies.viewport = "900x1010"`, `overrides.ImageGallery.viewport = "900x780"`.
+- Bio preview stacked the portrait under the text (the section is `flex-wrap`, and the card's 24px body padding plus the story's side padding left under 773px) -> `overrides.Bio.viewport = "1000x760"`.
+- ImageGallery `Default` is graded `close`: the right-edge fade shows in the preview but not in the captured storybook frame (ResizeObserver settles after first paint). Capture timing, nothing to tune.
+- Old static fonts (`archivo-*`, `manrope-*-400/500-normal*`) from the first sync are still in the project's `fonts/`; the diff only listed CursorGlow for deletion. They are unreferenced by the new `fonts/fonts.css`. Delete them in a future plan if the project gets tidied.
+- `[REFERENCE_STALE?]` on the last runs is expected here: the reference storybook does not use `PortfolioProvider` (stories get a `MemoryRouter` from `.storybook/preview.tsx`), so a provider-only edit changes the bundle without changing any story.
+
 ### Known and accepted
 
 - Screens (Home, CaseStudy, Resume, Contact, NotFound), Foundations and Patterns are `null` in `titleMap`: reference stories, not components. Their sync is intentionally absent.
@@ -58,6 +69,7 @@ Always pass `--out ./ds-bundle.nosync` (not `./ds-bundle`) to build/validate/com
 - `HairlineField` and `Reveal` are canvas/IntersectionObserver effects. Compare captures freeze animations, so grade them on layout (a field of faint lines, content in place) rather than the exact line positions, which depend on the pointer or drift time.
 - Stories use inline sample data (SVG data URIs). If a component gains required props, update its story first or the preview silently shows stale variants.
 - Grades follow the story files: editing `*.stories.tsx` re-captures and needs a re-grade.
+- Made right after this sync, NOT yet synced: the page container went from 1088px to 1152px (home, simple pages, case study header), the hero headline is centered and about 10% bigger, and the homepage snaps on scroll. They touch `Hero`, `Intro`, `CaseStudies`, `StickyHeader`, `Footer` and the 1152px notes in `conventions.md`: re-run `/design-sync` (build:lib first) to ship them.
 - `titleMap` and `overrides` skip ids are story ids (`layout-header--on-phone`); renaming a story export silently un-skips it.
 - Toolchain at sync time: Node v25.6, Storybook 10.6.5, Playwright chromium headless shell 156. The iCloud-synced Desktop is why output goes to `ds-bundle.nosync`.
 - The Standalone Claude Design product closes by Dec 14, 2026; re-check where this project lives before the next sync.

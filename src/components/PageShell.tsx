@@ -10,7 +10,7 @@ type PageShellProps = {
 
 export default function PageShell({ eyebrow, title, children }: PageShellProps) {
   return (
-    <div className="mx-auto flex min-h-screen max-w-[1088px] flex-col gap-10 px-[clamp(24px,6vw,80px)] pt-16 pb-12 sm:gap-14 sm:pt-20">
+    <div className="mx-auto flex min-h-screen max-w-[1152px] flex-col gap-10 px-[clamp(24px,6vw,80px)] pt-16 pb-12 sm:gap-14 sm:pt-20">
       <div className="flex flex-col gap-8 sm:gap-12">
         <Link
           to="/"

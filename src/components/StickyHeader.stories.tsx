@@ -9,7 +9,7 @@ const meta = {
     (Story) => (
       <div className="h-[1600px]">
         <Story />
-        <p className="mx-auto max-w-[1088px] px-[clamp(24px,6vw,80px)] pt-32 text-body">
+        <p className="mx-auto max-w-[1152px] px-[clamp(24px,6vw,80px)] pt-32 text-body">
           Scroll down: once the page moves, the header gains a hairline and a translucent dark backdrop.
         </p>
       </div>

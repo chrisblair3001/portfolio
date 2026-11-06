@@ -6,7 +6,7 @@ const meta = {
   component: Divider,
   decorators: [
     (Story) => (
-      <div className="mx-auto max-w-[1088px] px-[clamp(24px,6vw,80px)] py-10">
+      <div className="mx-auto max-w-[1152px] px-[clamp(24px,6vw,80px)] py-10">
         <Story />
       </div>
     ),

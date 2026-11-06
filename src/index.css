@@ -9,8 +9,8 @@
 /* "Night" palette. The lime accent is for dark backgrounds only: it fails contrast on light ones, so
    the print block below swaps in a darker accent along with the rest of the light palette. */
 @theme {
-  --font-display: "Bricolage Grotesque Variable", "Bricolage Grotesque", sans-serif;
-  --font-sans: "Manrope Variable", "Manrope", sans-serif;
+  --font-display: "Bricolage Grotesque Variable", sans-serif;
+  --font-sans: "Manrope Variable", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --color-bg: #121212;

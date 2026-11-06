@@ -9,9 +9,11 @@ export type CaseStudyImage = {
   bare?: boolean
 }
 
-// The picture a case study shows on its home page card. `position` is a CSS object-position, for
-// steering the crop of a screenshot.
-export type CaseStudyCover = CaseStudyImage & { position?: string }
+// The picture a case study shows on its home page card. It should be the screen itself, without a
+// browser toolbar. `frame` draws a small window around it ("window", the default, for app screens) or
+// none for pictures that are already a composed slide. `position` is a CSS object-position, for
+// steering the crop.
+export type CaseStudyCover = CaseStudyImage & { position?: string; frame?: 'window' | 'none' }
 
 // `tools` lists the technologies behind a step, shown as small pills under its note. In a `chips`
 // section the note is not used: each item is one pill.
