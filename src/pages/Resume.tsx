@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 
@@ -238,7 +238,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
       <p className="resume-section-label shrink-0 pt-1 text-xs font-bold tracking-wide text-label uppercase md:w-[150px]">
         {label}
       </p>
-      <div className="max-w-[620px] flex-1">{children}</div>
+      <div className="max-w-[760px] flex-1 print:max-w-[620px]">{children}</div>
     </div>
   )
 }
@@ -298,8 +298,18 @@ function ExperienceItem({ entry }: { entry: ExperienceEntry }) {
 }
 
 export default function Resume() {
+  // The page title becomes the PDF's title (and the file name when someone prints it), so it names the
+  // document rather than the site.
+  useEffect(() => {
+    const previous = document.title
+    document.title = 'Chris Blair — Resume'
+    return () => {
+      document.title = previous
+    }
+  }, [])
+
   return (
-    <div className="resume-root mx-auto min-h-screen max-w-[880px] px-6 pt-14 pb-20 sm:px-10 sm:pt-16 lg:px-16 print:min-h-0">
+    <div className="resume-root mx-auto min-h-screen max-w-[1152px] px-6 pt-14 pb-20 sm:px-10 sm:pt-16 lg:px-[clamp(24px,6vw,80px)] print:min-h-0">
       <div className="resume-chrome flex items-center justify-between print:hidden">
         <Link
           to="/"
@@ -307,28 +317,30 @@ export default function Resume() {
         >
           ← Back home
         </Link>
-        <button
-          type="button"
-          onClick={() => window.print()}
+        {/* A pre-made PDF, so every visitor gets the same file, with the same text. Regenerate it with
+            `npm run resume:pdf` whenever this page's content changes. */}
+        <a
+          href="/Chris-Blair-Resume.pdf"
+          download="Chris-Blair-Resume.pdf"
           className="rounded-full border border-border bg-bg px-5 py-2 text-sm font-bold text-ink transition-colors hover:bg-ink hover:text-bg"
         >
           Download PDF
-        </button>
+        </a>
       </div>
 
-      <header className="resume-header mt-10 flex flex-wrap items-start justify-between gap-x-6 gap-y-5 border-b border-hairline pb-8 sm:mt-12">
-        <div className="flex flex-col gap-2">
+      <header className="resume-header mt-10 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-hairline pb-6 sm:mt-12">
+        <div className="flex flex-col gap-1">
           <h1
-            className="resume-name font-display text-[28px] leading-tight font-bold text-ink uppercase sm:text-[32px]"
+            className="resume-name font-display text-[28px] leading-[1] font-bold text-ink uppercase sm:text-[32px]"
             style={{ fontStretch: '125%' }}
           >
             Chris Blair
           </h1>
-          <p className="resume-title text-sm font-semibold tracking-wide text-accent uppercase sm:text-base">
+          <p className="resume-title text-sm leading-none font-semibold tracking-wide text-muted uppercase sm:text-[15px]">
             Product Design Leader
           </p>
         </div>
-        <div className="resume-contact flex flex-col gap-0.5 text-sm leading-normal text-muted sm:text-right">
+        <div className="resume-contact flex flex-col text-[13px] leading-[1.5] text-muted sm:text-right">
           <p>
             Atlanta, GA · 205-335-9869 ·{' '}
             <a href="mailto:chrblair@gmail.com" className="transition-colors hover:text-heading">
