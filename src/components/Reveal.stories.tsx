@@ -6,7 +6,7 @@ const meta = {
   component: Reveal,
   decorators: [
     (Story) => (
-      <div className="mx-auto max-w-[1088px] px-[clamp(24px,6vw,80px)] py-16">
+      <div className="mx-auto max-w-[1152px] px-[clamp(24px,6vw,80px)] py-16">
         <Story />
       </div>
     ),

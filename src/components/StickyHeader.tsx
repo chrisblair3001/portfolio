@@ -24,8 +24,8 @@ export default function StickyHeader({ wide = false }: StickyHeaderProps) {
       }`}
     >
       <div
-        className={`mx-auto py-5 sm:py-7 ${
-          wide ? 'max-w-[1280px] px-6 sm:px-10 lg:px-20' : 'max-w-[1088px] px-[clamp(24px,6vw,80px)]'
+        className={`mx-auto py-4 sm:py-5 ${
+          wide ? 'max-w-[1280px] px-6 sm:px-10 lg:px-20' : 'max-w-[1152px] px-[clamp(24px,6vw,80px)]'
         }`}
       >
         <Header />

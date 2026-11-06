@@ -129,7 +129,7 @@ export default function Intro() {
   return (
     <h1
       aria-label={`${STATIC_HEADING} ${PHRASES.join(', ')}`}
-      className="relative m-0 w-full font-display text-[clamp(36px,7.57vw,97.3px)] leading-[0.92] font-bold tracking-[-0.045em] text-balance text-heading"
+      className="relative m-0 w-full text-center font-display text-[clamp(40px,8.3vw,107px)] leading-[0.92] font-bold tracking-[-0.045em] text-balance text-heading"
     >
       <span aria-hidden="true">
         {STATIC_HEADING} <RotatingPhrase animate={!reduceMotion} />

@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png'
 
 export default function Header() {
   return (
     <header className="flex w-full items-center justify-between gap-4">
-      <Link
-        to="/"
-        className="font-display text-[17px] font-bold text-heading uppercase transition-opacity hover:opacity-70"
-      >
-        Chris Blair
+      <Link to="/" aria-label="Chris Blair, home" className="transition-opacity hover:opacity-70">
+        <img src={logo} alt="" className="block size-15 rounded-[15px]" />
       </Link>
       <nav className="flex items-center">
         <Link

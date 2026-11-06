@@ -28,19 +28,21 @@
     },
     "Bio": {
       "cardMode": "column",
-      "viewport": "900x1010",
+      "viewport": "1000x760",
       "skip": [
         "sections-bio--on-phone"
       ]
     },
     "CaseStudies": {
-      "cardMode": "column"
+      "cardMode": "column",
+      "viewport": "900x1010"
     },
     "ImageGallery": {
       "cardMode": "column",
       "skip": [
         "content-imagegallery--on-phone"
-      ]
+      ],
+      "viewport": "900x780"
     },
     "StackBlock": {
       "cardMode": "column",

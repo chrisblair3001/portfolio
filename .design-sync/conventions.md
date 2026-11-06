@@ -4,14 +4,14 @@ Portfolio is the personal site of a product design leader, in a dark "Night" des
 
 ### Set up
 
-Link `styles.css` once, load the bundle, and wrap your whole tree in `PortfolioProvider`. The provider supplies the router that `Header`, `PageShell` and the other building blocks need for their links (without it they throw).
+Link `styles.css` once, load the bundle, and wrap your whole tree in `PortfolioProvider`. The provider supplies the router that `Header`, `PageShell` and the other building blocks need for their links (without it they throw), and the Night page surface: the `bg` background, `body` text color and Manrope, so nothing renders on a white page.
 
 ```jsx
 const { PortfolioProvider, Header, CaseStudies } = window.Portfolio;
 
 <PortfolioProvider>
   <main style={{ background: 'var(--color-bg)', color: 'var(--color-body)', fontFamily: 'var(--font-sans)' }}>
-    <div style={{ maxWidth: 1088, margin: '0 auto', padding: '0 clamp(24px, 6vw, 80px)' }}>
+    <div style={{ maxWidth: 1152, margin: '0 auto', padding: '0 clamp(24px, 6vw, 80px)' }}>
       <Header />
     </div>
   </main>
@@ -26,7 +26,7 @@ const { PortfolioProvider, Header, CaseStudies } = window.Portfolio;
 - Gradient text: `background-image: linear-gradient(93deg, var(--color-g1) 0%, var(--color-g2) 60%); background-clip: text; color: transparent`. Give gradient letters padding with an equal negative margin (`padding: .2em .14em; margin: -.2em -.14em`) so overhangs are not clipped.
 - Shapes: pills are fully rounded (`border-radius: 9999px`) with a 1px `border` outline and `bg` fill; on hover they fill with `ink` and the text turns `bg` (200ms). Images are `border-radius: 4px` to `6px`, with a 1px `hairline` border where they sit on the page. No shadows. Everything else is square and flat.
 - Motion is restrained: `Reveal` fades a section up by 40px once as it scrolls into view; covers are grayscale until hovered, then full color at 1.04 scale (600ms); respect `prefers-reduced-motion`.
-- Layout: a centered column, `max-width: 1088px` on the home page and simple pages, 1440px with 1280px of content on case study pages, with `clamp(24px, 6vw, 80px)` side padding. Home sections are at least one viewport tall.
+- Layout: a centered column, `max-width: 1152px` on the home page and simple pages, 1440px with 1280px of content on case study pages, with `clamp(24px, 6vw, 80px)` side padding. Home sections are at least one viewport tall.
 
 ### Where to look
 

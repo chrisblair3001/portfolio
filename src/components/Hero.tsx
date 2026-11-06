@@ -29,7 +29,7 @@ export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden">
       <HairlineField />
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1088px] flex-col px-[clamp(24px,6vw,80px)]">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1152px] flex-col px-[clamp(24px,6vw,80px)]">
         <div className="h-20 shrink-0 sm:h-24" />
         <div className="flex flex-1 items-center py-10">
           <Intro />

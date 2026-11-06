@@ -1,34 +1,48 @@
 import { Link } from 'react-router-dom'
 import type { CaseStudy } from '../data/caseStudyTypes'
 
-// Every case study as a frameless card in a grid: two across on tablets and up, one on a phone.
-// The cover is grayscale until hovered, then full color with a slight zoom.
+// Every case study as a card in a grid: two across on tablets and up, one on a phone. The cover sits in
+// a small window on a tinted stage, the way the screenshots sit on the case study pages. On hover the
+// stage lightens and the window lifts, both on the same slow ease-out.
 
-function Card({ study, index }: { study: CaseStudy; index: number }) {
+const EASE = 'ease-[cubic-bezier(0.2,0.7,0.2,1)]'
+
+export function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const cover = study.cover
+  const framed = (cover?.frame ?? 'window') === 'window'
   return (
-    <Link to={`/case-studies/${study.slug}`} className="group flex flex-col gap-[18px]">
-      <div className="aspect-[16/11] overflow-hidden rounded-[4px] bg-hairline">
-        {cover ? (
-          <img
-            src={cover.src}
-            alt={cover.alt}
-            loading="lazy"
-            decoding="async"
-            className="size-full object-cover brightness-[0.92] grayscale transition-[transform,filter] duration-[600ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.04] group-hover:brightness-100 group-hover:grayscale-0"
-            style={{ objectPosition: cover.position }}
-          />
-        ) : null}
-      </div>
-      <div className="flex items-baseline justify-between gap-3 border-t border-hairline pt-3.5">
-        <div className="flex flex-col gap-1.5">
-          <span className="font-display text-[23px] leading-[1.05] font-bold tracking-[-0.045em] text-heading">
-            {study.title}
-          </span>
-          {(study.tagline ?? study.summary) && (
-            <span className="text-xs leading-[1.5] text-muted">{study.tagline ?? study.summary}</span>
+    <Link to={`/case-studies/${study.slug}`} className="group flex flex-col gap-4">
+      <div
+        className={`flex aspect-[16/11] items-center justify-center rounded-md border border-hairline bg-[#181716] px-[9%] transition-colors duration-700 ${EASE} group-hover:bg-[#1e1c1b] motion-reduce:transition-none`}
+      >
+        <div
+          className={`w-full overflow-hidden rounded-md border border-[#3d3a38] bg-[#232120] transition-transform duration-700 ${EASE} group-hover:-translate-y-1.5 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:transform-none`}
+        >
+          {framed && (
+            <div aria-hidden className="flex h-5 items-center gap-1.5 px-2.5">
+              {[0, 1, 2].map((dot) => (
+                <span key={dot} className="size-1.5 rounded-full bg-[#5b5754]" />
+              ))}
+            </div>
+          )}
+          {cover ? (
+            <img
+              src={cover.src}
+              alt={cover.alt}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[16/10] w-full object-cover"
+              style={{ objectPosition: cover.position ?? 'top' }}
+            />
+          ) : (
+            <div className="aspect-[16/10] w-full bg-hairline" />
           )}
         </div>
+      </div>
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="font-display text-[22px] leading-[1.05] font-bold tracking-[-0.045em] text-heading">
+          {study.title}
+        </span>
         <span className="font-mono text-[10px] text-label">{String(index + 1).padStart(2, '0')}</span>
       </div>
     </Link>
@@ -46,9 +60,9 @@ export default function CaseStudies({ studies, heading = 'Case studies' }: CaseS
       <h2 className="text-[13.6px] font-semibold tracking-[0.02em] text-label uppercase">
         // {heading}
       </h2>
-      <div className="grid grid-cols-1 gap-x-7 gap-y-12 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-x-7 gap-y-10 sm:grid-cols-2">
         {studies.map((study, i) => (
-          <Card key={study.slug} study={study} index={i} />
+          <CaseStudyCard key={study.slug} study={study} index={i} />
         ))}
       </div>
     </section>
