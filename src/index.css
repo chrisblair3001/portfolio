@@ -138,6 +138,14 @@ body {
     display: none !important;
   }
 
+  /* Plain Arial for the printed resume. The site's fonts embed in the PDF in a way that drops the
+     spaces between words for parsers that read the file's text in stored order (a keyword scanner then
+     sees "Productdesignleader"). A standard TrueType font keeps real spaces, and the page count holds. */
+  .resume-root,
+  .resume-root * {
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+
   .resume-root {
     max-width: none !important;
     min-height: 0 !important;
