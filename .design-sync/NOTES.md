@@ -31,7 +31,7 @@ npm run storybook                                              # dev server on :
 
 ## Sync state
 
-Last synced **2026-11-05**: the Night redesign is in the Claude Design project. 17 components (16 graded this run, Lightbox carried), validate clean, 118 files uploaded, `CursorGlow` removed, `HairlineField` / `Reveal` / `NextCaseStudy` added.
+Last synced **2026-11-06**: everything through the homepage refresh is in the Claude Design project (1152px container, centered hero, framed case study cards, the `cb.` logo in `Header`). 17 components graded and uploaded (10 re-graded this run; the other 7 carried or spot-checked), validate clean, nothing deleted.
 
 ## First sync log (2026-11-04)
 
@@ -59,6 +59,8 @@ Always pass `--out ./ds-bundle.nosync` (not `./ds-bundle`) to build/validate/com
 - Old static fonts (`archivo-*`, `manrope-*-400/500-normal*`) from the first sync are still in the project's `fonts/`; the diff only listed CursorGlow for deletion. They are unreferenced by the new `fonts/fonts.css`. Delete them in a future plan if the project gets tidied.
 - `[REFERENCE_STALE?]` on the last runs is expected here: the reference storybook does not use `PortfolioProvider` (stories get a `MemoryRouter` from `.storybook/preview.tsx`), so a provider-only edit changes the bundle without changing any story.
 
+- 2026-11-06 re-sync: no config changes needed. `npm run build:lib` and the Storybook rebuild both ran first (the driver does neither). ImageGallery `Default` stays `close` for the same edge-fade timing reason.
+
 ### Known and accepted
 
 - Screens (Home, CaseStudy, Resume, Contact, NotFound), Foundations and Patterns are `null` in `titleMap`: reference stories, not components. Their sync is intentionally absent.
@@ -69,7 +71,7 @@ Always pass `--out ./ds-bundle.nosync` (not `./ds-bundle`) to build/validate/com
 - `HairlineField` and `Reveal` are canvas/IntersectionObserver effects. Compare captures freeze animations, so grade them on layout (a field of faint lines, content in place) rather than the exact line positions, which depend on the pointer or drift time.
 - Stories use inline sample data (SVG data URIs). If a component gains required props, update its story first or the preview silently shows stale variants.
 - Grades follow the story files: editing `*.stories.tsx` re-captures and needs a re-grade.
-- Made right after this sync, NOT yet synced: the page container went from 1088px to 1152px (home, simple pages, case study header), the hero headline is centered and about 10% bigger, and the homepage snaps on scroll. They touch `Hero`, `Intro`, `CaseStudies`, `StickyHeader`, `Footer` and the 1152px notes in `conventions.md`: re-run `/design-sync` (build:lib first) to ship them.
+- Shipped in the 2026-11-06 sync: the 1152px container, centered and bigger hero headline, framed window-on-stage case study cards with the 700ms lift, and the `cb.` logo header. Scroll snapping lives in `Home.tsx` (a screen, not synced).
 - `titleMap` and `overrides` skip ids are story ids (`layout-header--on-phone`); renaming a story export silently un-skips it.
 - Toolchain at sync time: Node v25.6, Storybook 10.6.5, Playwright chromium headless shell 156. The iCloud-synced Desktop is why output goes to `ds-bundle.nosync`.
 - The Standalone Claude Design product closes by Dec 14, 2026; re-check where this project lives before the next sync.
