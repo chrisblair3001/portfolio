@@ -48,36 +48,51 @@ type StripProps = {
   children?: React.ReactNode
 }
 
-function Strip({ images, onOpen, inset = '', children }: StripProps) {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
+// The longest the fade gets, and the share of the row's width it may take on a narrow screen.
+const FADE_MAX_PX = 72
+const FADE_MAX_SHARE = 0.16
 
+function Strip({ images, onOpen, inset = '', children }: StripProps) {
+  const rootRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  // The edge fade is a CSS mask (.edge-fade) driven by custom properties on the wrapper.
+  // Writing them straight to the element keeps scrolling smooth, with no React re-render per scroll
+  // event. Each side fades in over one fade length of scrolling and out again at the far end.
   useEffect(() => {
+    const root = rootRef.current
     const el = scrollRef.current
-    if (!el) return
+    if (!root || !el) return
 
     const update = () => {
-      setCanScrollLeft(el.scrollLeft > 4)
-      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
+      const full = Math.min(FADE_MAX_PX, el.clientWidth * FADE_MAX_SHARE)
+      const maxScroll = el.scrollWidth - el.clientWidth
+      const left = Math.min(Math.max(el.scrollLeft, 0), full)
+      const right = Math.min(Math.max(maxScroll - el.scrollLeft, 0), full)
+      const set = (name: string, value: string) => root.style.setProperty(name, value)
+      set('--fade-l', `${left}px`)
+      set('--fade-r', `${right}px`)
     }
 
     update()
     el.addEventListener('scroll', update, { passive: true })
+    // Images change the row's width as they load, so watch each one as well as the row.
     const resizeObserver = new ResizeObserver(update)
     resizeObserver.observe(el)
-    window.addEventListener('resize', update)
+    Array.from(el.children).forEach((child) => resizeObserver.observe(child))
 
     return () => {
       el.removeEventListener('scroll', update)
       resizeObserver.disconnect()
-      window.removeEventListener('resize', update)
     }
   }, [images])
 
   return (
-    <div className="relative">
-      <div ref={scrollRef} className={`no-scrollbar flex gap-5 overflow-x-auto pb-2 ${inset}`}>
+    <div ref={rootRef} className="relative">
+      <div
+        ref={scrollRef}
+        className={`no-scrollbar edge-fade flex gap-5 overflow-x-auto pb-2 ${inset}`}
+      >
         {images.map((img, i) => (
           <ExpandableImage
             key={i}
@@ -90,18 +105,6 @@ function Strip({ images, onOpen, inset = '', children }: StripProps) {
           />
         ))}
       </div>
-      <div
-        aria-hidden
-        className={`pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-bg to-transparent transition-opacity duration-300 ${
-          canScrollLeft ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
-      <div
-        aria-hidden
-        className={`pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-bg to-transparent transition-opacity duration-300 ${
-          canScrollRight ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
       {children}
     </div>
   )

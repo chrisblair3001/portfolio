@@ -92,7 +92,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Dispatch',
     shortTitle: 'Dispatch',
     summary:
-      'A side project to learn what building a real product with AI takes. Dispatch turns your saved articles and chosen topics into a short daily podcast, hosted by two AI voices and delivered to your podcast app.',
+      'I built Dispatch to find out what it takes to make a real product with AI. It turns the articles you save and the topics you pick into a short daily podcast with two AI hosts, and sends it to your podcast app.',
     tagline: 'A personal daily podcast, built with AI',
     tags: ['Consumer AI', '0 to 1', 'Built with Claude Code'],
     role: {
@@ -105,8 +105,8 @@ export const caseStudies: CaseStudy[] = [
         index: '01',
         title: 'Problem to solve',
         body: [
-          'Dispatch started with a simple idea: save an article, and hear it later as a podcast. I wanted anyone to be able to use it, so there are no prompts and no setup. You pick what you care about, and a podcast shows up.',
-          'The first version only worked with articles you saved, so nothing happened on days you saved nothing. Now you pick up to three segments, like Morning Briefing or Close to Home, and Dispatch builds an episode every weekday, saved articles first. It went from a tool you feed to a show that shows up on its own.',
+          "Dispatch started with a simple idea: save an article and listen to it later as a podcast. I wanted anyone to be able to use it, so there's no setup and no prompting. You pick what you care about and a podcast shows up.",
+          "The first version only used the articles you saved, so on days you saved nothing, nothing happened. Now you pick up to three segments, like Morning Briefing or Close to Home, and Dispatch makes an episode every weekday with your saved articles first. It used to be a tool you had to feed. Now it's a show that arrives on its own.",
         ],
         gallery: [
           { src: dispatchWelcome, alt: 'Dispatch welcome screen with the headline "Today\'s reading, in one short listen" and sign-in options' },
@@ -118,10 +118,10 @@ export const caseStudies: CaseStudy[] = [
         index: '02',
         title: 'Design direction',
         body: [
-          "The goal was a product that doesn't look like a template: dark and flat, with square corners and no shadows except on menus and dialogs. Two colors stand in for the hosts, slate for Nora and rose for Theo. Rose also marks new things, and is never an error color.",
-          'Licensed photos run through SVG filters give the app its texture, and each episode gets its own cover, so your podcast app looks like Dispatch too.',
-          'Getting articles in takes one tap: a Chrome extension, an iPhone share sheet shortcut, or a paste field on Today. The shortcut started as a setup you pasted a key into. I cut it to a single link.',
-          "Empty and failed episodes are designed too. On a quiet day, Nora and Theo tell you what they didn't find. When an episode fails, it says what happened and offers a retry.",
+          "I didn't want it to look like a template. It's dark and flat, with square corners and no shadows except on menus and dialogs. Slate stands for Nora and rose for Theo, the two hosts. Rose also marks new things, and I never use it for errors.",
+          'The textures are licensed photos run through SVG filters, and every episode gets its own cover, so your podcast app looks like Dispatch too.',
+          'Saving an article takes one tap: a Chrome extension, an iPhone share sheet shortcut, or a paste field on Today. The shortcut used to be a setup where you pasted in a key. I cut it down to a single link.',
+          "Empty and failed episodes get the same care. On a quiet day, Nora and Theo tell you what they didn't find. If an episode fails, Dispatch says what happened and offers a retry.",
         ],
         gallery: [
           { src: dispatchTextures, alt: 'The Dispatch texture library: licensed photographs run through brand filters, with credits' },
@@ -138,8 +138,8 @@ export const caseStudies: CaseStudy[] = [
         index: '03',
         title: 'Building with AI',
         body: [
-          'Dispatch was built in a loop between Claude Code and Claude Design. Because the handoff bundle carries the reasoning as well as the pixels, the code came back accurate instead of approximate.',
-          'Storybook and the design-sync skill hold the loop together: design-sync publishes every component and screen to Claude Design, so designs use the real components.',
+          'I built Dispatch by going back and forth between Claude Code and Claude Design. The handoff bundle carries the reasoning along with the pixels, so what Claude Code built matched the design instead of coming close.',
+          'Storybook and the design-sync skill keep the loop going. Design-sync publishes every component and screen to Claude Design, so new designs use the real components.',
         ],
         stack: [
           {
@@ -173,8 +173,8 @@ export const caseStudies: CaseStudy[] = [
         index: '04',
         title: 'Tech stack',
         body: [
-          'Everything Dispatch runs on, including the unglamorous parts like sign-in and email.',
-          'The biggest cost decision was the voice. ElevenLabs sounded great but cost roughly $0.70 an episode, about $15 a month for one weekday listener, by my estimates. I slightly preferred Chatterbox, an open-source model on fal.ai, in a blind listening test, and it costs about $0.09 an episode, around $2 a month.',
+          'This is everything Dispatch runs on, including the unglamorous parts like sign-in and email.',
+          'Voice was the biggest cost decision. ElevenLabs sounded great but cost about $0.70 an episode, or roughly $15 a month for one weekday listener by my math. In a blind listening test I slightly preferred Chatterbox, an open-source model on fal.ai. It costs about $0.09 an episode, around $2 a month.',
         ],
         stack: [
           {
@@ -213,8 +213,8 @@ export const caseStudies: CaseStudy[] = [
         title: "What's next",
         body: [
           'Dispatch is in private beta, open by invitation. The Chrome extension is live on the Chrome Web Store.',
-          'Next: more segments and hosts, and an education mode that builds episodes around topics you want to learn. After that: newsletters you can forward in, more browsers, and a native iOS app.',
-          'Voice is the biggest cost, so pricing should follow audio minutes. A capped flat plan, usage-based pricing and a free tier are all on the table.',
+          'Next up are more segments and hosts, and an education mode that builds episodes around things you want to learn. After that: forwarding newsletters in, more browsers and a native iOS app.',
+          "Voice is the biggest cost, so pricing should follow audio minutes. I'm weighing a capped flat plan, usage-based pricing and a free tier.",
         ],
       },
     ],
@@ -225,7 +225,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Omni',
     shortTitle: 'Omni',
     summary:
-      "Directed design for Airia's enterprise-grade AI assistant: a secure place to find and understand your organization's data, go deep on research, collaborate with the team, and get work done.",
+      "I directed design for Omni, Airia's enterprise AI assistant. It's a secure place to find and understand your organization's data, do deep research, collaborate with your team and get work done.",
     tagline: 'A full featured chat experience for the enterprise',
     tags: ['Enterprise AI', 'Conversational Design', 'Design Leadership'],
     role: {
@@ -240,7 +240,7 @@ export const caseStudies: CaseStudy[] = [
         index: '01',
         title: 'Overview',
         body: [
-          "Omni had two bars to clear: secure enough for the enterprise, and good enough to compete with ChatGPT and Claude. So it integrates with the tools a team already uses, instead of asking people to change how they work. We also gave people fine-grained control over any document or task in flight, so they could shape what the model handed back.",
+          "Omni had to be secure enough for the enterprise and good enough to compete with ChatGPT and Claude. It connects to the tools a team already uses, so nobody has to change how they work. We also gave people fine control over any document or task in progress, so they can shape what the model gives back.",
         ],
         gallery: [
           { src: omniOverviewHome, alt: 'Omni home screen with quick actions for slides, scheduling, code, spreadsheets, and tasks' },
@@ -256,7 +256,7 @@ export const caseStudies: CaseStudy[] = [
         index: '02',
         title: 'Deep Research',
         body: [
-          "Deep Research had to earn trust, not just answer questions. Nobody wants to hand off a task and wait twenty minutes for an answer they can't check. So we made the process visible: Omni turns a question into a plan, works through it step by step, and cites its sources. Design pushed hard for a pause button, so people could step in before the agent went too far off track. And since not everyone wants a full report, we gave two ways in: a quick summary, or the full write-up with a table of contents.",
+          "Nobody wants to hand off a task, wait twenty minutes and get an answer they can't check. So Deep Research shows its work. Omni turns your question into a plan, works through it step by step and cites its sources. Design pushed for a pause button so people can step in before the agent drifts off track. Not everyone wants a full report, so there are two ways in: a quick summary, or the full write-up with a table of contents.",
         ],
         gallery: [
           { src: omniResearchPrompt, alt: 'Deep Research mode enabled with a multi-part research question typed in' },
@@ -269,7 +269,7 @@ export const caseStudies: CaseStudy[] = [
         index: '03',
         title: 'Workspaces',
         body: [
-          "Workspaces had to solve a context problem. A lot of conversations belong to a project, not just the person who started them, and early testers kept losing their place jumping between a project thread and a random one-off chat. So we gave each project a shared home: threads, milestones, people, and files, all in one place.",
+          "Many conversations belong to a project, not just the person who started them. Early testers kept losing their place jumping between a project thread and a one-off chat. So each project now has a shared home, with its threads, milestones, people and files in one place.",
         ],
         gallery: [
           { src: omniWorkspacesEmpty, alt: 'Empty Workspaces state with starter templates for common project types' },
@@ -287,7 +287,7 @@ export const caseStudies: CaseStudy[] = [
         index: '04',
         title: 'Presentations',
         body: [
-          "Presentations had to feel like an actual slide deck, not a document pretending to be one: structure, titles, speaker notes, all of it. The harder problem came after the first draft. Tweaking the tone or swapping a template meant leaving the deck to start over in chat. So I fought to get a floating AI toolbar into the editor, so people could refine in place instead of switching back and forth. Presenter mode came from the same need: speaker notes, a timer, and a look ahead, all without leaving the deck.",
+          "A presentation should feel like a real slide deck, with structure, titles and speaker notes, not a document pretending to be one. The harder problem came after the first draft. Changing the tone or swapping a template meant leaving the deck and starting over in chat. I fought to get a floating AI toolbar into the editor so people could refine in place. Presenter mode came from the same idea: speaker notes, a timer and a look at the next slide, without leaving the deck.",
         ],
         gallery: [
           { src: omniPresentationsChat, alt: 'A slide deck generated in chat, with suggested next steps to refine it' },
@@ -301,7 +301,7 @@ export const caseStudies: CaseStudy[] = [
         index: '05',
         title: 'Files',
         body: [
-          "Every file a person added or created in Omni needed one home, instead of scattering across a dozen chat threads. So we designed Files to aggregate everything a user added or made, filterable by type, so people could always find what they were looking for.",
+          "Everything a person adds or creates in Omni should live in one place, not scatter across a dozen chat threads. Files collects it all and filters by type, so you can always find what you're looking for.",
         ],
         gallery: [
           { src: omniFilesHome, alt: 'The Files hub empty state with a promo for AI image generation and file-type filters' },
@@ -312,7 +312,7 @@ export const caseStudies: CaseStudy[] = [
         index: '06',
         title: 'Mobile',
         body: [
-          "Mobile had to prove the same interaction model held up on a much smaller screen, not a stripped-down version of it. Chat keeps its quick actions and tool connectors within reach, not buried in menus. Meetings folds scheduling into a real calendar with its own creation flow, instead of a list bolted onto chat.",
+          "Mobile needed to work the same way as the desktop app, not be a stripped-down version of it. Chat keeps quick actions and tool connectors close at hand instead of buried in menus. Meetings is a real calendar with its own creation flow, not a list bolted onto chat.",
         ],
         gallery: [
           { src: omniMobileChat, alt: 'Mobile chat home with quick actions and a connect-to-chat panel for tools and files' },
@@ -328,7 +328,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'SmartScan',
     shortTitle: 'Smartscan',
     summary:
-      'Designed a plain-language research tool that tags, extracts, and summarizes across an entire file library in one pass, built for legal and education teams.',
+      'I designed a research tool for legal and education teams. You describe what you want in plain language, and it tags, extracts and summarizes across a whole file library in one pass.',
     tagline: 'Intelligent file organization',
     tags: ['Enterprise AI', 'File Management', 'Product Design'],
     role: {
@@ -341,7 +341,7 @@ export const caseStudies: CaseStudy[] = [
         index: '01',
         title: 'Problem Framing',
         body: [
-          "Even in the age of AI, I still like to start ideation in my sketchbook. I was mostly trying to figure out the basic shape of the feature: where it lived in the product, how people would find and understand what Smart Scan actually did, and how they'd pick back up with something they were already working on.",
+          "Even now, I like to start ideation in a sketchbook. I was mostly trying to work out the basic shape of the feature: where it lives in the product, how people would find it and understand what Smart Scan does, and how they'd pick up something they were already working on.",
         ],
         gallery: [
           { src: smartscanProblem1, alt: 'Early whiteboard sketch of the "Bulk Review Agent" concept, applied as a feature of any assistant' },
@@ -355,7 +355,7 @@ export const caseStudies: CaseStudy[] = [
         index: '02',
         title: 'Getting Started',
         body: [
-          "Getting started meant solving the blank-page problem. Someone opening Smart Scan for the first time needed to understand what it could actually do, without reading a manual. So the home screen leads with a few common starting points instead of an empty prompt. It also had to make picking back up easy, so returning to a job from last week never took more than a glance.",
+          "The first job was the blank-page problem. Someone opening Smart Scan for the first time should understand what it can do without reading a manual. So the home screen starts with a few common templates instead of an empty prompt. Picking back up matters too, so getting back to last week's job takes a glance.",
         ],
         gallery: [
           { src: smartscanGettingStarted, alt: 'Smart Scan home screen with starter templates and a list of previous scans' },
@@ -365,7 +365,7 @@ export const caseStudies: CaseStudy[] = [
         index: '03',
         title: 'Scan Creation',
         body: [
-          "Setting up a scan needed to feel simple: add your files, then just say what you want done with them, in plain language. Type things like tag anything about a merger, or extract every force majeure clause, and Smart Scan suggests criteria as you go instead of making you guess at the phrasing.",
+          "Setting up a scan should feel simple. You add your files, then say what you want done with them in plain language, like tag anything about a merger, or extract every force majeure clause. Smart Scan suggests criteria as you type, so you don't have to guess at the phrasing.",
         ],
         gallery: [
           { src: smartscanScanEmpty, alt: 'Add Files step of a new Smart Scan, before any files are added' },
@@ -377,7 +377,7 @@ export const caseStudies: CaseStudy[] = [
         index: '04',
         title: 'Reports',
         body: [
-          "Results land in a table shaped by whatever you asked for, one column per criterion, filled in as the scan works through your library. You can edit or add columns right from that same view, so tweaking a criterion doesn't mean rerunning the whole scan. I didn't want a result to ever be a dead end, so a document explorer sits one click away from the actual file, even images. You can always trace it back to the source.",
+          "Results come back in a table with one column per criterion, filled in as the scan works through your library. You can edit or add columns from the same view, so changing a criterion doesn't mean rerunning the whole scan. I didn't want any result to be a dead end, so a document explorer sits one click from the actual file, even images. You can always trace a result back to its source.",
         ],
         gallery: [
           { src: smartscanReportsProgress, alt: 'A Smart Scan in progress, with files still processing' },
@@ -393,8 +393,8 @@ export const caseStudies: CaseStudy[] = [
     title: 'Greenlight IA',
     shortTitle: 'Greenlight IA',
     summary:
-      "Untangled a sprawling parent-dashboard menu into one clear, task-based navigation system shared across Greenlight's parent and child experiences.",
-    tagline: "Reimagining Greenlight's core ux",
+      "I untangled a sprawling parent-dashboard menu into one clear, task-based navigation shared across Greenlight's parent and child experiences.",
+    tagline: "Reimagining Greenlight's core UX",
     tags: ['Fintech', 'Information Architecture', 'Navigation'],
     role: {
       title: 'Director, Product Design',
@@ -413,7 +413,7 @@ export const caseStudies: CaseStudy[] = [
         index: '01',
         title: 'Problem Framing',
         body: [
-          "As Greenlight grew, the nav and information structure started to buckle. It wasn't built for the new user groups we needed to support future growth. I led the redesign of the information architecture, so it could keep serving current users while we kept adding features.",
+          "As Greenlight grew, the navigation and information structure started to buckle. It wasn't built for the new user groups we needed to support. I led the redesign of the information architecture so it could keep serving current users as we added features.",
         ],
         gallery: [
           { src: glxHypothesis, alt: 'An extremely broad hypothesis: build a scalable platform that broadens the mission while strengthening core experiences' },
@@ -427,7 +427,7 @@ export const caseStudies: CaseStudy[] = [
         index: '02',
         title: 'Design Sprint',
         body: [
-          'To kick things off, I led a design sprint with my team: a handful of workshops and design jams. The goal was simple. Align on the problem, then come up with real solutions. We landed on three: "The Hub," "The Assistant," and "Heartbeat."',
+          'I started with a design sprint with my team: a handful of workshops and design jams to agree on the problem and come up with real solutions. We landed on three concepts: The Hub, The Assistant and Heartbeat.',
         ],
         gallery: [
           { src: glxConceptHub, alt: 'The Hub concept: a curated, personalized home, wallet, and money screens' },
@@ -440,7 +440,7 @@ export const caseStudies: CaseStudy[] = [
         index: '03',
         title: 'User Testing',
         body: [
-          "We presented the concepts to stakeholders and landed on \"The Hub.\" From there, I ran user interviews and a tree test. I wanted both the numbers and the why behind them, so we'd actually know if we were meeting user expectations.",
+          "We showed the concepts to stakeholders and chose The Hub. Then I ran user interviews and a tree test. I wanted the numbers and the reasons behind them, so we'd know whether we were meeting what users expected.",
         ],
         stats: [
           { group: 'User Test', chips: ['2 rounds', '8 prototypes', '20+ users'] },
@@ -453,15 +453,15 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             title: 'Surface user activity',
-            body: "Show account activity up front. Parents get real insight into what their kids are doing and learning.",
+            body: 'Show account activity up front, so parents can see what their kids are doing and learning.',
           },
           {
             title: 'Bottom nav improves usability & discovery',
-            body: "A more consistent structure for where features live helps people actually find their way around the app.",
+            body: 'A consistent structure for where features live makes the app easier to navigate.',
           },
           {
             title: 'Dynamic recommendations',
-            body: "Consolidate the dashboard \"ads\" and make them smarter, more relevant to each user.",
+            body: 'Combine the dashboard ads and make them smarter and more relevant to each user.',
           },
         ],
         gallery: [
@@ -475,7 +475,7 @@ export const caseStudies: CaseStudy[] = [
         index: '04',
         title: 'Solution & Impact',
         body: [
-          "Launching the redesigned IA was a win for both the product and the business. Plan upgrades went up 10%, and people actually started finding features like Safety and Level Up that used to go unnoticed.",
+          'The new IA worked for the product and the business. Plan upgrades went up 10% and downgrades fell 10%. People started finding features like Safety and Level Up that used to go unnoticed, and Safety Hub visits doubled.',
         ],
         gallery: [
           { src: glxParentExperience, alt: 'Parent app screens for Home, Accounts, Chores, Safety, and Level Up' },
