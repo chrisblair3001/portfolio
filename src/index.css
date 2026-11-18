@@ -62,6 +62,43 @@ body {
   display: none;
 }
 
+/* Soft edges for a horizontal scroller. The gallery's scroll handler sets --fade-l and --fade-r on
+   the wrapper: how much of the fade each side is showing right now. Both are 0 at either end of
+   the row, so nothing fades there, and grow to full length within one fade length of scrolling.
+
+   The fade is a mask on the content itself, so the images dissolve into the page instead of being
+   covered by a gray band. Its curve starts slowly and speeds up, which keeps the washed-out middle
+   of a bright screenshot narrow. */
+.edge-fade {
+  --edge-mask:
+    linear-gradient(
+      to right,
+      rgb(0 0 0 / 0) 0,
+      rgb(0 0 0 / 0.02) calc(var(--fade-l) * 0.15),
+      rgb(0 0 0 / 0.1) calc(var(--fade-l) * 0.3),
+      rgb(0 0 0 / 0.25) calc(var(--fade-l) * 0.45),
+      rgb(0 0 0 / 0.48) calc(var(--fade-l) * 0.6),
+      rgb(0 0 0 / 0.72) calc(var(--fade-l) * 0.75),
+      rgb(0 0 0 / 0.93) calc(var(--fade-l) * 0.9),
+      #000 var(--fade-l)
+    ),
+    linear-gradient(
+      to left,
+      rgb(0 0 0 / 0) 0,
+      rgb(0 0 0 / 0.02) calc(var(--fade-r) * 0.15),
+      rgb(0 0 0 / 0.1) calc(var(--fade-r) * 0.3),
+      rgb(0 0 0 / 0.25) calc(var(--fade-r) * 0.45),
+      rgb(0 0 0 / 0.48) calc(var(--fade-r) * 0.6),
+      rgb(0 0 0 / 0.72) calc(var(--fade-r) * 0.75),
+      rgb(0 0 0 / 0.93) calc(var(--fade-r) * 0.9),
+      #000 var(--fade-r)
+    );
+  -webkit-mask-image: var(--edge-mask);
+  mask-image: var(--edge-mask);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
